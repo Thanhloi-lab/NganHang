@@ -1,4 +1,7 @@
-﻿using DevExpress.XtraEditors;
+﻿using ClosedXML.Excel;
+using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraGrid.Views.Grid;
 using NganHang.UndoRedo;
 using System;
 using System.Collections.Generic;
@@ -39,7 +42,6 @@ namespace NganHang
             this.Validate();
             this.bdsNhanVien.EndEdit();
             this.tableAdapterManager.UpdateAll(this.DS);
-
         }
 
         private void Staff_Load(object sender, EventArgs e)
@@ -54,12 +56,14 @@ namespace NganHang
         {
             position = bdsNhanVien.Position;
             bdsNhanVien.AddNew();
+            ClearStack();
             EnableAdd();
         }
 
         private void btnEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             position = bdsNhanVien.Position;
+            ClearStack();
             EnableEdit();
         }
 
@@ -97,7 +101,9 @@ namespace NganHang
                 bdsNhanVien.ResetCurrentItem();
                 this.nhanVienTableAdapter.Connection.ConnectionString = Program.connStr;
                 this.nhanVienTableAdapter.Update(this.DS.NhanVien);
-            }catch(Exception ex)
+                ClearStack();
+            }
+            catch(Exception ex)
             {
                 MessageBox.Show("Có lỗi trong quá trình xử lý." + Environment.NewLine+ "" + ex.Message);
                 return;
@@ -108,39 +114,70 @@ namespace NganHang
 
         private void btnSaveToFile_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.xlsx" };
 
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    using (XLWorkbook workbook = new XLWorkbook())
+                    {
+                        DataTable dt = GetDataTable(gvStaff);
+
+                        workbook.Worksheets.Add(dt, "Staff");
+                        workbook.SaveAs(sfd.FileName);
+                    }
+                    MessageBox.Show("Tải xướng thành công.");
+                    ClearStack();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Có lỗi trong quá trình tải xuống, vui lòng thử lại sau.");
+                }
+            }
         }
 
         private void btnQuit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            QuitForm();
+            DialogResult dialogResult = MessageBox.Show("Bạn có muỗn thoát khỏi trang này?", "", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                ClearStack();
+                QuitForm();
+            }
         }
 
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            cmbBranch.DataSource = Program.dbs_ListFragments;
-            cmbBranch.DisplayMember = "TENCN";
-            cmbBranch.ValueMember = "TENSERVER";
-            
-
-            bdsNhanVien.CancelEdit();
-            try
+            DialogResult dialogResult = MessageBox.Show("Bạn có muốn tải lại trang?", "", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
             {
-                this.nhanVienTableAdapter.Connection.ConnectionString = Program.connStr;
-                this.nhanVienTableAdapter.Fill(this.DS.NhanVien);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi tải lại trang " + ex.Message + "." + Environment.NewLine+ "Vui lòng thử lại sau", "", MessageBoxButtons.OK);
-            }
+                cmbBranch.DataSource = Program.dbs_ListFragments;
+                cmbBranch.DisplayMember = "TENCN";
+                cmbBranch.ValueMember = "TENSERVER";
 
-            Reload();
+
+                bdsNhanVien.CancelEdit();
+                try
+                {
+                    this.nhanVienTableAdapter.Connection.ConnectionString = Program.connStr;
+                    this.nhanVienTableAdapter.Fill(this.DS.NhanVien);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi tải lại trang " + ex.Message + "." + Environment.NewLine + "Vui lòng thử lại sau", "", MessageBoxButtons.OK);
+                }
+
+                Reload();
+                ClearStack();
+            }
         }
 
         private void cmbBranch_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (firstLoad == true)
             {
+                ClearStack();
                 GetBranchId();
                 LoadData();
             }
@@ -175,17 +212,23 @@ namespace NganHang
 
         private void btnRestore_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            bdsNhanVien.CancelEdit();
-            if (btnAdd.Enabled == false)
+            DialogResult dialogResult = MessageBox.Show("Bạn có muốn hủy thao tác lại trang?", "", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
             {
-                bdsNhanVien.Position = position;
-            }
-            gcStaff.Enabled = true;
-            pcStaff.Enabled = false;
-            btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = true;
-            btnSave.Enabled = btnRestore.Enabled = false;
+                bdsNhanVien.CancelEdit();
+                if (btnAdd.Enabled == false)
+                {
+                    bdsNhanVien.Position = position;
+                }
+                gcStaff.Enabled = true;
+                pcStaff.Enabled = false;
+                btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = true;
+                btnSave.Enabled = btnRestore.Enabled = false;
 
-            Reload();
+                Reload();
+                ClearStack();
+            }    
+            
         }
 
         private void btnUndo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -425,9 +468,9 @@ namespace NganHang
                 bdsNhanVien.RemoveCurrent();
                 this.nhanVienTableAdapter.Connection.ConnectionString = Program.connStr;
                 this.nhanVienTableAdapter.Update(this.DS.NhanVien);
-
-
-            }catch(Exception ex)
+                ClearStack();
+            }
+            catch(Exception ex)
             {
                 MessageBox.Show("Có lỗi trong quá trình thực hiện, vui lòng thử lại sau." + Environment.NewLine+ "" + ex.Message, "", MessageBoxButtons.OK);
                 this.nhanVienTableAdapter.Fill(this.DS.NhanVien);
@@ -439,10 +482,30 @@ namespace NganHang
 
         private void QuitForm()
         {
+            ClearStack();
             this.Close();
         }
 
+        private void ClearStack()
+        {
+            stackUndo.Clear();
+            stackRedo.Clear();
+        }
 
+        private DataTable GetDataTable(GridView view)
+        {
+            DataTable dt = new DataTable();
+            foreach (GridColumn c in view.Columns)
+                dt.Columns.Add(c.FieldName, c.ColumnType);
+            for (int r = 0; r < view.RowCount; r++)
+            {
+                object[] rowValues = new object[dt.Columns.Count];
+                for (int c = 0; c < dt.Columns.Count; c++)
+                    rowValues[c] = view.GetRowCellValue(r, dt.Columns[c].ColumnName);
+                dt.Rows.Add(rowValues);
+            }
+            return dt;
+        }
         #endregion
     }
 }
