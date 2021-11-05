@@ -233,13 +233,13 @@ namespace NganHang
 
         private void btnUndo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Program.UndoRedo(ref stackUndo, ref stackRedo, pcStaff);
+            Program.UndoRedo(ref stackUndo, ref stackRedo, pcStaff, false);
             Program.SetEnableBtnEndoRedo(ref stackUndo, ref stackRedo, btnUndo, btnRedo);
         }
 
         private void btnRedo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Program.UndoRedo(ref stackRedo, ref stackUndo, pcStaff);
+            Program.UndoRedo(ref stackRedo, ref stackUndo, pcStaff, false);
             Program.SetEnableBtnEndoRedo(ref stackUndo, ref stackRedo, btnUndo, btnRedo);
         }
 
@@ -490,6 +490,8 @@ namespace NganHang
         {
             stackUndo.Clear();
             stackRedo.Clear();
+            btnUndo.Enabled = false;
+            btnRedo.Enabled = false;
         }
 
         private DataTable GetDataTable(GridView view)

@@ -106,13 +106,19 @@ namespace NganHang
         public static DataTable ExecSqlDataTable(String cmd)
         {
             DataTable dt = new DataTable();
-
-            if (Program.conn.State == ConnectionState.Closed) Program.conn.Open();
-            SqlDataAdapter da = new SqlDataAdapter(cmd, conn);
-            da.Fill(dt);
-            conn.Close();
-            return dt;
-
+            try
+            {
+                if (Program.conn.State == ConnectionState.Closed) Program.conn.Open();
+                SqlDataAdapter da = new SqlDataAdapter(cmd, conn);
+                da.Fill(dt);
+                conn.Close();
+                return dt;
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Xảy ra lỗi trong quá trình thực hiện, vui lòng đăng nhập lại.");
+                return null;
+            }
+            
         }
 
         public static void AuthorizeCombobox(System.Windows.Forms.ComboBox cmb)
@@ -186,7 +192,7 @@ namespace NganHang
             mGroup = "";
         }
 
-        public static void UndoRedo(ref Stack<UndoRedoControl> stackPop, ref Stack<UndoRedoControl> stackPush, Control container)
+        public static void UndoRedo(ref Stack<UndoRedoControl> stackPop, ref Stack<UndoRedoControl> stackPush, Control container, bool isRestore)
         {
             if (stackPop.Count < 1)
                 return;

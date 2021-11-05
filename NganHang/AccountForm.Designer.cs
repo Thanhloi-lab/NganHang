@@ -45,8 +45,10 @@ namespace NganHang
             this.btnSave = new DevExpress.XtraBars.BarButtonItem();
             this.btnDelete = new DevExpress.XtraBars.BarButtonItem();
             this.btnReload = new DevExpress.XtraBars.BarButtonItem();
-            this.btnUndo = new DevExpress.XtraBars.BarButtonItem();
+            this.btnRestore = new DevExpress.XtraBars.BarButtonItem();
             this.btnSaveToFile = new DevExpress.XtraBars.BarButtonItem();
+            this.btnUndo = new DevExpress.XtraBars.BarButtonItem();
+            this.btnRedo = new DevExpress.XtraBars.BarButtonItem();
             this.btnQuit = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -191,13 +193,15 @@ namespace NganHang
             this.btnAdd,
             this.btnDelete,
             this.btnSave,
-            this.btnUndo,
+            this.btnRestore,
             this.btnSaveToFile,
             this.btnQuit,
             this.btnReload,
-            this.btnEdit});
+            this.btnEdit,
+            this.btnUndo,
+            this.btnRedo});
             this.barManager.MainMenu = this.barMenu;
-            this.barManager.MaxItemId = 8;
+            this.barManager.MaxItemId = 10;
             this.barManager.StatusBar = this.bar3;
             // 
             // barMenu
@@ -212,8 +216,10 @@ namespace NganHang
             new DevExpress.XtraBars.LinkPersistInfo(this.btnSave),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnDelete),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnReload),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnUndo),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnRestore),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnSaveToFile),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnUndo, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnRedo, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnQuit)});
             this.barMenu.OptionsBar.MultiLine = true;
             this.barMenu.OptionsBar.UseWholeRow = true;
@@ -232,6 +238,7 @@ namespace NganHang
             // btnEdit
             // 
             this.btnEdit.Caption = "Sửa";
+            this.btnEdit.Hint = "F2";
             this.btnEdit.Id = 7;
             this.btnEdit.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.ImageOptions.Image")));
             this.btnEdit.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnEdit.ImageOptions.LargeImage")));
@@ -241,9 +248,11 @@ namespace NganHang
             // btnSave
             // 
             this.btnSave.Caption = "Ghi";
+            this.btnSave.Hint = "Crtl + S";
             this.btnSave.Id = 2;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
             this.btnSave.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.LargeImage")));
+            this.btnSave.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S));
             this.btnSave.Name = "btnSave";
             this.btnSave.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btnSave.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSave_ItemClick);
@@ -251,9 +260,11 @@ namespace NganHang
             // btnDelete
             // 
             this.btnDelete.Caption = "Xóa";
+            this.btnDelete.Hint = "Delete";
             this.btnDelete.Id = 1;
             this.btnDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.ImageOptions.Image")));
             this.btnDelete.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnDelete.ImageOptions.LargeImage")));
+            this.btnDelete.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.Delete);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btnDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDelete_ItemClick);
@@ -261,22 +272,24 @@ namespace NganHang
             // btnReload
             // 
             this.btnReload.Caption = "Tải lại";
+            this.btnReload.Hint = "F5";
             this.btnReload.Id = 6;
             this.btnReload.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.ImageOptions.Image")));
             this.btnReload.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnReload.ImageOptions.LargeImage")));
+            this.btnReload.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.F5);
             this.btnReload.Name = "btnReload";
             this.btnReload.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btnReload.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReload_ItemClick);
             // 
-            // btnUndo
+            // btnRestore
             // 
-            this.btnUndo.Caption = "Phục Hồi";
-            this.btnUndo.Id = 3;
-            this.btnUndo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnUndo.ImageOptions.Image")));
-            this.btnUndo.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnUndo.ImageOptions.LargeImage")));
-            this.btnUndo.Name = "btnUndo";
-            this.btnUndo.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btnUndo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnUndo_ItemClick);
+            this.btnRestore.Caption = "Phục Hồi";
+            this.btnRestore.Id = 3;
+            this.btnRestore.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnRestore.ImageOptions.Image")));
+            this.btnRestore.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnRestore.ImageOptions.LargeImage")));
+            this.btnRestore.Name = "btnRestore";
+            this.btnRestore.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnRestore.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRestore_ItemClick);
             // 
             // btnSaveToFile
             // 
@@ -288,12 +301,38 @@ namespace NganHang
             this.btnSaveToFile.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btnSaveToFile.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSaveToFile_ItemClick);
             // 
+            // btnUndo
+            // 
+            this.btnUndo.Caption = "Undo";
+            this.btnUndo.Enabled = false;
+            this.btnUndo.Hint = "Ctrl + Z";
+            this.btnUndo.Id = 8;
+            this.btnUndo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnUndo.ImageOptions.Image")));
+            this.btnUndo.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnUndo.ImageOptions.LargeImage")));
+            this.btnUndo.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z));
+            this.btnUndo.Name = "btnUndo";
+            this.btnUndo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnUndo_ItemClick);
+            // 
+            // btnRedo
+            // 
+            this.btnRedo.Caption = "Redo";
+            this.btnRedo.Enabled = false;
+            this.btnRedo.Hint = "Ctrl + Y";
+            this.btnRedo.Id = 9;
+            this.btnRedo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnRedo.ImageOptions.Image")));
+            this.btnRedo.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnRedo.ImageOptions.LargeImage")));
+            this.btnRedo.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y));
+            this.btnRedo.Name = "btnRedo";
+            this.btnRedo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRedo_ItemClick);
+            // 
             // btnQuit
             // 
             this.btnQuit.Caption = "Thoát";
+            this.btnQuit.Hint = "Ctrl + W";
             this.btnQuit.Id = 5;
             this.btnQuit.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnQuit.ImageOptions.Image")));
             this.btnQuit.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnQuit.ImageOptions.LargeImage")));
+            this.btnQuit.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.W));
             this.btnQuit.Name = "btnQuit";
             this.btnQuit.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btnQuit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnQuit_ItemClick);
@@ -385,6 +424,7 @@ namespace NganHang
             this.gcAccount.TabIndex = 10;
             this.gcAccount.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvAccount});
+            this.gcAccount.DataSourceChanged += new System.EventHandler(this.gcAccount_DataSourceChanged);
             // 
             // gvAccount
             // 
@@ -396,6 +436,7 @@ namespace NganHang
             this.gvAccount.GridControl = this.gcAccount;
             this.gvAccount.Name = "gvAccount";
             this.gvAccount.OptionsBehavior.Editable = false;
+            this.gvAccount.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gvAccount_FocusedRowChanged_1);
             // 
             // columnMANV
             // 
@@ -437,8 +478,10 @@ namespace NganHang
             // 
             this.tbLoginName.Location = new System.Drawing.Point(424, 36);
             this.tbLoginName.Name = "tbLoginName";
+            this.tbLoginName.ReadOnly = true;
             this.tbLoginName.Size = new System.Drawing.Size(216, 20);
             this.tbLoginName.TabIndex = 16;
+            this.tbLoginName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbLoginName_KeyPress);
             // 
             // tbFullname
             // 
@@ -518,6 +561,7 @@ namespace NganHang
             this.tbPassword.Size = new System.Drawing.Size(216, 20);
             this.tbPassword.TabIndex = 29;
             this.tbPassword.Visible = false;
+            this.tbPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPassword_KeyPress);
             // 
             // lbPassword
             // 
@@ -541,6 +585,7 @@ namespace NganHang
             this.gcStaff.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvStaff});
             this.gcStaff.Visible = false;
+            this.gcStaff.DataSourceChanged += new System.EventHandler(this.gcStaff_DataSourceChanged);
             // 
             // gvStaff
             // 
@@ -688,6 +733,7 @@ namespace NganHang
             this.tbRegisterPassword.Name = "tbRegisterPassword";
             this.tbRegisterPassword.Size = new System.Drawing.Size(216, 21);
             this.tbRegisterPassword.TabIndex = 27;
+            this.tbRegisterPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbRegisterPassword_KeyPress);
             // 
             // label7
             // 
@@ -704,6 +750,7 @@ namespace NganHang
             this.tbRegisterLogin.Name = "tbRegisterLogin";
             this.tbRegisterLogin.Size = new System.Drawing.Size(216, 21);
             this.tbRegisterLogin.TabIndex = 25;
+            this.tbRegisterLogin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbRegisterLogin_KeyPress);
             // 
             // label8
             // 
@@ -773,7 +820,7 @@ namespace NganHang
         private DevExpress.XtraBars.BarButtonItem btnSave;
         private DevExpress.XtraBars.BarButtonItem btnDelete;
         private DevExpress.XtraBars.BarButtonItem btnReload;
-        private DevExpress.XtraBars.BarButtonItem btnUndo;
+        private DevExpress.XtraBars.BarButtonItem btnRestore;
         private DevExpress.XtraBars.BarButtonItem btnSaveToFile;
         private DevExpress.XtraBars.BarButtonItem btnQuit;
         private DevExpress.XtraBars.Bar bar3;
@@ -823,5 +870,7 @@ namespace NganHang
         private System.Windows.Forms.TextBox tbStaffPhoneNumber;
         private System.Windows.Forms.TextBox tbStaffGender;
         private System.Windows.Forms.TextBox tbStaffBranch;
+        private DevExpress.XtraBars.BarButtonItem btnUndo;
+        private DevExpress.XtraBars.BarButtonItem btnRedo;
     }
 }

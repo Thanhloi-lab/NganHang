@@ -58,6 +58,7 @@ namespace NganHang
             // 
             // btnQuit
             // 
+            this.btnQuit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnQuit.Location = new System.Drawing.Point(235, 177);
             this.btnQuit.Name = "btnQuit";
             this.btnQuit.Size = new System.Drawing.Size(75, 23);
@@ -128,9 +129,11 @@ namespace NganHang
             // 
             // LoginForm
             // 
+            this.AcceptButton = this.btnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(891, 613);
+            this.CancelButton = this.btnQuit;
+            this.ClientSize = new System.Drawing.Size(427, 264);
             this.Controls.Add(this.panel1);
             this.Name = "LoginForm";
             this.Text = "LoginForm";

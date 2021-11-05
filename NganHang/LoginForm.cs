@@ -96,8 +96,6 @@ namespace NganHang
             
             Program.myReader.Close();
 
-            MessageBox.Show("Đăng nhập thành công", "", MessageBoxButtons.OK);
-
             Program.mainForm.lbUserId.Caption =  Program.userName;
             Program.mainForm.lbName.Caption = Program.mFullname;
             Program.mainForm.lbGroup.Caption = Program.mGroup;
@@ -106,7 +104,11 @@ namespace NganHang
 
         private void btnQuit_Click(object sender, EventArgs e)
         {
-
+            DialogResult result = MessageBox.Show("Bạn có muốn thoát khỏi chương trình?", "", MessageBoxButtons.YesNo);
+            if(result == DialogResult.Yes)
+            {
+                this.Close();
+            }
         }
 
         private void cmbBranch_SelectedIndexChanged(object sender, EventArgs e)
