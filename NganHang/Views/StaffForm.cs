@@ -118,6 +118,7 @@ namespace NganHang
 
             if (sfd.ShowDialog() == DialogResult.OK)
             {
+                Cursor.Current = Cursors.WaitCursor;
                 try
                 {
                     using (XLWorkbook workbook = new XLWorkbook())
@@ -127,6 +128,7 @@ namespace NganHang
                         workbook.Worksheets.Add(dt, "Staff");
                         workbook.SaveAs(sfd.FileName);
                     }
+                    Cursor.Current = Cursors.Default;
                     MessageBox.Show("Tải xướng thành công.");
                     ClearStack();
                 }
@@ -254,6 +256,7 @@ namespace NganHang
 
         private void LoadData()
         {
+            Cursor.Current = Cursors.WaitCursor;
             DS.EnforceConstraints = false;
             // TODO: This line of code loads data into the 'dS.NhanVien' table. You can move, or remove it, as needed.
             this.nhanVienTableAdapter.Connection.ConnectionString = Program.connStr;
@@ -275,7 +278,7 @@ namespace NganHang
             {
                 GetBranchId();
             }
-
+            Cursor.Current = Cursors.Default;
             stackUndo.Clear();
         }
 

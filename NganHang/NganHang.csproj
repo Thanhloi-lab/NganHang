@@ -61,6 +61,31 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DSBankAccount.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSBankAccount.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DSBankStatement.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSBankStatement.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DSCustomer.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSCustomer.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DSSendCashout.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSSendCashout.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DSTransferMoney.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSTransferMoney.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Views\AccountForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +99,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FormBankAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormBankAccount.Designer.cs">
+      <DependentUpon>FormBankAccount.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>
@@ -104,6 +135,9 @@
     </Compile>
     <EmbeddedResource Include="Views\AccountForm.resx">
       <DependentUpon>AccountForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormBankAccount.resx">
+      <DependentUpon>FormBankAccount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -138,6 +172,61 @@
     </None>
     <None Include="DS.xss">
       <DependentUpon>DS.xsd</DependentUpon>
+    </None>
+    <None Include="DSBankAccount.xsc">
+      <DependentUpon>DSBankAccount.xsd</DependentUpon>
+    </None>
+    <None Include="DSBankAccount.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSBankAccount.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DSBankAccount.xss">
+      <DependentUpon>DSBankAccount.xsd</DependentUpon>
+    </None>
+    <None Include="DSBankStatement.xsc">
+      <DependentUpon>DSBankStatement.xsd</DependentUpon>
+    </None>
+    <None Include="DSBankStatement.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSBankStatement.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DSBankStatement.xss">
+      <DependentUpon>DSBankStatement.xsd</DependentUpon>
+    </None>
+    <None Include="DSCustomer.xsc">
+      <DependentUpon>DSCustomer.xsd</DependentUpon>
+    </None>
+    <None Include="DSCustomer.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSCustomer.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DSCustomer.xss">
+      <DependentUpon>DSCustomer.xsd</DependentUpon>
+    </None>
+    <None Include="DSSendCashout.xsc">
+      <DependentUpon>DSSendCashout.xsd</DependentUpon>
+    </None>
+    <None Include="DSSendCashout.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSSendCashout.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DSSendCashout.xss">
+      <DependentUpon>DSSendCashout.xsd</DependentUpon>
+    </None>
+    <None Include="DSTransferMoney.xsc">
+      <DependentUpon>DSTransferMoney.xsd</DependentUpon>
+    </None>
+    <None Include="DSTransferMoney.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSTransferMoney.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DSTransferMoney.xss">
+      <DependentUpon>DSTransferMoney.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

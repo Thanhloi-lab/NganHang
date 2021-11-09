@@ -173,7 +173,6 @@ namespace NganHang
                     MessageBox.Show("Bạn format cell lại cột\"Ngày\" qua kiểu number hoặc mở file Exel.");
                 else MessageBox.Show(e.Message);
                 Program.conn.Close();
-                MessageBox.Show(e.Message);
                 //state la error gui ve tu sql server
                 return e.State;
             }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NganHang.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -43,6 +44,7 @@ namespace NganHang
 
         public void ShowLoginForm()
         {
+            Cursor.Current = Cursors.WaitCursor;
             Form frm = this.CheckExists(typeof(LoginForm));
             if (frm != null) frm.Activate();
             else
@@ -51,10 +53,12 @@ namespace NganHang
                 f.MdiParent = this;
                 f.Show();
             }
+            Cursor.Current = Cursors.Default;
         }
 
         public void ShowUserInfoForm()
         {
+            Cursor.Current = Cursors.WaitCursor;
             Form frm = this.CheckExists(typeof(UserInfoForm));
             if (frm != null) frm.Activate();
             else
@@ -63,6 +67,7 @@ namespace NganHang
                 f.MdiParent = this;
                 f.Show();
             }
+            Cursor.Current = Cursors.Default;
         }
 
         public void ShowAllBarButton()
@@ -72,6 +77,7 @@ namespace NganHang
 
         public void ShowStaffList()
         {
+            Cursor.Current = Cursors.WaitCursor;
             Form frm = this.CheckExists(typeof(StaffForm));
             if (frm != null) frm.Activate();
             else
@@ -80,10 +86,12 @@ namespace NganHang
                 f.MdiParent = this;
                 f.Show();
             }
+            Cursor.Current = Cursors.Default;
         }
 
         public void ShowAccountList()
         {
+            Cursor.Current = Cursors.WaitCursor;
             Form frm = this.CheckExists(typeof(AccountForm));
             if (frm != null) frm.Activate();
             else
@@ -92,6 +100,7 @@ namespace NganHang
                 f.MdiParent = this;
                 f.Show();
             }
+            Cursor.Current = Cursors.Default;
         }
 
         public void ButtonBeforeLogin()
@@ -120,6 +129,20 @@ namespace NganHang
                 if (f.GetType() == ftype)
                     return f;
             return null;
+        }
+
+        public void ShowBankAccountForm()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            Form frm = this.CheckExists(typeof(FormBankAccount));
+            if (frm != null) frm.Activate();
+            else
+            {
+                FormBankAccount f = new FormBankAccount();
+                f.MdiParent = this;
+                f.Show();
+            }
+            Cursor.Current = Cursors.Default;
         }
 
         #endregion
@@ -155,6 +178,16 @@ namespace NganHang
         private void btnThongTinTaiKhoan_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             ShowAccountList();
+        }
+
+        private void btnThongTinKhachHang_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void btnMoTaiKhoan_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ShowBankAccountForm();
         }
 
         #endregion

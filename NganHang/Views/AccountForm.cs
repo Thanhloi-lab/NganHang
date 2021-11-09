@@ -23,6 +23,7 @@ namespace NganHang
         public AccountForm()
         {
             InitializeComponent();
+            
             LoadDefaultForm();
 
             cmbBranch.DataSource = Program.dbs_ListFragments;
@@ -37,6 +38,7 @@ namespace NganHang
             stackRedo = new Stack<UndoRedoControl>();
 
             firstLoad = true;
+
         }
 
         #region Events
@@ -155,6 +157,7 @@ namespace NganHang
 
             if (sfd.ShowDialog() == DialogResult.OK)
             {
+                Cursor.Current = Cursors.WaitCursor;
                 try
                 {
                     using (XLWorkbook workbook = new XLWorkbook())
@@ -164,6 +167,7 @@ namespace NganHang
                         workbook.Worksheets.Add(dt, "Account");
                         workbook.SaveAs(sfd.FileName);
                     }
+                    Cursor.Current = Cursors.Default;
                     MessageBox.Show("Tải xuống thành công.");
                     ClearStack();
                 }
@@ -337,6 +341,7 @@ namespace NganHang
 
         private void StaffLoad()
         {
+            Cursor.Current = Cursors.WaitCursor;
             btnEdit.Enabled = false;
             gcAccount.Visible = false;
             pnAccount.Visible = false;
@@ -356,6 +361,7 @@ namespace NganHang
             }
 
             BindingDataForStaff();
+            Cursor.Current = Cursors.Default;
         }
 
         private void DefaultButton()
@@ -366,6 +372,7 @@ namespace NganHang
 
         private void LoadDefaultForm()
         {
+            Cursor.Current = Cursors.WaitCursor;
             gcStaff.Visible = pncStaff.Visible = false;
             tbLoginName.Enabled = lbPassword.Visible = tbPassword.Visible = false;
 
@@ -386,6 +393,7 @@ namespace NganHang
             DefaultButton();
 
             isAdding = isEditing = false;
+            Cursor.Current = Cursors.Default;
         }
 
         private void AddLogin()
