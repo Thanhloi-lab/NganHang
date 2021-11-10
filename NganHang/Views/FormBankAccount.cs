@@ -170,16 +170,9 @@ namespace NganHang.Views
         private void btnDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             String Sotk = "";
-            if (CheckIsTransaction() == false)
-            {
-                MessageBox.Show("Không thể xóa tài khoản này vì đã thực hiện giao dịch ct!", "", MessageBoxButtons.OK);
+
+            if (!CheckIsTransaction())
                 return;
-            }
-            if (gD_GOIRUTBindingSource.Count > 0)
-            {
-                MessageBox.Show("Không thể xóa tài khoản này vì đã thực hiện giao dịch gr!", "", MessageBoxButtons.OK);
-                return;
-            }
 
             if (MessageBox.Show("Bạn có chắc chắn muốn xóa tài khoản này?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
@@ -187,7 +180,26 @@ namespace NganHang.Views
                 {
                     Sotk = ((DataRowView)thongTinTaiKhoanBindingSource[thongTinTaiKhoanBindingSource.Position])["SOTK"].ToString();
                     thongTinTaiKhoanBindingSource.RemoveCurrent();
-                    
+
+                    if (Program.Connect() == 0)
+                    {
+                        MessageBox.Show("Lỗi kết nối", "", MessageBoxButtons.OK);
+                        return;
+                    }
+                    if (txtAccountNumber.Text.Trim() == "")
+                    {
+                        MessageBox.Show("Không thể để trống số tài khoản.", "", MessageBoxButtons.OK);
+                        thongTinTaiKhoanBindingSource.Position = thongTinTaiKhoanBindingSource.Find("SOTK", Sotk);
+                        return;
+                    }
+
+                    string cmd = String.Format("exec [dbo].[XoaTaiKhoanTinDung] '{0}'", Sotk);
+
+                    if (Program.ExecSqlNonQuery(cmd) != 1)
+                    {
+                        MessageBox.Show("Lỗi xóa tài khoản, thử lại sau.", "", MessageBoxButtons.OK);
+                    }
+
                 }
                 catch (Exception ex)
                 {
@@ -198,20 +210,6 @@ namespace NganHang.Views
                 }
             }
             if (thongTinTaiKhoanBindingSource.Count == 0) btnDelete.Enabled = false;
-        }
-
-        private Boolean CheckIsTransaction()
-        {
-            string cmd = "exec daGDChuyenTien @Sotk='" + ((DataRowView)thongTinTaiKhoanBindingSource[thongTinTaiKhoanBindingSource.Position])["SOTK"].ToString() + "'";
-            try
-            {
-                Program.ExecSqlDataReader(cmd);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
         }
 
         private void comboBoxBranch_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -420,5 +418,28 @@ namespace NganHang.Views
             LoadData();
         }
 
+        private Boolean CheckIsTransaction()
+        {
+            string cmd = "exec DaThucHienGiaoDich @Sotk='" + ((DataRowView)thongTinTaiKhoanBindingSource[thongTinTaiKhoanBindingSource.Position])["SOTK"].ToString() + "'";
+            try
+            {
+                if (Program.Connect() == 0)
+                {
+                    MessageBox.Show("Lỗi kết nối", "", MessageBoxButtons.OK);
+                    return false;
+                }
+                if (Program.ExecSqlNonQuery(cmd) != 1)
+                {
+                    MessageBox.Show("Không thể xóa tài khoản đã từng thực hiện giao dịch.", "", MessageBoxButtons.OK);
+                    return false;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Có lỗi trong quá trình xóa, vui lòng thử lại sau.", "", MessageBoxButtons.OK);
+                return false;
+            }
+        }
     }
 }
