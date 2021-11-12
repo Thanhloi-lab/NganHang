@@ -81,15 +81,17 @@ namespace NganHang
         {
             if(isAdding)
             {
-                DialogResult dialogResult = MessageBox.Show("Bạn có thật sự muốn tạo mới login?.", "", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("Bạn có muốn tạo mới login?.", "", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
                     AddLogin();
+                    StaffLoad();
+                    return;
                 }
             }
             else if (isEditing)
             {
-                DialogResult dialogResult = MessageBox.Show("Bạn có thật sự muốn chỉnh sửa login?.", "", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("Bạn có muốn chỉnh sửa login?.", "", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
                     EditLogin();
@@ -401,17 +403,17 @@ namespace NganHang
             if (Program.Connect() == 0)
             {
                 MessageBox.Show("Lỗi kết nối", "", MessageBoxButtons.OK);
-                return;
+                return ;
             }
             if (tbRegisterLogin.Text.Trim() == "")
             {
                 MessageBox.Show("Không thể để trống tài khoản", "", MessageBoxButtons.OK);
-                return;
+                return ;
             }
             if (tbRegisterPassword.Text.Trim() == "")
             {
                 MessageBox.Show("Không thể để trống mật khẩu", "", MessageBoxButtons.OK);
-                return;
+                return ;
             }
 
             string cmd = String.Format("exec [dbo].[SP_TAOLOGIN] '{0}', '{1}', '{2}', '{3}'",

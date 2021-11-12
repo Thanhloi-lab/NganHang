@@ -45,7 +45,6 @@ namespace NganHang
             this.labelMACN = new DevExpress.XtraBars.BarStaticItem();
             this.barItemMACN = new DevExpress.XtraBars.BarStaticItem();
             this.btnGoiTien = new DevExpress.XtraBars.BarButtonItem();
-            this.btnRutTien = new DevExpress.XtraBars.BarButtonItem();
             this.btnChuyenTien = new DevExpress.XtraBars.BarButtonItem();
             this.btnMoTaiKhoan = new DevExpress.XtraBars.BarButtonItem();
             this.btnThongTinKhachHang = new DevExpress.XtraBars.BarButtonItem();
@@ -117,7 +116,6 @@ namespace NganHang
             this.labelMACN,
             this.barItemMACN,
             this.btnGoiTien,
-            this.btnRutTien,
             this.btnChuyenTien,
             this.btnMoTaiKhoan,
             this.btnThongTinKhachHang,
@@ -211,14 +209,7 @@ namespace NganHang
             this.btnGoiTien.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGoiTien.ImageOptions.Image")));
             this.btnGoiTien.Name = "btnGoiTien";
             this.btnGoiTien.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            // 
-            // btnRutTien
-            // 
-            this.btnRutTien.Caption = "Rút Tiền";
-            this.btnRutTien.Id = 21;
-            this.btnRutTien.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnRutTien.ImageOptions.Image")));
-            this.btnRutTien.Name = "btnRutTien";
-            this.btnRutTien.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.btnGoiTien.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnGoiTien_ItemClick);
             // 
             // btnChuyenTien
             // 
@@ -227,6 +218,7 @@ namespace NganHang
             this.btnChuyenTien.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnChuyenTien.ImageOptions.Image")));
             this.btnChuyenTien.Name = "btnChuyenTien";
             this.btnChuyenTien.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.btnChuyenTien.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnChuyenTien_ItemClick);
             // 
             // btnMoTaiKhoan
             // 
@@ -253,6 +245,7 @@ namespace NganHang
             this.btnSaoKe.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSaoKe.ImageOptions.Image")));
             this.btnSaoKe.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnSaoKe.ImageOptions.LargeImage")));
             this.btnSaoKe.Name = "btnSaoKe";
+            this.btnSaoKe.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSaoKe_ItemClick);
             // 
             // btnLietKeTaiKhoan
             // 
@@ -389,7 +382,6 @@ namespace NganHang
             // groupGiaoDich
             // 
             this.groupGiaoDich.ItemLinks.Add(this.btnGoiTien);
-            this.groupGiaoDich.ItemLinks.Add(this.btnRutTien);
             this.groupGiaoDich.ItemLinks.Add(this.btnChuyenTien);
             this.groupGiaoDich.ItemsLayout = DevExpress.XtraBars.Ribbon.RibbonPageGroupItemsLayout.OneRow;
             this.groupGiaoDich.Name = "groupGiaoDich";
@@ -543,7 +535,6 @@ namespace NganHang
         private DevExpress.XtraBars.BarStaticItem labelMACN;
         private DevExpress.XtraBars.BarStaticItem barItemMACN;
         private DevExpress.XtraBars.BarButtonItem btnGoiTien;
-        private DevExpress.XtraBars.BarButtonItem btnRutTien;
         private DevExpress.XtraBars.BarButtonItem btnChuyenTien;
         private DevExpress.XtraBars.BarButtonItem btnMoTaiKhoan;
         private DevExpress.XtraBars.BarButtonItem btnThongTinKhachHang;

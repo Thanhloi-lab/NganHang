@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,10 +20,13 @@ namespace NganHang.Views
         int vitri = 0;
         String macn = "";
         bool isAdding = false;
+        
         public FormBankAccount()
         {
             InitializeComponent();
+            CultureInfo info  = new CultureInfo("vi-VN");
         }
+        #region Events
 
         private void taiKhoanBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
@@ -30,20 +34,6 @@ namespace NganHang.Views
             this.thongTinTaiKhoanBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.dSBankAccount);
 
-        }
-
-        private void LoadData()
-        {
-            dSBankAccount.EnforceConstraints = false;
-            this.gD_GOIRUTTableAdapter.Connection.ConnectionString = Program.connStr;
-            this.gD_GOIRUTTableAdapter.Fill(this.dSBankAccount.GD_GOIRUT);
-            this.gD_CHUYENTIENTableAdapter.Connection.ConnectionString = Program.connStr;
-            this.gD_CHUYENTIENTableAdapter.Fill(this.dSBankAccount.GD_CHUYENTIEN);
-
-            this.khachHangTableAdapter.Connection.ConnectionString = Program.connStr;
-            this.khachHangTableAdapter.Fill(this.dSBankAccount.KhachHang);
-            this.thongTinTaiKhoanTableAdapter.Connection.ConnectionString = Program.connStr;
-            this.thongTinTaiKhoanTableAdapter.Fill(this.dSBankAccount.ThongTinTaiKhoan);
         }
 
         private void FormBankAccount_Load(object sender, EventArgs e)
@@ -65,46 +55,6 @@ namespace NganHang.Views
             LoadAccountPanel();
         }
 
-        private void GetBranchId()
-        {
-            Program.serverName = comboBoxBranch.SelectedValue.ToString().Trim();
-
-
-            string cmdGetBranchId = "select *from LayMaChiNhanh";
-
-            if (Program.mGroup == "CHINHANH")
-            {
-                if (Program.Connect() == 0)
-                {
-                    MessageBox.Show("Có lỗi trong quá trình xử lý.");
-                    return;
-                }
-            }
-            else
-            {
-                if (Program.RemoteConnect() == 0)
-                {
-                    MessageBox.Show("Có lỗi trong quá trình xử lý.");
-                    return;
-                }
-
-            }
-
-
-            Program.myReader = Program.ExecSqlDataReader(cmdGetBranchId);
-
-            if (Program.myReader == null)
-            {
-                MessageBox.Show("Có lỗi trong quá trình xử lý.");
-                return;
-            }
-            Program.myReader.Read();
-            string id = Program.myReader.GetString(0);
-
-            txtBranch.Text = Program.myReader.GetString(0).Trim();
-            macn = txtBranch.Text;
-        }
-
         private void btnAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             try
@@ -123,29 +73,6 @@ namespace NganHang.Views
             GetNewesAccountId();
             
             btnSave.Enabled = true;
-        }
-
-        private void GetNewesAccountId()
-        {
-            Program.serverName = comboBoxBranch.SelectedValue.ToString().Trim();
-
-            string cmd = "EXEC [dbo].[taoTaiKhoanNganHang] @MaChiNhanh='" + macn + "' "; /*'" + tbBranchId.Text.Trim() + "'";*/
-
-            if (Program.Connect() == 0)
-            {
-                MessageBox.Show("Có lỗi trong quá trình xử lý.");
-                return;
-            }
-
-            Program.myReader = Program.ExecSqlDataReader(cmd);
-            Program.myReader.Read();
-
-            txtAccountNumber.Text = Program.myReader.GetString(0).Trim();
-            if (Convert.IsDBNull(Program.userName))
-            {
-                MessageBox.Show("Có lỗi trong quá trình xử lý.");
-                return;
-            }
         }
 
         private void btnEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -312,6 +239,10 @@ namespace NganHang.Views
             }    
         }
 
+        #endregion 
+
+        #region Method
+
         private void Save()
         {
             //Kiemtra rang buoc
@@ -380,13 +311,15 @@ namespace NganHang.Views
             if (Program.mGroup == "NGANHANG")
             {
                 btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnSave.Enabled = false;
-                comboBoxBranch.Enabled = true;
+                comboBoxBranch.Enabled =  true;
             }
             else
             {
                 btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = true;
                 comboBoxBranch.Enabled = btnSave.Enabled = btnRestore.Enabled = false;
             }
+
+            btnSaveToFile.Enabled = true;
 
             LoadData();
         }
@@ -405,7 +338,7 @@ namespace NganHang.Views
 
             if (Program.mGroup == "NGANHANG")
             {
-                btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnSave.Enabled = false;
+                btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnSave.Enabled = btnSaveToFile.Enabled = false;
                 comboBoxBranch.Enabled = true;
             }
             else
@@ -440,6 +373,86 @@ namespace NganHang.Views
                 MessageBox.Show("Có lỗi trong quá trình xóa, vui lòng thử lại sau.", "", MessageBoxButtons.OK);
                 return false;
             }
+        }
+
+        private void GetBranchId()
+        {
+            Program.serverName = comboBoxBranch.SelectedValue.ToString().Trim();
+
+
+            string cmdGetBranchId = "select *from LayMaChiNhanh";
+
+            if (Program.mGroup == "CHINHANH")
+            {
+                if (Program.Connect() == 0)
+                {
+                    MessageBox.Show("Có lỗi trong quá trình xử lý.");
+                    return;
+                }
+            }
+            else
+            {
+                if (Program.RemoteConnect() == 0)
+                {
+                    MessageBox.Show("Có lỗi trong quá trình xử lý.");
+                    return;
+                }
+
+            }
+
+
+            Program.myReader = Program.ExecSqlDataReader(cmdGetBranchId);
+
+            if (Program.myReader == null)
+            {
+                MessageBox.Show("Có lỗi trong quá trình xử lý.");
+                return;
+            }
+            Program.myReader.Read();
+            string id = Program.myReader.GetString(0);
+
+            txtBranch.Text = Program.myReader.GetString(0).Trim();
+            macn = txtBranch.Text;
+        }
+
+        private void GetNewesAccountId()
+        {
+            Program.serverName = comboBoxBranch.SelectedValue.ToString().Trim();
+
+            string cmd = "EXEC [dbo].[taoTaiKhoanNganHang] @MaChiNhanh='" + macn + "' "; /*'" + tbBranchId.Text.Trim() + "'";*/
+
+            if (Program.Connect() == 0)
+            {
+                MessageBox.Show("Có lỗi trong quá trình xử lý.");
+                return;
+            }
+
+            Program.myReader = Program.ExecSqlDataReader(cmd);
+            Program.myReader.Read();
+
+            txtAccountNumber.Text = Program.myReader.GetString(0).Trim();
+            if (Convert.IsDBNull(Program.userName))
+            {
+                MessageBox.Show("Có lỗi trong quá trình xử lý.");
+                return;
+            }
+        }
+
+        private void LoadData()
+        {
+            dSBankAccount.EnforceConstraints = false;
+
+            this.khachHangTableAdapter.Connection.ConnectionString = Program.connStr;
+            this.khachHangTableAdapter.Fill(this.dSBankAccount.KhachHang);
+            this.thongTinTaiKhoanTableAdapter.Connection.ConnectionString = Program.connStr;
+            this.thongTinTaiKhoanTableAdapter.Fill(this.dSBankAccount.ThongTinTaiKhoan);
+        }
+
+        #endregion
+
+        private void khachHangGridControl_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -6,6 +6,7 @@ using NganHang.UndoRedo;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace NganHang
@@ -15,8 +16,15 @@ namespace NganHang
         private static string branchId = "";
         private int position = 0;
         private bool firstLoad = false;
+        private bool isSwitchBranch = false;
+        private bool isAdding = false;
+        private bool isEditing = false;
+        private const string branch_BENTHANH = "BENTHANH";
+        private const string branch_TANDINH = "TANDINH";
         private Stack<UndoRedoControl> stackUndo;
         private Stack<UndoRedoControl> stackRedo;
+        public static SqlConnection conn_Publisher = new SqlConnection();
+        public static BindingSource staff_Dbs_ListFragments = new BindingSource();
 
         #region Events
         public StaffForm()
@@ -35,6 +43,8 @@ namespace NganHang
             cmbBranch.DisplayMember = "TENCN";
             cmbBranch.ValueMember = "TENSERVER";
             cmbBranch.SelectedIndex = Program.mBranch;
+
+            GetListFragments("SELECT * FROM [dbo].[V_DS_PHANMANH]");
         }
 
         private void nhanVienBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -50,7 +60,7 @@ namespace NganHang
             //Phan quyen
             Reload();
             firstLoad = true;
-    }
+        }
 
         private void btnAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -95,18 +105,35 @@ namespace NganHang
                 return;
             }
 
-            try
+
+            if (isSwitchBranch)
             {
-                bdsNhanVien.EndEdit();
-                bdsNhanVien.ResetCurrentItem();
-                this.nhanVienTableAdapter.Connection.ConnectionString = Program.connStr;
-                this.nhanVienTableAdapter.Update(this.DS.NhanVien);
-                ClearStack();
+                if (SwitchStaffBranch())
+                {
+                    MessageBox.Show("Chuyển thành công.");
+                    isSwitchBranch = false;
+                    ClearStack();
+                }
+                else
+                    return;
             }
-            catch(Exception ex)
+            else
             {
-                MessageBox.Show("Có lỗi trong quá trình xử lý." + Environment.NewLine+ "" + ex.Message);
-                return;
+                try
+                {
+                    bdsNhanVien.EndEdit();
+                    bdsNhanVien.ResetCurrentItem();
+                    this.nhanVienTableAdapter.Connection.ConnectionString = Program.connStr;
+                    this.nhanVienTableAdapter.Update(this.DS.NhanVien);
+                    isAdding = false;
+                    isEditing = false;
+                    ClearStack();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Có lỗi trong quá trình xử lý." + Environment.NewLine + "" + ex.Message);
+                    return;
+                }
             }
 
             Reload();
@@ -141,12 +168,20 @@ namespace NganHang
 
         private void btnQuit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Bạn có muỗn thoát khỏi trang này?", "", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            if(isAdding || isEditing || isSwitchBranch)
             {
-                ClearStack();
-                QuitForm();
+                if(MessageBox.Show("Bạn có muỗn thoát khỏi trang này?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    ClearStack();
+                    Reload();
+                }
             }
+            else
+                if (MessageBox.Show("Bạn có muỗn thoát khỏi trang này?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    ClearStack();
+                    QuitForm();
+                }
         }
 
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -157,7 +192,6 @@ namespace NganHang
                 cmbBranch.DataSource = Program.dbs_ListFragments;
                 cmbBranch.DisplayMember = "TENCN";
                 cmbBranch.ValueMember = "TENSERVER";
-
 
                 bdsNhanVien.CancelEdit();
                 try
@@ -209,7 +243,21 @@ namespace NganHang
 
         private void cbGender_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Program.InitUndoRedoCombobox(sender, ref stackUndo, btnUndo);
+            //if (isAdding || isEditing)
+            //{
+                //System.Windows.Forms.ComboBox cb = sender as System.Windows.Forms.ComboBox;
+                //int index = 0;
+                //if (cb.SelectedIndex == 0)
+                //{
+
+                //}
+                //UndoRedoControl ur = new UndoRedoControl(cb.Name, index);
+                //stackUndo.Push(ur);
+                //if (stackUndo.Count > 0)
+                //{
+                //    btnUndo.Enabled = true;
+                //}
+            //}
         }
 
         private void btnRestore_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -284,27 +332,30 @@ namespace NganHang
 
         private void FormForRoleChiNhanh()
         {
+            pnBranch.Visible = false;
 
-            btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnRestore.Enabled = true;
-            cmbBranch.Enabled = false;
+            btnSwitchBranch.Enabled = btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnRestore.Enabled = true;
+            btnRestore.Enabled= btnSave.Enabled = cmbBranch.Enabled = false;
         }
 
         private void FormForRoleNganHang()
         {
-            btnSave.Enabled = btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnRestore.Enabled = false;
+            pnBranch.Visible = false;
+            btnSwitchBranch.Enabled = btnSave.Enabled = btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnRestore.Enabled = false;
             cmbBranch.Enabled = true;
+            btnRestore.Enabled = btnSave.Enabled =false;
         }
 
         private void EnableAdd()
         {
             GetNewestUserId();
             GetBranchId();
-
+            pnInfo.Enabled = true;
+            gcStaff.Enabled = false;
             pcStaff.Enabled = true;
-            tbBranchId.Text = branchId;
             tbFirstName.Focus();
 
-            btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = false;
+            btnSwitchBranch.Enabled = btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = false;
             btnSave.Enabled = btnRestore.Enabled = true;
             gcStaff.Enabled = false;
             
@@ -316,7 +367,7 @@ namespace NganHang
 
             string cmdGetBranchId = "select *from LayMaChiNhanh";
 
-            if(Program.mGroup == "CHINHANH")
+            if( Program.currentServerName == Program.serverName)
             {
                 if (Program.Connect() == 0)
                 {
@@ -343,9 +394,10 @@ namespace NganHang
                 return;
             }
             Program.myReader.Read();
-            string id = Program.myReader.GetString(0);
 
-            tbBranchId.Text = Program.myReader.GetString(0).Trim();
+
+            //cbBranchId.Text = Program.myReader.GetString(0).Trim();
+            branchId = Program.myReader.GetString(0).Trim();
         }
 
         private void GetNewestUserId()
@@ -374,14 +426,27 @@ namespace NganHang
         private void EnableEdit()
         {
             pcStaff.Enabled = true;
-            tbBranchId.Text = branchId;
+            gcStaff.Enabled = false;
+            //cbBranchId.Text = branchId;
+            pnInfo.Enabled = true;
             tbFirstName.Focus();
 
-            tbAddress.ReadOnly = tbFirstName.ReadOnly = tbLastName.ReadOnly = false;
+            btnSwitchBranch.Enabled = tbAddress.ReadOnly = tbFirstName.ReadOnly = tbLastName.ReadOnly = false;
             cbGender.Enabled = true;
 
             btnAdd.Enabled = btnEdit.Enabled = false;
             btnSave.Enabled = btnRestore.Enabled = true;
+        }
+
+        private void EnableSwitchBranch()
+        {
+            pcStaff.Enabled = pnBranch.Visible = true;
+            cbBranchId.Text = cmbBranch.Text;
+            cbBranchId.Focus();
+
+            btnSwitchBranch.Enabled =  cbGender.Enabled =  btnAdd.Enabled = btnEdit.Enabled = false;
+            btnSave.Enabled = btnRestore.Enabled = isSwitchBranch = true;
+            pnInfo.Enabled = false;
         }
 
         private void OptionDelete()
@@ -423,7 +488,7 @@ namespace NganHang
             Program.serverName = cmbBranch.SelectedValue.ToString().Trim();
             if(tbUserId.Text.Trim() == "")
             {
-                MessageBox.Show("Vui lòng chọn nhân viên cần xóa", "", MessageBoxButtons.OK);
+                MessageBox.Show("Vui lòng chọn nhân viên cần khóa", "", MessageBoxButtons.OK);
                 return false;
             }
             string cmd = "exec dbo.KhoaNhanVien '" + tbUserId.Text.Trim() + "";
@@ -440,7 +505,7 @@ namespace NganHang
                     return true;
             }catch(Exception ex)
             {
-                MessageBox.Show("Có lỗi trong quá trình xóa." + Environment.NewLine+ "" + ex.Message, "", MessageBoxButtons.OK);
+                MessageBox.Show("Có lỗi trong quá trình khóa." + Environment.NewLine+ "" + ex.Message, "", MessageBoxButtons.OK);
                 return false;
             }
             return false;
@@ -450,7 +515,7 @@ namespace NganHang
         {
             gcStaff.Enabled = true;
             pcStaff.Enabled = false;
-
+            isSwitchBranch = false;
             if (Program.mGroup == "NGANHANG")
             {
                 FormForRoleNganHang();
@@ -511,6 +576,95 @@ namespace NganHang
             }
             return dt;
         }
+
+        private bool SwitchStaffBranch()
+        {
+            if (tbUserId.Text.Trim() == "")
+            {
+                MessageBox.Show("Vui lòng chọn nhân viên cần xóa", "", MessageBoxButtons.OK);
+                return false;
+            }
+            Program.serverName = cbBranchId.SelectedValue.ToString().Trim();
+            string cmdRemote = String.Format("exec dbo.ChuyenNhanVien '{0}', '{1}', '{2}, '{3}', '{4}', '{5}', '{6}'",
+                tbFirstName.Text.Trim(),
+                tbLastName.Text.Trim(),
+                tbAddress.Text.Trim(),
+                cbGender.Text.Trim(),
+                tbPhoneNumber.Text.Trim(),
+                branchId.Trim(),
+                false);
+
+            if (Program.currentServerName == Program.serverName)
+            {
+                MessageBox.Show("Không có sự thay đổi nào.");
+                return false;
+            }
+
+            if (Program.Connect() == 0)
+            {
+                MessageBox.Show("Có lỗi trong quá trình xử lý.");
+                return false;
+            }
+
+            try
+            {
+                if (Program.ExecSqlNonQuery(cmdRemote) == 1)
+                {
+                    if (!InActiveUser())
+                    {
+                        return false;
+                    }
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Có lỗi trong quá trình chuyển, vui lòng thử lại sau." + Environment.NewLine + "" + ex.Message, "", MessageBoxButtons.OK);
+                return false;
+            }
+
+            return false;
+        }
         #endregion
+
+        private void GetListFragments(String cmd)
+        {
+            DataTable dt = new DataTable();
+            if (conn_Publisher.State != ConnectionState.Closed)
+            {
+                conn_Publisher.Close();
+            }
+            else
+            {
+                try
+                {
+                    conn_Publisher.ConnectionString = Program.connStr_Publisher;
+                    conn_Publisher.Open();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Không thể kết nối với cơ sở dữ liệu");
+                    return;
+                }
+            }
+
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd, conn_Publisher);
+            da.Fill(dt);
+            conn_Publisher.Close();
+
+            staff_Dbs_ListFragments.DataSource = dt;
+            cbBranchId.DataSource = staff_Dbs_ListFragments;
+            cbBranchId.DisplayMember = "TENCN";
+            cbBranchId.ValueMember = "TENSERVER";
+            cbBranchId.SelectedIndex = Program.mBranch;
+
+            //dgvNhanVien.DataSource = Program.dbs_ListFragments;
+        }
+
+        private void btnSwitchBranch_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            EnableSwitchBranch();
+        }
     }
 }

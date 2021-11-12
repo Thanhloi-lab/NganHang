@@ -145,6 +145,62 @@ namespace NganHang
             Cursor.Current = Cursors.Default;
         }
 
+        public void ShowCustomerForm()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            Form frm = this.CheckExists(typeof(FormCustomer));
+            if (frm != null) frm.Activate();
+            else
+            {
+                FormCustomer f = new FormCustomer();
+                f.MdiParent = this;
+                f.Show();
+            }
+            Cursor.Current = Cursors.Default;
+        }
+
+        public void ShowReportForm()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            Form frm = this.CheckExists(typeof(FormBankStatement));
+            if (frm != null) frm.Activate();
+            else
+            {
+                FormBankStatement f = new FormBankStatement();
+                f.MdiParent = this;
+                f.Show();
+            }
+            Cursor.Current = Cursors.Default;
+        }
+
+        public void ShowTransferMoneyForm()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            Form frm = this.CheckExists(typeof(FormTransfer));
+            if (frm != null) frm.Activate();
+            else
+            {
+                FormTransfer f = new FormTransfer();
+                f.MdiParent = this;
+                f.Show();
+            }
+            Cursor.Current = Cursors.Default;
+        }
+
+        public void ShowFormSendCashout()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            Form frm = this.CheckExists(typeof(FormSendCashout));
+            if (frm != null) frm.Activate();
+            else
+            {
+                FormSendCashout f = new FormSendCashout();
+                f.MdiParent = this;
+                f.Show();
+            }
+            Cursor.Current = Cursors.Default;
+        }
+
         #endregion
 
 
@@ -182,7 +238,7 @@ namespace NganHang
 
         private void btnThongTinKhachHang_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            ShowCustomerForm();
         }
 
         private void btnMoTaiKhoan_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -191,5 +247,20 @@ namespace NganHang
         }
 
         #endregion
+
+        private void btnSaoKe_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ShowReportForm();
+        }
+
+        private void btnGoiTien_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ShowFormSendCashout();
+        }
+
+        private void btnChuyenTien_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ShowTransferMoneyForm();
+        }
     }
 }

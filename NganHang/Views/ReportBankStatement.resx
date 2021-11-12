@@ -117,16 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="dSBankStatement.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="sqlDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="saoKeBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>165, 17</value>
+  <data name="sqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
+    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IkluQmFuZ1Nhb0tlIj48RmllbGQgTmFtZT0iU09fVElFTl9CQU5fREFVIiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSJMT0FJX0dJQU9fRElDSCIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJOR0FZX0dJQU9fRElDSCIgVHlwZT0iRGF0ZVRpbWUiIC8+PEZpZWxkIE5hbWU9IlNPX1RJRU4iIFR5cGU9IkRlY2ltYWwiIC8+PEZpZWxkIE5hbWU9IlNPX1RJRU5fTFVDX1NBVSIgVHlwZT0iRGVjaW1hbCIgLz48L1ZpZXc+PC9EYXRhU2V0Pg==</value>
+  </data>
+  <metadata name="sqlDataSource2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 56</value>
   </metadata>
-  <metadata name="saoKeTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>328, 17</value>
+  <data name="sqlDataSource2.ResultSchemaSerializable" xml:space="preserve">
+    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTIiPjxWaWV3IE5hbWU9IkluQmFuZ1Nhb0tlIj48RmllbGQgTmFtZT0iU09fVElFTl9CQU5fREFVIiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSJMT0FJX0dJQU9fRElDSCIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJOR0FZX0dJQU9fRElDSCIgVHlwZT0iRGF0ZVRpbWUiIC8+PEZpZWxkIE5hbWU9IlNPX1RJRU4iIFR5cGU9IkRlY2ltYWwiIC8+PEZpZWxkIE5hbWU9IlNPX1RJRU5fTFVDX1NBVSIgVHlwZT0iRGVjaW1hbCIgLz48L1ZpZXc+PC9EYXRhU2V0Pg==</value>
+  </data>
+  <metadata name="sqlDataSource3.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 95</value>
   </metadata>
-  <metadata name="tableAdapterManager.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>485, 17</value>
-  </metadata>
+  <data name="sqlDataSource3.ResultSchemaSerializable" xml:space="preserve">
+    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTMiPjxWaWV3IE5hbWU9IkluQmFuZ1Nhb0tlIj48RmllbGQgTmFtZT0iU09fVElFTl9CQU5fREFVIiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSJMT0FJX0dJQU9fRElDSCIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJOR0FZX0dJQU9fRElDSCIgVHlwZT0iRGF0ZVRpbWUiIC8+PEZpZWxkIE5hbWU9IlNPX1RJRU4iIFR5cGU9IkRlY2ltYWwiIC8+PEZpZWxkIE5hbWU9IlNPX1RJRU5fTFVDX1NBVSIgVHlwZT0iRGVjaW1hbCIgLz48L1ZpZXc+PC9EYXRhU2V0Pg==</value>
+  </data>
 </root>

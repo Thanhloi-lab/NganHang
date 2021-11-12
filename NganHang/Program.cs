@@ -288,6 +288,17 @@ namespace NganHang
             }
         }
 
+        public static void InitUndoRedoForTextEdit(object sender, ref Stack<UndoRedoControl> stackUndo, BarButtonItem btnUndo)
+        {
+            TextEdit tb = sender as TextEdit;
+            UndoRedoControl ur = new UndoRedoControl(tb.Name, tb.Text);
+            stackUndo.Push(ur);
+            if (stackUndo.Count > 0)
+            {
+                btnUndo.Enabled = true;
+            }
+        }
+
         public static void InitUndoRedoForCheckBox(object sender, ref Stack<UndoRedoControl> stackUndo, BarButtonItem btnUndo)
         {
             CheckBox cb = sender as CheckBox;

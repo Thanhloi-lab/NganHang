@@ -420,7 +420,7 @@ namespace NganHang
             this.gcAccount.MainView = this.gvAccount;
             this.gcAccount.MenuManager = this.barManager;
             this.gcAccount.Name = "gcAccount";
-            this.gcAccount.Size = new System.Drawing.Size(1041, 200);
+            this.gcAccount.Size = new System.Drawing.Size(1041, 252);
             this.gcAccount.TabIndex = 10;
             this.gcAccount.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvAccount});
@@ -549,7 +549,7 @@ namespace NganHang
             this.pnAccount.Controls.Add(this.label1);
             this.pnAccount.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnAccount.Enabled = false;
-            this.pnAccount.Location = new System.Drawing.Point(0, 287);
+            this.pnAccount.Location = new System.Drawing.Point(0, 339);
             this.pnAccount.Name = "pnAccount";
             this.pnAccount.Size = new System.Drawing.Size(1041, 154);
             this.pnAccount.TabIndex = 23;
@@ -576,11 +576,11 @@ namespace NganHang
             // gcStaff
             // 
             this.gcStaff.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gcStaff.Location = new System.Drawing.Point(0, 441);
+            this.gcStaff.Location = new System.Drawing.Point(0, 493);
             this.gcStaff.MainView = this.gvStaff;
             this.gcStaff.MenuManager = this.barManager;
             this.gcStaff.Name = "gcStaff";
-            this.gcStaff.Size = new System.Drawing.Size(1041, 220);
+            this.gcStaff.Size = new System.Drawing.Size(1041, 237);
             this.gcStaff.TabIndex = 29;
             this.gcStaff.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvStaff});
@@ -681,7 +681,7 @@ namespace NganHang
             this.pncStaff.Controls.Add(hOLabel);
             this.pncStaff.Controls.Add(this.tbStaffFirstName);
             this.pncStaff.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pncStaff.Location = new System.Drawing.Point(0, 661);
+            this.pncStaff.Location = new System.Drawing.Point(0, 730);
             this.pncStaff.Name = "pncStaff";
             this.pncStaff.Size = new System.Drawing.Size(1041, 193);
             this.pncStaff.TabIndex = 34;

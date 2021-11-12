@@ -35,10 +35,10 @@ namespace NganHang.Views
             System.Windows.Forms.Label labelAccountBalance;
             System.Windows.Forms.Label labelCMND;
             System.Windows.Forms.Label labelAccountNumber;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBankAccount));
             System.Windows.Forms.Label hOTENLabel;
             System.Windows.Forms.Label hOLabel;
             System.Windows.Forms.Label tENLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBankAccount));
             this.barMenu = new DevExpress.XtraBars.Bar();
             this.barManager = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
@@ -65,9 +65,20 @@ namespace NganHang.Views
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.panelControlInfo = new DevExpress.XtraEditors.PanelControl();
             this.pnCus = new DevExpress.XtraEditors.PanelControl();
-            this.khachHangGridControl = new DevExpress.XtraGrid.GridControl();
-            this.khachHangBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pnFullnameAcc = new System.Windows.Forms.Panel();
+            this.tbFullname = new DevExpress.XtraEditors.TextEdit();
+            this.thongTinTaiKhoanBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dSBankAccount = new NganHang.DSBankAccount();
+            this.dateEditAccountOpenDate = new DevExpress.XtraEditors.DateEdit();
+            this.pnFullnameCus = new System.Windows.Forms.Panel();
+            this.tbLastName = new DevExpress.XtraEditors.TextEdit();
+            this.khachHangBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tbFirstName = new DevExpress.XtraEditors.TextEdit();
+            this.txtBranch = new DevExpress.XtraEditors.TextEdit();
+            this.spinEditAccountBalance = new DevExpress.XtraEditors.SpinEdit();
+            this.txtCMND = new DevExpress.XtraEditors.TextEdit();
+            this.txtAccountNumber = new DevExpress.XtraEditors.TextEdit();
+            this.khachHangGridControl = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCMND1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colHO = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -78,7 +89,6 @@ namespace NganHang.Views
             this.colSODT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMACN1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.taiKhoanGridControl = new DevExpress.XtraGrid.GridControl();
-            this.thongTinTaiKhoanBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gvAccount = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colSOTK = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCMND = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -88,23 +98,9 @@ namespace NganHang.Views
             this.colNGAYMOTK = new DevExpress.XtraGrid.Columns.GridColumn();
             this.thongTinTaiKhoanTableAdapter = new NganHang.DSBankAccountTableAdapters.ThongTinTaiKhoanTableAdapter();
             this.tableAdapterManager = new NganHang.DSBankAccountTableAdapters.TableAdapterManager();
-            this.gD_CHUYENTIENTableAdapter = new NganHang.DSBankAccountTableAdapters.GD_CHUYENTIENTableAdapter();
-            this.gD_GOIRUTTableAdapter = new NganHang.DSBankAccountTableAdapters.GD_GOIRUTTableAdapter();
             this.khachHangTableAdapter = new NganHang.DSBankAccountTableAdapters.KhachHangTableAdapter();
-            this.gD_GOIRUTBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gD_CHUYENTIENBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.taiKhoanBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.taiKhoanTableAdapter = new NganHang.DSBankAccountTableAdapters.TaiKhoanTableAdapter();
-            this.txtAccountNumber = new DevExpress.XtraEditors.TextEdit();
-            this.txtCMND = new DevExpress.XtraEditors.TextEdit();
-            this.tbFullname = new DevExpress.XtraEditors.TextEdit();
-            this.spinEditAccountBalance = new DevExpress.XtraEditors.SpinEdit();
-            this.txtBranch = new DevExpress.XtraEditors.TextEdit();
-            this.dateEditAccountOpenDate = new DevExpress.XtraEditors.DateEdit();
-            this.tbFirstName = new DevExpress.XtraEditors.TextEdit();
-            this.tbLastName = new DevExpress.XtraEditors.TextEdit();
-            this.pnFullnameCus = new System.Windows.Forms.Panel();
-            this.pnFullnameAcc = new System.Windows.Forms.Panel();
             labelAccountOpenDate = new System.Windows.Forms.Label();
             labelBranch = new System.Windows.Forms.Label();
             labelAccountBalance = new System.Windows.Forms.Label();
@@ -120,27 +116,25 @@ namespace NganHang.Views
             this.panelControlInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnCus)).BeginInit();
             this.pnCus.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.khachHangGridControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.khachHangBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dSBankAccount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.taiKhoanGridControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.thongTinTaiKhoanBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvAccount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD_GOIRUTBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD_CHUYENTIENBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.taiKhoanBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAccountNumber.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCMND.Properties)).BeginInit();
+            this.pnFullnameAcc.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbFullname.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditAccountBalance.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBranch.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thongTinTaiKhoanBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dSBankAccount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditAccountOpenDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditAccountOpenDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbFirstName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbLastName.Properties)).BeginInit();
             this.pnFullnameCus.SuspendLayout();
-            this.pnFullnameAcc.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbLastName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.khachHangBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbFirstName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBranch.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditAccountBalance.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCMND.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAccountNumber.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.khachHangGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.taiKhoanGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvAccount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.taiKhoanBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // labelAccountOpenDate
@@ -187,6 +181,33 @@ namespace NganHang.Views
             labelAccountNumber.Size = new System.Drawing.Size(73, 13);
             labelAccountNumber.TabIndex = 0;
             labelAccountNumber.Text = "Số Tài Khoản:";
+            // 
+            // hOTENLabel
+            // 
+            hOTENLabel.AutoSize = true;
+            hOTENLabel.Location = new System.Drawing.Point(12, 44);
+            hOTENLabel.Name = "hOTENLabel";
+            hOTENLabel.Size = new System.Drawing.Size(45, 13);
+            hOTENLabel.TabIndex = 19;
+            hOTENLabel.Text = "HOTEN:";
+            // 
+            // hOLabel
+            // 
+            hOLabel.AutoSize = true;
+            hOLabel.Location = new System.Drawing.Point(12, 6);
+            hOLabel.Name = "hOLabel";
+            hOLabel.Size = new System.Drawing.Size(26, 13);
+            hOLabel.TabIndex = 23;
+            hOLabel.Text = "HO:";
+            // 
+            // tENLabel
+            // 
+            tENLabel.AutoSize = true;
+            tENLabel.Location = new System.Drawing.Point(218, 6);
+            tENLabel.Name = "tENLabel";
+            tENLabel.Size = new System.Drawing.Size(30, 13);
+            tENLabel.TabIndex = 24;
+            tENLabel.Text = "TEN:";
             // 
             // barMenu
             // 
@@ -471,40 +492,156 @@ namespace NganHang.Views
             this.pnCus.Controls.Add(labelAccountBalance);
             this.pnCus.Controls.Add(labelCMND);
             this.pnCus.Controls.Add(labelAccountNumber);
-            this.pnCus.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnCus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnCus.Enabled = false;
-            this.pnCus.Location = new System.Drawing.Point(2, 309);
+            this.pnCus.Location = new System.Drawing.Point(2, 451);
             this.pnCus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnCus.Name = "pnCus";
-            this.pnCus.Size = new System.Drawing.Size(1500, 182);
+            this.pnCus.Size = new System.Drawing.Size(1500, 422);
             this.pnCus.TabIndex = 19;
             // 
-            // khachHangGridControl
+            // pnFullnameAcc
             // 
-            this.khachHangGridControl.DataSource = this.khachHangBindingSource;
-            this.khachHangGridControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.khachHangGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.khachHangGridControl.Location = new System.Drawing.Point(2, 181);
-            this.khachHangGridControl.MainView = this.gridView2;
-            this.khachHangGridControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.khachHangGridControl.MenuManager = this.barManager;
-            this.khachHangGridControl.Name = "khachHangGridControl";
-            this.khachHangGridControl.Size = new System.Drawing.Size(1500, 128);
-            this.khachHangGridControl.TabIndex = 17;
-            this.khachHangGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView2});
-            this.khachHangGridControl.Visible = false;
-            this.khachHangGridControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.khachHangGridControl_MouseClick);
+            this.pnFullnameAcc.Controls.Add(this.tbFullname);
+            this.pnFullnameAcc.Controls.Add(hOTENLabel);
+            this.pnFullnameAcc.Controls.Add(this.dateEditAccountOpenDate);
+            this.pnFullnameAcc.Controls.Add(labelAccountOpenDate);
+            this.pnFullnameAcc.Location = new System.Drawing.Point(563, 9);
+            this.pnFullnameAcc.Name = "pnFullnameAcc";
+            this.pnFullnameAcc.Size = new System.Drawing.Size(284, 73);
+            this.pnFullnameAcc.TabIndex = 27;
+            // 
+            // tbFullname
+            // 
+            this.tbFullname.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.thongTinTaiKhoanBindingSource, "HOTEN", true));
+            this.tbFullname.Location = new System.Drawing.Point(65, 41);
+            this.tbFullname.MenuManager = this.barManager;
+            this.tbFullname.Name = "tbFullname";
+            this.tbFullname.Size = new System.Drawing.Size(189, 20);
+            this.tbFullname.TabIndex = 20;
+            // 
+            // thongTinTaiKhoanBindingSource
+            // 
+            this.thongTinTaiKhoanBindingSource.DataMember = "ThongTinTaiKhoan";
+            this.thongTinTaiKhoanBindingSource.DataSource = this.dSBankAccount;
+            // 
+            // dSBankAccount
+            // 
+            this.dSBankAccount.DataSetName = "DSBankAccount";
+            this.dSBankAccount.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // dateEditAccountOpenDate
+            // 
+            this.dateEditAccountOpenDate.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.thongTinTaiKhoanBindingSource, "NGAYMOTK", true));
+            this.dateEditAccountOpenDate.EditValue = null;
+            this.dateEditAccountOpenDate.Location = new System.Drawing.Point(65, 5);
+            this.dateEditAccountOpenDate.MenuManager = this.barManager;
+            this.dateEditAccountOpenDate.Name = "dateEditAccountOpenDate";
+            this.dateEditAccountOpenDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEditAccountOpenDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEditAccountOpenDate.Size = new System.Drawing.Size(189, 20);
+            this.dateEditAccountOpenDate.TabIndex = 23;
+            // 
+            // pnFullnameCus
+            // 
+            this.pnFullnameCus.Controls.Add(this.tbLastName);
+            this.pnFullnameCus.Controls.Add(tENLabel);
+            this.pnFullnameCus.Controls.Add(this.tbFirstName);
+            this.pnFullnameCus.Controls.Add(hOLabel);
+            this.pnFullnameCus.Location = new System.Drawing.Point(66, 82);
+            this.pnFullnameCus.Name = "pnFullnameCus";
+            this.pnFullnameCus.Size = new System.Drawing.Size(481, 38);
+            this.pnFullnameCus.TabIndex = 26;
+            this.pnFullnameCus.Visible = false;
+            // 
+            // tbLastName
+            // 
+            this.tbLastName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.khachHangBindingSource, "TEN", true));
+            this.tbLastName.Location = new System.Drawing.Point(254, 3);
+            this.tbLastName.MenuManager = this.barManager;
+            this.tbLastName.Name = "tbLastName";
+            this.tbLastName.Size = new System.Drawing.Size(212, 20);
+            this.tbLastName.TabIndex = 25;
             // 
             // khachHangBindingSource
             // 
             this.khachHangBindingSource.DataMember = "KhachHang";
             this.khachHangBindingSource.DataSource = this.dSBankAccount;
             // 
-            // dSBankAccount
+            // tbFirstName
             // 
-            this.dSBankAccount.DataSetName = "DSBankAccount";
-            this.dSBankAccount.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.tbFirstName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.khachHangBindingSource, "HO", true));
+            this.tbFirstName.Location = new System.Drawing.Point(44, 3);
+            this.tbFirstName.MenuManager = this.barManager;
+            this.tbFirstName.Name = "tbFirstName";
+            this.tbFirstName.Size = new System.Drawing.Size(139, 20);
+            this.tbFirstName.TabIndex = 24;
+            // 
+            // txtBranch
+            // 
+            this.txtBranch.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.thongTinTaiKhoanBindingSource, "MACN", true));
+            this.txtBranch.Location = new System.Drawing.Point(320, 50);
+            this.txtBranch.MenuManager = this.barManager;
+            this.txtBranch.Name = "txtBranch";
+            this.txtBranch.Size = new System.Drawing.Size(212, 20);
+            this.txtBranch.TabIndex = 22;
+            // 
+            // spinEditAccountBalance
+            // 
+            this.spinEditAccountBalance.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.thongTinTaiKhoanBindingSource, "SODU", true));
+            this.spinEditAccountBalance.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEditAccountBalance.Location = new System.Drawing.Point(320, 11);
+            this.spinEditAccountBalance.MenuManager = this.barManager;
+            this.spinEditAccountBalance.Name = "spinEditAccountBalance";
+            this.spinEditAccountBalance.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinEditAccountBalance.Properties.DisplayFormat.FormatString = "{0:#,##0}";
+            this.spinEditAccountBalance.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.spinEditAccountBalance.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.spinEditAccountBalance.Size = new System.Drawing.Size(212, 20);
+            this.spinEditAccountBalance.TabIndex = 21;
+            // 
+            // txtCMND
+            // 
+            this.txtCMND.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.thongTinTaiKhoanBindingSource, "CMND", true));
+            this.txtCMND.Location = new System.Drawing.Point(110, 50);
+            this.txtCMND.MenuManager = this.barManager;
+            this.txtCMND.Name = "txtCMND";
+            this.txtCMND.Size = new System.Drawing.Size(139, 20);
+            this.txtCMND.TabIndex = 19;
+            // 
+            // txtAccountNumber
+            // 
+            this.txtAccountNumber.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.thongTinTaiKhoanBindingSource, "SOTK", true));
+            this.txtAccountNumber.Location = new System.Drawing.Point(110, 11);
+            this.txtAccountNumber.MenuManager = this.barManager;
+            this.txtAccountNumber.Name = "txtAccountNumber";
+            this.txtAccountNumber.Size = new System.Drawing.Size(139, 20);
+            this.txtAccountNumber.TabIndex = 18;
+            // 
+            // khachHangGridControl
+            // 
+            this.khachHangGridControl.DataSource = this.khachHangBindingSource;
+            this.khachHangGridControl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.khachHangGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.khachHangGridControl.Location = new System.Drawing.Point(2, 221);
+            this.khachHangGridControl.MainView = this.gridView2;
+            this.khachHangGridControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.khachHangGridControl.MenuManager = this.barManager;
+            this.khachHangGridControl.Name = "khachHangGridControl";
+            this.khachHangGridControl.Size = new System.Drawing.Size(1500, 230);
+            this.khachHangGridControl.TabIndex = 17;
+            this.khachHangGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView2});
+            this.khachHangGridControl.Visible = false;
+            this.khachHangGridControl.Click += new System.EventHandler(this.khachHangGridControl_Click);
+            this.khachHangGridControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.khachHangGridControl_MouseClick);
             // 
             // gridView2
             // 
@@ -607,15 +744,10 @@ namespace NganHang.Views
             this.taiKhoanGridControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.taiKhoanGridControl.MenuManager = this.barManager;
             this.taiKhoanGridControl.Name = "taiKhoanGridControl";
-            this.taiKhoanGridControl.Size = new System.Drawing.Size(1500, 179);
+            this.taiKhoanGridControl.Size = new System.Drawing.Size(1500, 219);
             this.taiKhoanGridControl.TabIndex = 18;
             this.taiKhoanGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvAccount});
-            // 
-            // thongTinTaiKhoanBindingSource
-            // 
-            this.thongTinTaiKhoanBindingSource.DataMember = "ThongTinTaiKhoan";
-            this.thongTinTaiKhoanBindingSource.DataSource = this.dSBankAccount;
             // 
             // gvAccount
             // 
@@ -659,6 +791,8 @@ namespace NganHang.Views
             // 
             // colSODU
             // 
+            this.colSODU.DisplayFormat.FormatString = "{0:#,##0}";
+            this.colSODU.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colSODU.FieldName = "SODU";
             this.colSODU.MinWidth = 21;
             this.colSODU.Name = "colSODU";
@@ -691,33 +825,15 @@ namespace NganHang.Views
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.GD_CHUYENTIENTableAdapter = this.gD_CHUYENTIENTableAdapter;
-            this.tableAdapterManager.GD_GOIRUTTableAdapter = this.gD_GOIRUTTableAdapter;
+            this.tableAdapterManager.GD_CHUYENTIENTableAdapter = null;
+            this.tableAdapterManager.GD_GOIRUTTableAdapter = null;
             this.tableAdapterManager.KhachHangTableAdapter = this.khachHangTableAdapter;
             this.tableAdapterManager.TaiKhoanTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = NganHang.DSBankAccountTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // gD_CHUYENTIENTableAdapter
-            // 
-            this.gD_CHUYENTIENTableAdapter.ClearBeforeFill = true;
-            // 
-            // gD_GOIRUTTableAdapter
-            // 
-            this.gD_GOIRUTTableAdapter.ClearBeforeFill = true;
-            // 
             // khachHangTableAdapter
             // 
             this.khachHangTableAdapter.ClearBeforeFill = true;
-            // 
-            // gD_GOIRUTBindingSource
-            // 
-            this.gD_GOIRUTBindingSource.DataMember = "GD_GOIRUT";
-            this.gD_GOIRUTBindingSource.DataSource = this.dSBankAccount;
-            // 
-            // gD_CHUYENTIENBindingSource
-            // 
-            this.gD_CHUYENTIENBindingSource.DataMember = "GD_CHUYENTIEN";
-            this.gD_CHUYENTIENBindingSource.DataSource = this.dSBankAccount;
             // 
             // taiKhoanBindingSource
             // 
@@ -727,141 +843,6 @@ namespace NganHang.Views
             // taiKhoanTableAdapter
             // 
             this.taiKhoanTableAdapter.ClearBeforeFill = true;
-            // 
-            // txtAccountNumber
-            // 
-            this.txtAccountNumber.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.thongTinTaiKhoanBindingSource, "SOTK", true));
-            this.txtAccountNumber.Location = new System.Drawing.Point(110, 11);
-            this.txtAccountNumber.MenuManager = this.barManager;
-            this.txtAccountNumber.Name = "txtAccountNumber";
-            this.txtAccountNumber.Size = new System.Drawing.Size(139, 20);
-            this.txtAccountNumber.TabIndex = 18;
-            // 
-            // txtCMND
-            // 
-            this.txtCMND.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.thongTinTaiKhoanBindingSource, "CMND", true));
-            this.txtCMND.Location = new System.Drawing.Point(110, 50);
-            this.txtCMND.MenuManager = this.barManager;
-            this.txtCMND.Name = "txtCMND";
-            this.txtCMND.Size = new System.Drawing.Size(139, 20);
-            this.txtCMND.TabIndex = 19;
-            // 
-            // hOTENLabel
-            // 
-            hOTENLabel.AutoSize = true;
-            hOTENLabel.Location = new System.Drawing.Point(12, 44);
-            hOTENLabel.Name = "hOTENLabel";
-            hOTENLabel.Size = new System.Drawing.Size(45, 13);
-            hOTENLabel.TabIndex = 19;
-            hOTENLabel.Text = "HOTEN:";
-            // 
-            // tbFullname
-            // 
-            this.tbFullname.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.thongTinTaiKhoanBindingSource, "HOTEN", true));
-            this.tbFullname.Location = new System.Drawing.Point(65, 41);
-            this.tbFullname.MenuManager = this.barManager;
-            this.tbFullname.Name = "tbFullname";
-            this.tbFullname.Size = new System.Drawing.Size(189, 20);
-            this.tbFullname.TabIndex = 20;
-            // 
-            // spinEditAccountBalance
-            // 
-            this.spinEditAccountBalance.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.thongTinTaiKhoanBindingSource, "SODU", true));
-            this.spinEditAccountBalance.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEditAccountBalance.Location = new System.Drawing.Point(320, 11);
-            this.spinEditAccountBalance.MenuManager = this.barManager;
-            this.spinEditAccountBalance.Name = "spinEditAccountBalance";
-            this.spinEditAccountBalance.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinEditAccountBalance.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.spinEditAccountBalance.Size = new System.Drawing.Size(212, 20);
-            this.spinEditAccountBalance.TabIndex = 21;
-            // 
-            // txtBranch
-            // 
-            this.txtBranch.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.thongTinTaiKhoanBindingSource, "MACN", true));
-            this.txtBranch.Location = new System.Drawing.Point(320, 50);
-            this.txtBranch.MenuManager = this.barManager;
-            this.txtBranch.Name = "txtBranch";
-            this.txtBranch.Size = new System.Drawing.Size(212, 20);
-            this.txtBranch.TabIndex = 22;
-            // 
-            // dateEditAccountOpenDate
-            // 
-            this.dateEditAccountOpenDate.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.thongTinTaiKhoanBindingSource, "NGAYMOTK", true));
-            this.dateEditAccountOpenDate.EditValue = null;
-            this.dateEditAccountOpenDate.Location = new System.Drawing.Point(65, 5);
-            this.dateEditAccountOpenDate.MenuManager = this.barManager;
-            this.dateEditAccountOpenDate.Name = "dateEditAccountOpenDate";
-            this.dateEditAccountOpenDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEditAccountOpenDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEditAccountOpenDate.Size = new System.Drawing.Size(189, 20);
-            this.dateEditAccountOpenDate.TabIndex = 23;
-            // 
-            // hOLabel
-            // 
-            hOLabel.AutoSize = true;
-            hOLabel.Location = new System.Drawing.Point(12, 6);
-            hOLabel.Name = "hOLabel";
-            hOLabel.Size = new System.Drawing.Size(26, 13);
-            hOLabel.TabIndex = 23;
-            hOLabel.Text = "HO:";
-            // 
-            // tbFirstName
-            // 
-            this.tbFirstName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.khachHangBindingSource, "HO", true));
-            this.tbFirstName.Location = new System.Drawing.Point(44, 3);
-            this.tbFirstName.MenuManager = this.barManager;
-            this.tbFirstName.Name = "tbFirstName";
-            this.tbFirstName.Size = new System.Drawing.Size(139, 20);
-            this.tbFirstName.TabIndex = 24;
-            // 
-            // tENLabel
-            // 
-            tENLabel.AutoSize = true;
-            tENLabel.Location = new System.Drawing.Point(218, 6);
-            tENLabel.Name = "tENLabel";
-            tENLabel.Size = new System.Drawing.Size(30, 13);
-            tENLabel.TabIndex = 24;
-            tENLabel.Text = "TEN:";
-            // 
-            // tbLastName
-            // 
-            this.tbLastName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.khachHangBindingSource, "TEN", true));
-            this.tbLastName.Location = new System.Drawing.Point(254, 3);
-            this.tbLastName.MenuManager = this.barManager;
-            this.tbLastName.Name = "tbLastName";
-            this.tbLastName.Size = new System.Drawing.Size(212, 20);
-            this.tbLastName.TabIndex = 25;
-            // 
-            // pnFullnameCus
-            // 
-            this.pnFullnameCus.Controls.Add(this.tbLastName);
-            this.pnFullnameCus.Controls.Add(tENLabel);
-            this.pnFullnameCus.Controls.Add(this.tbFirstName);
-            this.pnFullnameCus.Controls.Add(hOLabel);
-            this.pnFullnameCus.Location = new System.Drawing.Point(66, 82);
-            this.pnFullnameCus.Name = "pnFullnameCus";
-            this.pnFullnameCus.Size = new System.Drawing.Size(481, 38);
-            this.pnFullnameCus.TabIndex = 26;
-            this.pnFullnameCus.Visible = false;
-            // 
-            // pnFullnameAcc
-            // 
-            this.pnFullnameAcc.Controls.Add(this.tbFullname);
-            this.pnFullnameAcc.Controls.Add(hOTENLabel);
-            this.pnFullnameAcc.Controls.Add(this.dateEditAccountOpenDate);
-            this.pnFullnameAcc.Controls.Add(labelAccountOpenDate);
-            this.pnFullnameAcc.Location = new System.Drawing.Point(563, 9);
-            this.pnFullnameAcc.Name = "pnFullnameAcc";
-            this.pnFullnameAcc.Size = new System.Drawing.Size(284, 73);
-            this.pnFullnameAcc.TabIndex = 27;
             // 
             // FormBankAccount
             // 
@@ -890,29 +871,27 @@ namespace NganHang.Views
             ((System.ComponentModel.ISupportInitialize)(this.pnCus)).EndInit();
             this.pnCus.ResumeLayout(false);
             this.pnCus.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.khachHangGridControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.khachHangBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dSBankAccount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.taiKhoanGridControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.thongTinTaiKhoanBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvAccount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD_GOIRUTBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD_CHUYENTIENBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.taiKhoanBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAccountNumber.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCMND.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbFullname.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditAccountBalance.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBranch.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEditAccountOpenDate.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEditAccountOpenDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbFirstName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbLastName.Properties)).EndInit();
-            this.pnFullnameCus.ResumeLayout(false);
-            this.pnFullnameCus.PerformLayout();
             this.pnFullnameAcc.ResumeLayout(false);
             this.pnFullnameAcc.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbFullname.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thongTinTaiKhoanBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dSBankAccount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEditAccountOpenDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEditAccountOpenDate.Properties)).EndInit();
+            this.pnFullnameCus.ResumeLayout(false);
+            this.pnFullnameCus.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbLastName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.khachHangBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbFirstName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBranch.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditAccountBalance.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCMND.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAccountNumber.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.khachHangGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.taiKhoanGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvAccount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.taiKhoanBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -969,10 +948,6 @@ namespace NganHang.Views
         private DSBankAccountTableAdapters.KhachHangTableAdapter khachHangTableAdapter;
         private System.Windows.Forms.BindingSource khachHangBindingSource;
         private DevExpress.XtraEditors.PanelControl pnCus;
-        private DSBankAccountTableAdapters.GD_GOIRUTTableAdapter gD_GOIRUTTableAdapter;
-        private System.Windows.Forms.BindingSource gD_GOIRUTBindingSource;
-        private DSBankAccountTableAdapters.GD_CHUYENTIENTableAdapter gD_CHUYENTIENTableAdapter;
-        private System.Windows.Forms.BindingSource gD_CHUYENTIENBindingSource;
         private System.Windows.Forms.BindingSource taiKhoanBindingSource;
         private DSBankAccountTableAdapters.TaiKhoanTableAdapter taiKhoanTableAdapter;
         private System.Windows.Forms.BindingSource thongTinTaiKhoanBindingSource;

@@ -306,6 +306,7 @@ namespace NganHang
             // 
             // cbGender
             // 
+            this.cbGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbGender.Enabled = false;
             this.cbGender.FormattingEnabled = true;
             this.cbGender.Location = new System.Drawing.Point(479, 178);
