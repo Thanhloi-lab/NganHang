@@ -201,6 +201,34 @@ namespace NganHang
             Cursor.Current = Cursors.Default;
         }
 
+        public void ShowFormListAccount()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            Form frm = this.CheckExists(typeof(FormListAccount));
+            if (frm != null) frm.Activate();
+            else
+            {
+                FormListAccount f = new FormListAccount();
+                f.MdiParent = this;
+                f.Show();
+            }
+            Cursor.Current = Cursors.Default;
+        }
+
+        public void ShowFormListCustomer()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            Form frm = this.CheckExists(typeof(FormListCustomer));
+            if (frm != null) frm.Activate();
+            else
+            {
+                FormListCustomer f = new FormListCustomer();
+                f.MdiParent = this;
+                f.Show();
+            }
+            Cursor.Current = Cursors.Default;
+        }
+
         #endregion
 
 
@@ -261,6 +289,16 @@ namespace NganHang
         private void btnChuyenTien_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             ShowTransferMoneyForm();
+        }
+
+        private void btnLietKeTaiKhoan_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ShowFormListAccount();
+        }
+
+        private void btnLietKeKhachHang_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ShowFormListCustomer();
         }
     }
 }

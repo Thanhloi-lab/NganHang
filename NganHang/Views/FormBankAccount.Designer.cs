@@ -354,7 +354,7 @@ namespace NganHang.Views
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager;
             this.barDockControlTop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.barDockControlTop.Size = new System.Drawing.Size(1504, 24);
+            this.barDockControlTop.Size = new System.Drawing.Size(1067, 24);
             // 
             // barDockControlBottom
             // 
@@ -363,7 +363,7 @@ namespace NganHang.Views
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 937);
             this.barDockControlBottom.Manager = this.barManager;
             this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1504, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1067, 0);
             // 
             // barDockControlLeft
             // 
@@ -378,7 +378,7 @@ namespace NganHang.Views
             // 
             this.barDockControl1.CausesValidation = false;
             this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl1.Location = new System.Drawing.Point(1504, 24);
+            this.barDockControl1.Location = new System.Drawing.Point(1067, 24);
             this.barDockControl1.Manager = this.barManager;
             this.barDockControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.barDockControl1.Size = new System.Drawing.Size(0, 913);
@@ -403,7 +403,7 @@ namespace NganHang.Views
             this.panelControlTop.Location = new System.Drawing.Point(0, 24);
             this.panelControlTop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelControlTop.Name = "panelControlTop";
-            this.panelControlTop.Size = new System.Drawing.Size(1504, 38);
+            this.panelControlTop.Size = new System.Drawing.Size(1067, 38);
             this.panelControlTop.TabIndex = 22;
             // 
             // comboBoxBranch
@@ -437,7 +437,7 @@ namespace NganHang.Views
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1504, 24);
+            this.barDockControlRight.Location = new System.Drawing.Point(1067, 24);
             this.barDockControlRight.Manager = this.barManager;
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 913);
@@ -449,7 +449,7 @@ namespace NganHang.Views
             this.barDockControl3.Location = new System.Drawing.Point(0, 937);
             this.barDockControl3.Manager = this.barManager;
             this.barDockControl3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.barDockControl3.Size = new System.Drawing.Size(1504, 0);
+            this.barDockControl3.Size = new System.Drawing.Size(1067, 0);
             // 
             // barDockControl4
             // 
@@ -458,7 +458,7 @@ namespace NganHang.Views
             this.barDockControl4.Location = new System.Drawing.Point(0, 24);
             this.barDockControl4.Manager = this.barManager;
             this.barDockControl4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.barDockControl4.Size = new System.Drawing.Size(1504, 0);
+            this.barDockControl4.Size = new System.Drawing.Size(1067, 0);
             // 
             // bar2
             // 
@@ -477,7 +477,7 @@ namespace NganHang.Views
             this.panelControlInfo.Location = new System.Drawing.Point(0, 62);
             this.panelControlInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelControlInfo.Name = "panelControlInfo";
-            this.panelControlInfo.Size = new System.Drawing.Size(1504, 875);
+            this.panelControlInfo.Size = new System.Drawing.Size(1067, 875);
             this.panelControlInfo.TabIndex = 43;
             // 
             // pnCus
@@ -493,11 +493,10 @@ namespace NganHang.Views
             this.pnCus.Controls.Add(labelCMND);
             this.pnCus.Controls.Add(labelAccountNumber);
             this.pnCus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnCus.Enabled = false;
             this.pnCus.Location = new System.Drawing.Point(2, 451);
             this.pnCus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnCus.Name = "pnCus";
-            this.pnCus.Size = new System.Drawing.Size(1500, 422);
+            this.pnCus.Size = new System.Drawing.Size(1063, 422);
             this.pnCus.TabIndex = 19;
             // 
             // pnFullnameAcc
@@ -517,6 +516,7 @@ namespace NganHang.Views
             this.tbFullname.Location = new System.Drawing.Point(65, 41);
             this.tbFullname.MenuManager = this.barManager;
             this.tbFullname.Name = "tbFullname";
+            this.tbFullname.Properties.ReadOnly = true;
             this.tbFullname.Size = new System.Drawing.Size(189, 20);
             this.tbFullname.TabIndex = 20;
             // 
@@ -534,6 +534,7 @@ namespace NganHang.Views
             // 
             this.dateEditAccountOpenDate.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.thongTinTaiKhoanBindingSource, "NGAYMOTK", true));
             this.dateEditAccountOpenDate.EditValue = null;
+            this.dateEditAccountOpenDate.Enabled = false;
             this.dateEditAccountOpenDate.Location = new System.Drawing.Point(65, 5);
             this.dateEditAccountOpenDate.MenuManager = this.barManager;
             this.dateEditAccountOpenDate.Name = "dateEditAccountOpenDate";
@@ -562,6 +563,7 @@ namespace NganHang.Views
             this.tbLastName.Location = new System.Drawing.Point(254, 3);
             this.tbLastName.MenuManager = this.barManager;
             this.tbLastName.Name = "tbLastName";
+            this.tbLastName.Properties.ReadOnly = true;
             this.tbLastName.Size = new System.Drawing.Size(212, 20);
             this.tbLastName.TabIndex = 25;
             // 
@@ -576,6 +578,7 @@ namespace NganHang.Views
             this.tbFirstName.Location = new System.Drawing.Point(44, 3);
             this.tbFirstName.MenuManager = this.barManager;
             this.tbFirstName.Name = "tbFirstName";
+            this.tbFirstName.Properties.ReadOnly = true;
             this.tbFirstName.Size = new System.Drawing.Size(139, 20);
             this.tbFirstName.TabIndex = 24;
             // 
@@ -585,6 +588,7 @@ namespace NganHang.Views
             this.txtBranch.Location = new System.Drawing.Point(320, 50);
             this.txtBranch.MenuManager = this.barManager;
             this.txtBranch.Name = "txtBranch";
+            this.txtBranch.Properties.ReadOnly = true;
             this.txtBranch.Size = new System.Drawing.Size(212, 20);
             this.txtBranch.TabIndex = 22;
             // 
@@ -596,6 +600,7 @@ namespace NganHang.Views
             0,
             0,
             0});
+            this.spinEditAccountBalance.Enabled = false;
             this.spinEditAccountBalance.Location = new System.Drawing.Point(320, 11);
             this.spinEditAccountBalance.MenuManager = this.barManager;
             this.spinEditAccountBalance.Name = "spinEditAccountBalance";
@@ -613,6 +618,7 @@ namespace NganHang.Views
             this.txtCMND.Location = new System.Drawing.Point(110, 50);
             this.txtCMND.MenuManager = this.barManager;
             this.txtCMND.Name = "txtCMND";
+            this.txtCMND.Properties.ReadOnly = true;
             this.txtCMND.Size = new System.Drawing.Size(139, 20);
             this.txtCMND.TabIndex = 19;
             // 
@@ -622,6 +628,7 @@ namespace NganHang.Views
             this.txtAccountNumber.Location = new System.Drawing.Point(110, 11);
             this.txtAccountNumber.MenuManager = this.barManager;
             this.txtAccountNumber.Name = "txtAccountNumber";
+            this.txtAccountNumber.Properties.ReadOnly = true;
             this.txtAccountNumber.Size = new System.Drawing.Size(139, 20);
             this.txtAccountNumber.TabIndex = 18;
             // 
@@ -635,12 +642,11 @@ namespace NganHang.Views
             this.khachHangGridControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.khachHangGridControl.MenuManager = this.barManager;
             this.khachHangGridControl.Name = "khachHangGridControl";
-            this.khachHangGridControl.Size = new System.Drawing.Size(1500, 230);
+            this.khachHangGridControl.Size = new System.Drawing.Size(1063, 230);
             this.khachHangGridControl.TabIndex = 17;
             this.khachHangGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
             this.khachHangGridControl.Visible = false;
-            this.khachHangGridControl.Click += new System.EventHandler(this.khachHangGridControl_Click);
             this.khachHangGridControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.khachHangGridControl_MouseClick);
             // 
             // gridView2
@@ -744,7 +750,7 @@ namespace NganHang.Views
             this.taiKhoanGridControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.taiKhoanGridControl.MenuManager = this.barManager;
             this.taiKhoanGridControl.Name = "taiKhoanGridControl";
-            this.taiKhoanGridControl.Size = new System.Drawing.Size(1500, 219);
+            this.taiKhoanGridControl.Size = new System.Drawing.Size(1063, 219);
             this.taiKhoanGridControl.TabIndex = 18;
             this.taiKhoanGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvAccount});
@@ -848,7 +854,7 @@ namespace NganHang.Views
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1504, 937);
+            this.ClientSize = new System.Drawing.Size(1067, 937);
             this.Controls.Add(this.panelControlInfo);
             this.Controls.Add(this.panelControlTop);
             this.Controls.Add(this.barDockControl2);

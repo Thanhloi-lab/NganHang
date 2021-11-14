@@ -56,31 +56,46 @@ namespace NganHang.Views
             this.comboBoxBranch = new System.Windows.Forms.ComboBox();
             this.labelBranch = new System.Windows.Forms.Label();
             this.panelControlInfo = new DevExpress.XtraEditors.PanelControl();
-            this.txtStaffID = new DevExpress.XtraEditors.TextEdit();
+            this.lbNameRec = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lbNameSender = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnOKRec = new System.Windows.Forms.Button();
+            this.btnChooseRec = new System.Windows.Forms.Button();
+            this.btnOKSend = new System.Windows.Forms.Button();
+            this.btnChooseSend = new System.Windows.Forms.Button();
             this.txtMoney = new DevExpress.XtraEditors.SpinEdit();
             this.txtAccountReceive = new DevExpress.XtraEditors.TextEdit();
             this.txtAccountTransfer = new DevExpress.XtraEditors.TextEdit();
-            this.taiKhoanGridControl = new DevExpress.XtraGrid.GridControl();
             this.taiKhoanBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dSTransferMoney = new NganHang.DSTransferMoney();
-            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colSOTK = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCMND = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colSODU = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colMACN = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colNGAYMOTK = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gD_CHUYENTIENGridControl = new DevExpress.XtraGrid.GridControl();
-            this.gD_CHUYENTIENBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ThongTinGDGridControl = new DevExpress.XtraGrid.GridControl();
+            this.thongTinTaiKhoanBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMAGD = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSOTK_CHUYEN = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colNGAYGD = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colSOTIEN = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.HOTEN_CHUYEN = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSOTK_NHAN = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.HOTEN_NHAN = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSOTIEN = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNGAYGD = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMANV = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gD_CHUYENTIENTableAdapter = new NganHang.DSTransferMoneyTableAdapters.GD_CHUYENTIENTableAdapter();
             this.tableAdapterManager = new NganHang.DSTransferMoneyTableAdapters.TableAdapterManager();
             this.taiKhoanTableAdapter = new NganHang.DSTransferMoneyTableAdapters.TaiKhoanTableAdapter();
+            this.taiKhoanGridControl = new DevExpress.XtraGrid.GridControl();
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colSOTK = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCMND = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.HOTEN = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSODU = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMACN = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNGAYMOTK = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.thongTinTaiKhoanTableAdapter = new NganHang.DSTransferMoneyTableAdapters.ThongTinTaiKhoanTableAdapter();
+            this.thongTinGDBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.thongTinGDTableAdapter = new NganHang.DSTransferMoneyTableAdapters.ThongTinGDTableAdapter();
+            this.gD_CHUYENTIENBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD_CHUYENTIENTableAdapter = new NganHang.DSTransferMoneyTableAdapters.GD_CHUYENTIENTableAdapter();
+            this.txtStaffID = new DevExpress.XtraEditors.TextEdit();
             labelStaffID = new System.Windows.Forms.Label();
             labelMoney = new System.Windows.Forms.Label();
             labelAccountReceive = new System.Windows.Forms.Label();
@@ -90,23 +105,25 @@ namespace NganHang.Views
             this.panelControlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlInfo)).BeginInit();
             this.panelControlInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtStaffID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMoney.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAccountReceive.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAccountTransfer.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.taiKhoanGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.taiKhoanBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dSTransferMoney)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD_CHUYENTIENGridControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD_CHUYENTIENBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ThongTinGDGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thongTinTaiKhoanBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.taiKhoanGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thongTinGDBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD_CHUYENTIENBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStaffID.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelStaffID
             // 
             labelStaffID.AutoSize = true;
-            labelStaffID.Location = new System.Drawing.Point(469, 60);
+            labelStaffID.Location = new System.Drawing.Point(598, 97);
             labelStaffID.Name = "labelStaffID";
             labelStaffID.Size = new System.Drawing.Size(76, 13);
             labelStaffID.TabIndex = 6;
@@ -115,7 +132,7 @@ namespace NganHang.Views
             // labelMoney
             // 
             labelMoney.AutoSize = true;
-            labelMoney.Location = new System.Drawing.Point(102, 58);
+            labelMoney.Location = new System.Drawing.Point(91, 98);
             labelMoney.Name = "labelMoney";
             labelMoney.Size = new System.Drawing.Size(46, 13);
             labelMoney.TabIndex = 4;
@@ -124,7 +141,7 @@ namespace NganHang.Views
             // labelAccountReceive
             // 
             labelAccountReceive.AutoSize = true;
-            labelAccountReceive.Location = new System.Drawing.Point(439, 20);
+            labelAccountReceive.Location = new System.Drawing.Point(573, 20);
             labelAccountReceive.Name = "labelAccountReceive";
             labelAccountReceive.Size = new System.Drawing.Size(101, 13);
             labelAccountReceive.TabIndex = 2;
@@ -316,16 +333,16 @@ namespace NganHang.Views
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager;
             this.barDockControlTop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.barDockControlTop.Size = new System.Drawing.Size(1105, 24);
+            this.barDockControlTop.Size = new System.Drawing.Size(1296, 24);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 653);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 751);
             this.barDockControlBottom.Manager = this.barManager;
             this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1105, 20);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1296, 20);
             // 
             // barDockControlLeft
             // 
@@ -334,16 +351,16 @@ namespace NganHang.Views
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
             this.barDockControlLeft.Manager = this.barManager;
             this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 629);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 727);
             // 
             // barDockControl1
             // 
             this.barDockControl1.CausesValidation = false;
             this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl1.Location = new System.Drawing.Point(1105, 24);
+            this.barDockControl1.Location = new System.Drawing.Point(1296, 24);
             this.barDockControl1.Manager = this.barManager;
             this.barDockControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.barDockControl1.Size = new System.Drawing.Size(0, 629);
+            this.barDockControl1.Size = new System.Drawing.Size(0, 727);
             // 
             // panelControlTop
             // 
@@ -353,7 +370,7 @@ namespace NganHang.Views
             this.panelControlTop.Location = new System.Drawing.Point(0, 24);
             this.panelControlTop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelControlTop.Name = "panelControlTop";
-            this.panelControlTop.Size = new System.Drawing.Size(1105, 38);
+            this.panelControlTop.Size = new System.Drawing.Size(1296, 38);
             this.panelControlTop.TabIndex = 5;
             // 
             // comboBoxBranch
@@ -376,31 +393,109 @@ namespace NganHang.Views
             // 
             // panelControlInfo
             // 
-            this.panelControlInfo.Controls.Add(labelStaffID);
             this.panelControlInfo.Controls.Add(this.txtStaffID);
+            this.panelControlInfo.Controls.Add(this.lbNameRec);
+            this.panelControlInfo.Controls.Add(this.label3);
+            this.panelControlInfo.Controls.Add(this.lbNameSender);
+            this.panelControlInfo.Controls.Add(this.label1);
+            this.panelControlInfo.Controls.Add(this.btnOKRec);
+            this.panelControlInfo.Controls.Add(this.btnChooseRec);
+            this.panelControlInfo.Controls.Add(this.btnOKSend);
+            this.panelControlInfo.Controls.Add(this.btnChooseSend);
+            this.panelControlInfo.Controls.Add(labelStaffID);
             this.panelControlInfo.Controls.Add(labelMoney);
             this.panelControlInfo.Controls.Add(this.txtMoney);
             this.panelControlInfo.Controls.Add(labelAccountReceive);
             this.panelControlInfo.Controls.Add(this.txtAccountReceive);
             this.panelControlInfo.Controls.Add(labelAccountTransfer);
             this.panelControlInfo.Controls.Add(this.txtAccountTransfer);
-            this.panelControlInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControlInfo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControlInfo.Enabled = false;
-            this.panelControlInfo.Location = new System.Drawing.Point(0, 508);
+            this.panelControlInfo.Location = new System.Drawing.Point(0, 286);
             this.panelControlInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelControlInfo.Name = "panelControlInfo";
-            this.panelControlInfo.Size = new System.Drawing.Size(1105, 145);
+            this.panelControlInfo.Size = new System.Drawing.Size(1296, 139);
             this.panelControlInfo.TabIndex = 11;
             // 
-            // txtStaffID
+            // lbNameRec
             // 
-            this.txtStaffID.Enabled = false;
-            this.txtStaffID.Location = new System.Drawing.Point(555, 58);
-            this.txtStaffID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtStaffID.MenuManager = this.barManager;
-            this.txtStaffID.Name = "txtStaffID";
-            this.txtStaffID.Size = new System.Drawing.Size(213, 20);
-            this.txtStaffID.TabIndex = 7;
+            this.lbNameRec.AutoSize = true;
+            this.lbNameRec.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbNameRec.Location = new System.Drawing.Point(681, 60);
+            this.lbNameRec.Name = "lbNameRec";
+            this.lbNameRec.Size = new System.Drawing.Size(20, 16);
+            this.lbNameRec.TabIndex = 15;
+            this.lbNameRec.Text = "...";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(588, 60);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(86, 13);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Tên người nhận:";
+            // 
+            // lbNameSender
+            // 
+            this.lbNameSender.AutoSize = true;
+            this.lbNameSender.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbNameSender.Location = new System.Drawing.Point(154, 60);
+            this.lbNameSender.Name = "lbNameSender";
+            this.lbNameSender.Size = new System.Drawing.Size(20, 16);
+            this.lbNameSender.TabIndex = 13;
+            this.lbNameSender.Text = "...";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(63, 60);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 13);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Tên người gửi:";
+            // 
+            // btnOKRec
+            // 
+            this.btnOKRec.Enabled = false;
+            this.btnOKRec.Location = new System.Drawing.Point(984, 15);
+            this.btnOKRec.Name = "btnOKRec";
+            this.btnOKRec.Size = new System.Drawing.Size(85, 23);
+            this.btnOKRec.TabIndex = 11;
+            this.btnOKRec.Text = "Xác nhận";
+            this.btnOKRec.UseVisualStyleBackColor = true;
+            this.btnOKRec.Click += new System.EventHandler(this.btnOKRec_Click);
+            // 
+            // btnChooseRec
+            // 
+            this.btnChooseRec.Location = new System.Drawing.Point(903, 15);
+            this.btnChooseRec.Name = "btnChooseRec";
+            this.btnChooseRec.Size = new System.Drawing.Size(75, 23);
+            this.btnChooseRec.TabIndex = 10;
+            this.btnChooseRec.Text = "Chọn";
+            this.btnChooseRec.UseVisualStyleBackColor = true;
+            this.btnChooseRec.Click += new System.EventHandler(this.btnChooseRec_Click);
+            // 
+            // btnOKSend
+            // 
+            this.btnOKSend.Enabled = false;
+            this.btnOKSend.Location = new System.Drawing.Point(440, 14);
+            this.btnOKSend.Name = "btnOKSend";
+            this.btnOKSend.Size = new System.Drawing.Size(87, 23);
+            this.btnOKSend.TabIndex = 9;
+            this.btnOKSend.Text = "Xác nhận";
+            this.btnOKSend.UseVisualStyleBackColor = true;
+            this.btnOKSend.Click += new System.EventHandler(this.btnOKSend_Click);
+            // 
+            // btnChooseSend
+            // 
+            this.btnChooseSend.Location = new System.Drawing.Point(359, 14);
+            this.btnChooseSend.Name = "btnChooseSend";
+            this.btnChooseSend.Size = new System.Drawing.Size(75, 23);
+            this.btnChooseSend.TabIndex = 8;
+            this.btnChooseSend.Text = "Chọn";
+            this.btnChooseSend.UseVisualStyleBackColor = true;
+            this.btnChooseSend.Click += new System.EventHandler(this.btnChooseSend_Click);
             // 
             // txtMoney
             // 
@@ -409,7 +504,7 @@ namespace NganHang.Views
             0,
             0,
             0});
-            this.txtMoney.Location = new System.Drawing.Point(157, 55);
+            this.txtMoney.Location = new System.Drawing.Point(157, 95);
             this.txtMoney.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtMoney.MenuManager = this.barManager;
             this.txtMoney.Name = "txtMoney";
@@ -427,10 +522,11 @@ namespace NganHang.Views
             // 
             // txtAccountReceive
             // 
-            this.txtAccountReceive.Location = new System.Drawing.Point(555, 17);
+            this.txtAccountReceive.Location = new System.Drawing.Point(684, 17);
             this.txtAccountReceive.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtAccountReceive.MenuManager = this.barManager;
             this.txtAccountReceive.Name = "txtAccountReceive";
+            this.txtAccountReceive.Properties.ReadOnly = true;
             this.txtAccountReceive.Size = new System.Drawing.Size(213, 20);
             this.txtAccountReceive.TabIndex = 3;
             this.txtAccountReceive.Click += new System.EventHandler(this.txtAccountReceive_Click_1);
@@ -441,27 +537,10 @@ namespace NganHang.Views
             this.txtAccountTransfer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtAccountTransfer.MenuManager = this.barManager;
             this.txtAccountTransfer.Name = "txtAccountTransfer";
+            this.txtAccountTransfer.Properties.ReadOnly = true;
             this.txtAccountTransfer.Size = new System.Drawing.Size(196, 20);
             this.txtAccountTransfer.TabIndex = 1;
             this.txtAccountTransfer.Click += new System.EventHandler(this.txtAccountTransfer_Click_1);
-            // 
-            // taiKhoanGridControl
-            // 
-            this.taiKhoanGridControl.DataSource = this.taiKhoanBindingSource;
-            this.taiKhoanGridControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.taiKhoanGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.taiKhoanGridControl.Enabled = false;
-            this.taiKhoanGridControl.Location = new System.Drawing.Point(0, 286);
-            this.taiKhoanGridControl.MainView = this.gridView2;
-            this.taiKhoanGridControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.taiKhoanGridControl.MenuManager = this.barManager;
-            this.taiKhoanGridControl.Name = "taiKhoanGridControl";
-            this.taiKhoanGridControl.Size = new System.Drawing.Size(1105, 222);
-            this.taiKhoanGridControl.TabIndex = 10;
-            this.taiKhoanGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView2});
-            this.taiKhoanGridControl.Visible = false;
-            this.taiKhoanGridControl.Click += new System.EventHandler(this.taiKhoanGridControl_Click);
             // 
             // taiKhoanBindingSource
             // 
@@ -473,100 +552,43 @@ namespace NganHang.Views
             this.dSTransferMoney.DataSetName = "DSTransferMoney";
             this.dSTransferMoney.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // gridView2
+            // ThongTinGDGridControl
             // 
-            this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colSOTK,
-            this.colCMND,
-            this.colSODU,
-            this.colMACN,
-            this.colNGAYMOTK});
-            this.gridView2.DetailHeight = 284;
-            this.gridView2.GridControl = this.taiKhoanGridControl;
-            this.gridView2.Name = "gridView2";
-            this.gridView2.OptionsBehavior.Editable = false;
-            this.gridView2.OptionsFind.AlwaysVisible = true;
-            this.gridView2.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView2.OptionsSelection.EnableAppearanceHideSelection = false;
-            // 
-            // colSOTK
-            // 
-            this.colSOTK.FieldName = "SOTK";
-            this.colSOTK.MinWidth = 21;
-            this.colSOTK.Name = "colSOTK";
-            this.colSOTK.Visible = true;
-            this.colSOTK.VisibleIndex = 0;
-            this.colSOTK.Width = 81;
-            // 
-            // colCMND
-            // 
-            this.colCMND.FieldName = "CMND";
-            this.colCMND.MinWidth = 21;
-            this.colCMND.Name = "colCMND";
-            this.colCMND.Visible = true;
-            this.colCMND.VisibleIndex = 1;
-            this.colCMND.Width = 81;
-            // 
-            // colSODU
-            // 
-            this.colSODU.FieldName = "SODU";
-            this.colSODU.MinWidth = 21;
-            this.colSODU.Name = "colSODU";
-            this.colSODU.Visible = true;
-            this.colSODU.VisibleIndex = 2;
-            this.colSODU.Width = 81;
-            // 
-            // colMACN
-            // 
-            this.colMACN.FieldName = "MACN";
-            this.colMACN.MinWidth = 21;
-            this.colMACN.Name = "colMACN";
-            this.colMACN.Visible = true;
-            this.colMACN.VisibleIndex = 3;
-            this.colMACN.Width = 81;
-            // 
-            // colNGAYMOTK
-            // 
-            this.colNGAYMOTK.FieldName = "NGAYMOTK";
-            this.colNGAYMOTK.MinWidth = 21;
-            this.colNGAYMOTK.Name = "colNGAYMOTK";
-            this.colNGAYMOTK.Visible = true;
-            this.colNGAYMOTK.VisibleIndex = 4;
-            this.colNGAYMOTK.Width = 81;
-            // 
-            // gD_CHUYENTIENGridControl
-            // 
-            this.gD_CHUYENTIENGridControl.DataSource = this.gD_CHUYENTIENBindingSource;
-            this.gD_CHUYENTIENGridControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gD_CHUYENTIENGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gD_CHUYENTIENGridControl.Location = new System.Drawing.Point(0, 62);
-            this.gD_CHUYENTIENGridControl.MainView = this.gridView1;
-            this.gD_CHUYENTIENGridControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gD_CHUYENTIENGridControl.MenuManager = this.barManager;
-            this.gD_CHUYENTIENGridControl.Name = "gD_CHUYENTIENGridControl";
-            this.gD_CHUYENTIENGridControl.Size = new System.Drawing.Size(1105, 224);
-            this.gD_CHUYENTIENGridControl.TabIndex = 9;
-            this.gD_CHUYENTIENGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.ThongTinGDGridControl.DataSource = this.thongTinGDBindingSource;
+            this.ThongTinGDGridControl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ThongTinGDGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ThongTinGDGridControl.Location = new System.Drawing.Point(0, 62);
+            this.ThongTinGDGridControl.MainView = this.gridView1;
+            this.ThongTinGDGridControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ThongTinGDGridControl.MenuManager = this.barManager;
+            this.ThongTinGDGridControl.Name = "ThongTinGDGridControl";
+            this.ThongTinGDGridControl.Size = new System.Drawing.Size(1296, 224);
+            this.ThongTinGDGridControl.TabIndex = 9;
+            this.ThongTinGDGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
-            // gD_CHUYENTIENBindingSource
+            // thongTinTaiKhoanBindingSource
             // 
-            this.gD_CHUYENTIENBindingSource.DataMember = "GD_CHUYENTIEN";
-            this.gD_CHUYENTIENBindingSource.DataSource = this.dSTransferMoney;
+            this.thongTinTaiKhoanBindingSource.DataMember = "ThongTinTaiKhoan";
+            this.thongTinTaiKhoanBindingSource.DataSource = this.dSTransferMoney;
             // 
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colMAGD,
             this.colSOTK_CHUYEN,
-            this.colNGAYGD,
-            this.colSOTIEN,
+            this.HOTEN_CHUYEN,
             this.colSOTK_NHAN,
+            this.HOTEN_NHAN,
+            this.colSOTIEN,
+            this.colNGAYGD,
             this.colMANV});
             this.gridView1.DetailHeight = 284;
-            this.gridView1.GridControl = this.gD_CHUYENTIENGridControl;
+            this.gridView1.GridControl = this.ThongTinGDGridControl;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsFind.AlwaysVisible = true;
+            this.gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView1_FocusedRowChanged);
             // 
             // colMAGD
             // 
@@ -586,23 +608,12 @@ namespace NganHang.Views
             this.colSOTK_CHUYEN.VisibleIndex = 1;
             this.colSOTK_CHUYEN.Width = 81;
             // 
-            // colNGAYGD
+            // HOTEN_CHUYEN
             // 
-            this.colNGAYGD.FieldName = "NGAYGD";
-            this.colNGAYGD.MinWidth = 21;
-            this.colNGAYGD.Name = "colNGAYGD";
-            this.colNGAYGD.Visible = true;
-            this.colNGAYGD.VisibleIndex = 2;
-            this.colNGAYGD.Width = 81;
-            // 
-            // colSOTIEN
-            // 
-            this.colSOTIEN.FieldName = "SOTIEN";
-            this.colSOTIEN.MinWidth = 21;
-            this.colSOTIEN.Name = "colSOTIEN";
-            this.colSOTIEN.Visible = true;
-            this.colSOTIEN.VisibleIndex = 3;
-            this.colSOTIEN.Width = 81;
+            this.HOTEN_CHUYEN.FieldName = "HOTEN_CHUYEN";
+            this.HOTEN_CHUYEN.Name = "HOTEN_CHUYEN";
+            this.HOTEN_CHUYEN.Visible = true;
+            this.HOTEN_CHUYEN.VisibleIndex = 2;
             // 
             // colSOTK_NHAN
             // 
@@ -610,8 +621,35 @@ namespace NganHang.Views
             this.colSOTK_NHAN.MinWidth = 21;
             this.colSOTK_NHAN.Name = "colSOTK_NHAN";
             this.colSOTK_NHAN.Visible = true;
-            this.colSOTK_NHAN.VisibleIndex = 4;
+            this.colSOTK_NHAN.VisibleIndex = 3;
             this.colSOTK_NHAN.Width = 81;
+            // 
+            // HOTEN_NHAN
+            // 
+            this.HOTEN_NHAN.FieldName = "HOTEN_NHAN";
+            this.HOTEN_NHAN.Name = "HOTEN_NHAN";
+            this.HOTEN_NHAN.Visible = true;
+            this.HOTEN_NHAN.VisibleIndex = 4;
+            // 
+            // colSOTIEN
+            // 
+            this.colSOTIEN.DisplayFormat.FormatString = "{0:#,##0}";
+            this.colSOTIEN.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colSOTIEN.FieldName = "SOTIEN";
+            this.colSOTIEN.MinWidth = 21;
+            this.colSOTIEN.Name = "colSOTIEN";
+            this.colSOTIEN.Visible = true;
+            this.colSOTIEN.VisibleIndex = 5;
+            this.colSOTIEN.Width = 81;
+            // 
+            // colNGAYGD
+            // 
+            this.colNGAYGD.FieldName = "NGAYGD";
+            this.colNGAYGD.MinWidth = 21;
+            this.colNGAYGD.Name = "colNGAYGD";
+            this.colNGAYGD.Visible = true;
+            this.colNGAYGD.VisibleIndex = 6;
+            this.colNGAYGD.Width = 81;
             // 
             // colMANV
             // 
@@ -619,17 +657,13 @@ namespace NganHang.Views
             this.colMANV.MinWidth = 21;
             this.colMANV.Name = "colMANV";
             this.colMANV.Visible = true;
-            this.colMANV.VisibleIndex = 5;
+            this.colMANV.VisibleIndex = 7;
             this.colMANV.Width = 81;
-            // 
-            // gD_CHUYENTIENTableAdapter
-            // 
-            this.gD_CHUYENTIENTableAdapter.ClearBeforeFill = true;
             // 
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.GD_CHUYENTIENTableAdapter = this.gD_CHUYENTIENTableAdapter;
+            this.tableAdapterManager.GD_CHUYENTIENTableAdapter = null;
             this.tableAdapterManager.NhanVienTableAdapter = null;
             this.tableAdapterManager.TaiKhoanTableAdapter = this.taiKhoanTableAdapter;
             this.tableAdapterManager.UpdateOrder = NganHang.DSTransferMoneyTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
@@ -638,14 +672,135 @@ namespace NganHang.Views
             // 
             this.taiKhoanTableAdapter.ClearBeforeFill = true;
             // 
+            // taiKhoanGridControl
+            // 
+            this.taiKhoanGridControl.DataSource = this.thongTinTaiKhoanBindingSource;
+            this.taiKhoanGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.taiKhoanGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.taiKhoanGridControl.Enabled = false;
+            this.taiKhoanGridControl.Location = new System.Drawing.Point(0, 425);
+            this.taiKhoanGridControl.MainView = this.gridView2;
+            this.taiKhoanGridControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.taiKhoanGridControl.MenuManager = this.barManager;
+            this.taiKhoanGridControl.Name = "taiKhoanGridControl";
+            this.taiKhoanGridControl.Size = new System.Drawing.Size(1296, 326);
+            this.taiKhoanGridControl.TabIndex = 16;
+            this.taiKhoanGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView2});
+            this.taiKhoanGridControl.Visible = false;
+            // 
+            // gridView2
+            // 
+            this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colSOTK,
+            this.colCMND,
+            this.HOTEN,
+            this.colSODU,
+            this.colMACN,
+            this.colNGAYMOTK});
+            this.gridView2.DetailHeight = 284;
+            this.gridView2.GridControl = this.taiKhoanGridControl;
+            this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsBehavior.Editable = false;
+            this.gridView2.OptionsFind.AlwaysVisible = true;
+            this.gridView2.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView2.OptionsSelection.EnableAppearanceHideSelection = false;
+            this.gridView2.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView2_FocusedRowChanged);
+            // 
+            // colSOTK
+            // 
+            this.colSOTK.FieldName = "SOTK";
+            this.colSOTK.MinWidth = 21;
+            this.colSOTK.Name = "colSOTK";
+            this.colSOTK.Visible = true;
+            this.colSOTK.VisibleIndex = 0;
+            this.colSOTK.Width = 81;
+            // 
+            // colCMND
+            // 
+            this.colCMND.FieldName = "CMND";
+            this.colCMND.MinWidth = 21;
+            this.colCMND.Name = "colCMND";
+            this.colCMND.Visible = true;
+            this.colCMND.VisibleIndex = 2;
+            this.colCMND.Width = 81;
+            // 
+            // HOTEN
+            // 
+            this.HOTEN.FieldName = "HOTEN";
+            this.HOTEN.Name = "HOTEN";
+            this.HOTEN.Visible = true;
+            this.HOTEN.VisibleIndex = 1;
+            // 
+            // colSODU
+            // 
+            this.colSODU.DisplayFormat.FormatString = "{0:#,##0}";
+            this.colSODU.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colSODU.FieldName = "SODU";
+            this.colSODU.MinWidth = 21;
+            this.colSODU.Name = "colSODU";
+            this.colSODU.Visible = true;
+            this.colSODU.VisibleIndex = 3;
+            this.colSODU.Width = 81;
+            // 
+            // colMACN
+            // 
+            this.colMACN.FieldName = "MACN";
+            this.colMACN.MinWidth = 21;
+            this.colMACN.Name = "colMACN";
+            this.colMACN.Visible = true;
+            this.colMACN.VisibleIndex = 4;
+            this.colMACN.Width = 81;
+            // 
+            // colNGAYMOTK
+            // 
+            this.colNGAYMOTK.FieldName = "NGAYMOTK";
+            this.colNGAYMOTK.MinWidth = 21;
+            this.colNGAYMOTK.Name = "colNGAYMOTK";
+            this.colNGAYMOTK.Visible = true;
+            this.colNGAYMOTK.VisibleIndex = 5;
+            this.colNGAYMOTK.Width = 81;
+            // 
+            // thongTinTaiKhoanTableAdapter
+            // 
+            this.thongTinTaiKhoanTableAdapter.ClearBeforeFill = true;
+            // 
+            // thongTinGDBindingSource
+            // 
+            this.thongTinGDBindingSource.DataMember = "ThongTinGD";
+            this.thongTinGDBindingSource.DataSource = this.dSTransferMoney;
+            // 
+            // thongTinGDTableAdapter
+            // 
+            this.thongTinGDTableAdapter.ClearBeforeFill = true;
+            // 
+            // gD_CHUYENTIENBindingSource
+            // 
+            this.gD_CHUYENTIENBindingSource.DataMember = "GD_CHUYENTIEN";
+            this.gD_CHUYENTIENBindingSource.DataSource = this.dSTransferMoney;
+            // 
+            // gD_CHUYENTIENTableAdapter
+            // 
+            this.gD_CHUYENTIENTableAdapter.ClearBeforeFill = true;
+            // 
+            // txtStaffID
+            // 
+            this.txtStaffID.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.thongTinGDBindingSource, "MANV", true));
+            this.txtStaffID.Location = new System.Drawing.Point(684, 95);
+            this.txtStaffID.MenuManager = this.barManager;
+            this.txtStaffID.Name = "txtStaffID";
+            this.txtStaffID.Properties.ReadOnly = true;
+            this.txtStaffID.Size = new System.Drawing.Size(213, 20);
+            this.txtStaffID.TabIndex = 16;
+            // 
             // FormTransfer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1105, 673);
-            this.Controls.Add(this.panelControlInfo);
+            this.ClientSize = new System.Drawing.Size(1296, 771);
             this.Controls.Add(this.taiKhoanGridControl);
-            this.Controls.Add(this.gD_CHUYENTIENGridControl);
+            this.Controls.Add(this.panelControlInfo);
+            this.Controls.Add(this.ThongTinGDGridControl);
             this.Controls.Add(this.panelControlTop);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControl1);
@@ -661,17 +816,19 @@ namespace NganHang.Views
             ((System.ComponentModel.ISupportInitialize)(this.panelControlInfo)).EndInit();
             this.panelControlInfo.ResumeLayout(false);
             this.panelControlInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtStaffID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMoney.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAccountReceive.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAccountTransfer.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.taiKhoanGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.taiKhoanBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dSTransferMoney)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD_CHUYENTIENGridControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD_CHUYENTIENBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ThongTinGDGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thongTinTaiKhoanBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.taiKhoanGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thongTinGDBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD_CHUYENTIENBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStaffID.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -696,21 +853,12 @@ namespace NganHang.Views
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControl1;
-        private System.Windows.Forms.BindingSource gD_CHUYENTIENBindingSource;
         private DSTransferMoney dSTransferMoney;
         private DevExpress.XtraEditors.PanelControl panelControlInfo;
-        private DevExpress.XtraEditors.TextEdit txtStaffID;
         private DevExpress.XtraEditors.SpinEdit txtMoney;
         private DevExpress.XtraEditors.TextEdit txtAccountReceive;
         private DevExpress.XtraEditors.TextEdit txtAccountTransfer;
-        private DevExpress.XtraGrid.GridControl taiKhoanGridControl;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
-        private DevExpress.XtraGrid.Columns.GridColumn colSOTK;
-        private DevExpress.XtraGrid.Columns.GridColumn colCMND;
-        private DevExpress.XtraGrid.Columns.GridColumn colSODU;
-        private DevExpress.XtraGrid.Columns.GridColumn colMACN;
-        private DevExpress.XtraGrid.Columns.GridColumn colNGAYMOTK;
-        private DevExpress.XtraGrid.GridControl gD_CHUYENTIENGridControl;
+        private DevExpress.XtraGrid.GridControl ThongTinGDGridControl;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn colMAGD;
         private DevExpress.XtraGrid.Columns.GridColumn colSOTK_CHUYEN;
@@ -721,9 +869,33 @@ namespace NganHang.Views
         private DevExpress.XtraEditors.PanelControl panelControlTop;
         private System.Windows.Forms.ComboBox comboBoxBranch;
         private System.Windows.Forms.Label labelBranch;
-        private DSTransferMoneyTableAdapters.GD_CHUYENTIENTableAdapter gD_CHUYENTIENTableAdapter;
         private DSTransferMoneyTableAdapters.TableAdapterManager tableAdapterManager;
         private DSTransferMoneyTableAdapters.TaiKhoanTableAdapter taiKhoanTableAdapter;
         private System.Windows.Forms.BindingSource taiKhoanBindingSource;
+        private DevExpress.XtraGrid.GridControl taiKhoanGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private DevExpress.XtraGrid.Columns.GridColumn colSOTK;
+        private DevExpress.XtraGrid.Columns.GridColumn colCMND;
+        private DevExpress.XtraGrid.Columns.GridColumn colSODU;
+        private DevExpress.XtraGrid.Columns.GridColumn colMACN;
+        private DevExpress.XtraGrid.Columns.GridColumn colNGAYMOTK;
+        private System.Windows.Forms.Button btnOKRec;
+        private System.Windows.Forms.Button btnChooseRec;
+        private System.Windows.Forms.Button btnOKSend;
+        private System.Windows.Forms.Button btnChooseSend;
+        private System.Windows.Forms.BindingSource thongTinTaiKhoanBindingSource;
+        private DSTransferMoneyTableAdapters.ThongTinTaiKhoanTableAdapter thongTinTaiKhoanTableAdapter;
+        private DevExpress.XtraGrid.Columns.GridColumn HOTEN;
+        private System.Windows.Forms.Label lbNameRec;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbNameSender;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.BindingSource thongTinGDBindingSource;
+        private DSTransferMoneyTableAdapters.ThongTinGDTableAdapter thongTinGDTableAdapter;
+        private DevExpress.XtraGrid.Columns.GridColumn HOTEN_CHUYEN;
+        private DevExpress.XtraGrid.Columns.GridColumn HOTEN_NHAN;
+        private System.Windows.Forms.BindingSource gD_CHUYENTIENBindingSource;
+        private DSTransferMoneyTableAdapters.GD_CHUYENTIENTableAdapter gD_CHUYENTIENTableAdapter;
+        private DevExpress.XtraEditors.TextEdit txtStaffID;
     }
 }

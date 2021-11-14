@@ -73,6 +73,7 @@ namespace NganHang.Views
             this.colSOTIEN = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMANV = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControlInfo = new DevExpress.XtraEditors.PanelControl();
+            this.cbTransactionName = new System.Windows.Forms.ComboBox();
             this.txtMoney = new DevExpress.XtraEditors.SpinEdit();
             this.nGAYGDDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.txtAccountNumber = new DevExpress.XtraEditors.TextEdit();
@@ -82,7 +83,6 @@ namespace NganHang.Views
             this.tableAdapterManager = new NganHang.DSSendCashoutTableAdapters.TableAdapterManager();
             this.taiKhoanTableAdapter = new NganHang.DSSendCashoutTableAdapters.TaiKhoanTableAdapter();
             this.nhanVienTableAdapter = new NganHang.DSSendCashoutTableAdapters.NhanVienTableAdapter();
-            this.cbTransactionName = new System.Windows.Forms.ComboBox();
             labelStaffID = new System.Windows.Forms.Label();
             labelMoney = new System.Windows.Forms.Label();
             labelTransactionName = new System.Windows.Forms.Label();
@@ -561,6 +561,15 @@ namespace NganHang.Views
             this.panelControlInfo.Size = new System.Drawing.Size(1155, 147);
             this.panelControlInfo.TabIndex = 18;
             // 
+            // cbTransactionName
+            // 
+            this.cbTransactionName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTransactionName.FormattingEnabled = true;
+            this.cbTransactionName.Location = new System.Drawing.Point(141, 57);
+            this.cbTransactionName.Name = "cbTransactionName";
+            this.cbTransactionName.Size = new System.Drawing.Size(191, 21);
+            this.cbTransactionName.TabIndex = 20;
+            // 
             // txtMoney
             // 
             this.txtMoney.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.gD_GOIRUTBindingSource, "SOTIEN", true));
@@ -596,20 +605,20 @@ namespace NganHang.Views
             // txtAccountNumber
             // 
             this.txtAccountNumber.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.gD_GOIRUTBindingSource, "SOTK", true));
-            this.txtAccountNumber.Enabled = false;
             this.txtAccountNumber.Location = new System.Drawing.Point(141, 24);
             this.txtAccountNumber.MenuManager = this.barManager;
             this.txtAccountNumber.Name = "txtAccountNumber";
+            this.txtAccountNumber.Properties.ReadOnly = true;
             this.txtAccountNumber.Size = new System.Drawing.Size(191, 20);
             this.txtAccountNumber.TabIndex = 11;
             // 
             // txtStaffID
             // 
             this.txtStaffID.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.nhanVienBindingSource, "MANV", true));
-            this.txtStaffID.Enabled = false;
             this.txtStaffID.Location = new System.Drawing.Point(462, 24);
             this.txtStaffID.MenuManager = this.barManager;
             this.txtStaffID.Name = "txtStaffID";
+            this.txtStaffID.Properties.ReadOnly = true;
             this.txtStaffID.Size = new System.Drawing.Size(186, 20);
             this.txtStaffID.TabIndex = 9;
             // 
@@ -637,15 +646,6 @@ namespace NganHang.Views
             // nhanVienTableAdapter
             // 
             this.nhanVienTableAdapter.ClearBeforeFill = true;
-            // 
-            // cbTransactionName
-            // 
-            this.cbTransactionName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbTransactionName.FormattingEnabled = true;
-            this.cbTransactionName.Location = new System.Drawing.Point(141, 57);
-            this.cbTransactionName.Name = "cbTransactionName";
-            this.cbTransactionName.Size = new System.Drawing.Size(191, 21);
-            this.cbTransactionName.TabIndex = 20;
             // 
             // FormSendCashout
             // 

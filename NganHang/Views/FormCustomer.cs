@@ -1,5 +1,6 @@
-﻿using DevExpress.XtraEditors;
+﻿
 using NganHang.UndoRedo;
+using NganHang.Validation;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -251,48 +252,63 @@ namespace NganHang.Views
 
         private void btnSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            string regexSurname = "^[a-zA-Z]{1,50}$";
-            string regexName = "^[a-zA-Z]{1,10}$";
-            string regexCMND = "^(?:[0-9]{10})";
-            string regexSDT = "^(?:[0-9]{10,15})";
-            string regexAddress = "^[a-zA-Z]{1,100}$";
 
-            if (!Regex.Match(txtCMND.Text.Trim(), regexCMND).Success)
+            if(!MyRegex.ValidateCMND(txtCMND.Text)) 
             {
-                MessageBox.Show("CMND phải có 9 số.", "", MessageBoxButtons.OK);
                 txtCMND.Focus();
                 return;
             }
-            if (!Regex.Match(txtSurname.Text.Trim(), regexSurname).Success)
+            if(!MyRegex.ValidateSurname(txtSurname.Text))
             {
-                MessageBox.Show("Họ phải từ 1->50 kí tự không bao gồm số và kí tự đặt biệt.", "", MessageBoxButtons.OK);
                 txtSurname.Focus();
                 return;
             }
-            if (!Regex.Match(txtName.Text.Trim(), regexName).Success)
+            if (!MyRegex.ValidateName(txtName.Text))
             {
-                MessageBox.Show("Tên phải từ 1->10 kí tự không bao gồm số và kí tự đặt biệt.", "", MessageBoxButtons.OK);
                 txtName.Focus();
                 return;
             }
-            //if (!Regex.Match(txtAddress.Text, regexAddress).Success)
-            if(txtAddress.Text.Trim().Length==0 || txtAddress.Text.Trim().Length>100)
+            if (!MyRegex.ValidateAddress(txtAddress.Text))
             {
-                MessageBox.Show("Địa chỉ phải từ 1->100 kí tự.", "", MessageBoxButtons.OK);
                 txtAddress.Focus();
                 return;
             }
-            if (!Regex.Match(txtPhoneNumber.Text.Trim(), regexSDT).Success)
+            if (!MyRegex.ValidatePhoneNumber(txtPhoneNumber.Text))
             {
-                MessageBox.Show("Số điện thoại phải có 10 số.", "", MessageBoxButtons.OK);
                 txtPhoneNumber.Focus();
                 return;
             }
+            //if (!Regex.Match(txtSurname.Text.Trim(), MyRegex.RegexSurname).Success)
+            //{
+            //    MessageBox.Show("Họ phải từ 1->50 kí tự không bao gồm số và kí tự đặt biệt.", "", MessageBoxButtons.OK);
+            //    txtSurname.Focus();
+            //    return;
+            //}
+            //if (!Regex.Match(txtName.Text.Trim(), MyRegex.RegexName).Success)
+            //{
+            //    MessageBox.Show("Tên phải từ 1->10 kí tự không bao gồm số và kí tự đặt biệt.", "", MessageBoxButtons.OK);
+            //    txtName.Focus();
+            //    return;
+            //}
+            ////if (!Regex.Match(txtAddress.Text, regexAddress).Success)
+            //if(txtAddress.Text.Trim().Length==0 || txtAddress.Text.Trim().Length>100)
+            //{
+            //    MessageBox.Show("Địa chỉ phải từ 1->100 kí tự.", "", MessageBoxButtons.OK);
+            //    txtAddress.Focus();
+            //    return;
+            //}
+            //if (!Regex.Match(txtPhoneNumber.Text.Trim(), MyRegex.RegexSDT).Success)
+            //{
+            //    MessageBox.Show("Số điện thoại phải có 10 số.", "", MessageBoxButtons.OK);
+            //    txtPhoneNumber.Focus();
+            //    return;
+            //}
             if (txtCMND.Enabled == true)
             {
                 if (checkCMND() == false)
                 {
                     MessageBox.Show("Trùng CMND!!!", "", MessageBoxButtons.OK);
+                    txtCMND.Focus();
                     return;
                 }
             }

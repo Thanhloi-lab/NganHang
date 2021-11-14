@@ -2,6 +2,7 @@
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
+using NganHang.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -180,7 +181,16 @@ namespace NganHang.Views
         {
             DialogResult result = MessageBox.Show("Tạo tài khoản cho anh(chị) " + tbFirstName.Text + " " + tbLastName.Text, "", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
+            {
+                if (txtCMND.Text.Trim().Length ==0)
+                {
+                    MessageBox.Show("Không được để trống CMND");
+                    txtCMND.Focus();
+                    return;
+                }
                 Save();
+            }
+                
         }
 
         private void btnRestore_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -450,9 +460,5 @@ namespace NganHang.Views
 
         #endregion
 
-        private void khachHangGridControl_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

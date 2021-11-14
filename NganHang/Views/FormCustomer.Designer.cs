@@ -469,10 +469,10 @@ namespace NganHang.Views
             // txtBranch
             // 
             this.txtBranch.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.khachHangBindingSource, "MACN", true));
-            this.txtBranch.Enabled = false;
             this.txtBranch.Location = new System.Drawing.Point(590, 105);
             this.txtBranch.MenuManager = this.barManager;
             this.txtBranch.Name = "txtBranch";
+            this.txtBranch.Properties.ReadOnly = true;
             this.txtBranch.Size = new System.Drawing.Size(164, 20);
             this.txtBranch.TabIndex = 31;
             // 

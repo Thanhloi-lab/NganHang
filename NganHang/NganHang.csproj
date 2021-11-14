@@ -103,6 +103,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DSTransferMoney.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Validation\MyRegex.cs" />
     <Compile Include="Views\AccountForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +135,18 @@
     </Compile>
     <Compile Include="Views\FormCustomer.Designer.cs">
       <DependentUpon>FormCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FormListAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormListAccount.Designer.cs">
+      <DependentUpon>FormListAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FormListCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormListCustomer.Designer.cs">
+      <DependentUpon>FormListCustomer.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\FormSendCashout.cs">
       <SubType>Form</SubType>
@@ -167,6 +180,12 @@
     <Compile Include="Views\ReportBankStatement.Designer.cs">
       <DependentUpon>ReportBankStatement.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ReportCustomer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Views\ReportCustomer.Designer.cs">
+      <DependentUpon>ReportCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\StaffForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,6 +199,12 @@
     <Compile Include="Views\UserInfoForm.Designer.cs">
       <DependentUpon>UserInfoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ReportBankAccount.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Views\ReportBankAccount.Designer.cs">
+      <DependentUpon>ReportBankAccount.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Views\AccountForm.resx">
       <DependentUpon>AccountForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -191,6 +216,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FormCustomer.resx">
       <DependentUpon>FormCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormListAccount.resx">
+      <DependentUpon>FormListAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormListCustomer.resx">
+      <DependentUpon>FormListCustomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FormSendCashout.resx">
       <DependentUpon>FormSendCashout.cs</DependentUpon>
@@ -217,11 +248,17 @@
     <EmbeddedResource Include="Views\ReportBankStatement.resx">
       <DependentUpon>ReportBankStatement.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\ReportCustomer.resx">
+      <DependentUpon>ReportCustomer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\StaffForm.resx">
       <DependentUpon>StaffForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\UserInfoForm.resx">
       <DependentUpon>UserInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ReportBankAccount.resx">
+      <DependentUpon>ReportBankAccount.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="DS.xsc">

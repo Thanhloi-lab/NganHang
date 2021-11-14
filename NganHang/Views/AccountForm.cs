@@ -2,6 +2,7 @@
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using NganHang.UndoRedo;
+using NganHang.Validation;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -84,6 +85,16 @@ namespace NganHang
                 DialogResult dialogResult = MessageBox.Show("Bạn có muốn tạo mới login?.", "", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
+                    if (!MyRegex.ValidateLoginName(tbRegisterLogin.Text))
+                    {
+                        tbRegisterLogin.Focus();
+                        return;
+                    }
+                    if(!MyRegex.ValidatePassword(tbRegisterPassword.Text))
+                    {
+                        tbRegisterPassword.Focus();
+                        return;
+                    }
                     AddLogin();
                     StaffLoad();
                     return;
@@ -94,6 +105,11 @@ namespace NganHang
                 DialogResult dialogResult = MessageBox.Show("Bạn có muốn chỉnh sửa login?.", "", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
+                    if (MyRegex.ValidatePassword(tbPassword.Text))
+                    {
+                        tbPassword.Focus();
+                        return;
+                    }
                     EditLogin();
                     return;
                 }

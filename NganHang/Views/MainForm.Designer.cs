@@ -254,6 +254,7 @@ namespace NganHang
             this.btnLietKeTaiKhoan.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnLietKeTaiKhoan.ImageOptions.Image")));
             this.btnLietKeTaiKhoan.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnLietKeTaiKhoan.ImageOptions.LargeImage")));
             this.btnLietKeTaiKhoan.Name = "btnLietKeTaiKhoan";
+            this.btnLietKeTaiKhoan.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLietKeTaiKhoan_ItemClick);
             // 
             // btnLietKeKhachHang
             // 
@@ -262,6 +263,7 @@ namespace NganHang
             this.btnLietKeKhachHang.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnLietKeKhachHang.ImageOptions.Image")));
             this.btnLietKeKhachHang.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnLietKeKhachHang.ImageOptions.LargeImage")));
             this.btnLietKeKhachHang.Name = "btnLietKeKhachHang";
+            this.btnLietKeKhachHang.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLietKeKhachHang_ItemClick);
             // 
             // btnChuyenNhanVien
             // 

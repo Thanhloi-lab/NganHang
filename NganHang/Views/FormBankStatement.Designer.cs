@@ -121,7 +121,7 @@ namespace NganHang.Views
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(717, 149);
+            this.panelControl1.Size = new System.Drawing.Size(902, 149);
             this.panelControl1.TabIndex = 1;
             // 
             // btnChosse
@@ -137,20 +137,20 @@ namespace NganHang.Views
             // 
             // txtAccountNumber
             // 
-            this.txtAccountNumber.Enabled = false;
             this.txtAccountNumber.Location = new System.Drawing.Point(389, 61);
             this.txtAccountNumber.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtAccountNumber.Name = "txtAccountNumber";
+            this.txtAccountNumber.Properties.ReadOnly = true;
             this.txtAccountNumber.Size = new System.Drawing.Size(159, 20);
             this.txtAccountNumber.TabIndex = 17;
             this.txtAccountNumber.MouseEnter += new System.EventHandler(this.txtAccountNumber_MouseEnter_1);
             // 
             // txtName
             // 
-            this.txtName.Enabled = false;
             this.txtName.Location = new System.Drawing.Point(110, 61);
             this.txtName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtName.Name = "txtName";
+            this.txtName.Properties.ReadOnly = true;
             this.txtName.Size = new System.Drawing.Size(171, 20);
             this.txtName.TabIndex = 16;
             this.txtName.MouseEnter += new System.EventHandler(this.txtName_MouseEnter);
@@ -229,7 +229,7 @@ namespace NganHang.Views
             this.saoKeGridControl.MainView = this.gridView1;
             this.saoKeGridControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.saoKeGridControl.Name = "saoKeGridControl";
-            this.saoKeGridControl.Size = new System.Drawing.Size(717, 439);
+            this.saoKeGridControl.Size = new System.Drawing.Size(902, 439);
             this.saoKeGridControl.TabIndex = 2;
             this.saoKeGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -281,7 +281,7 @@ namespace NganHang.Views
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(717, 588);
+            this.ClientSize = new System.Drawing.Size(902, 588);
             this.Controls.Add(this.saoKeGridControl);
             this.Controls.Add(this.panelControl1);
             this.Name = "FormBankStatement";

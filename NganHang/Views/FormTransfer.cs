@@ -14,17 +14,17 @@ namespace NganHang.Views
     public partial class FormTransfer : DevExpress.XtraEditors.XtraForm
     {
         int vitri = 0;
-        int doi;
-        String manv = "";
+        private bool isChooseSender = false;
+        private bool isChooseReceiver = false;
         public FormTransfer()
         {
             InitializeComponent();
         }
 
-        private void gD_CHUYENTIENBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        private void ThongTinGDBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             this.Validate();
-            this.gD_CHUYENTIENBindingSource.EndEdit();
+            this.thongTinGDBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.dSTransferMoney);
 
         }
@@ -32,10 +32,11 @@ namespace NganHang.Views
         private void FormTransfer_Load(object sender, EventArgs e)
         {
             dSTransferMoney.EnforceConstraints = false;
-            this.gD_CHUYENTIENTableAdapter.Connection.ConnectionString = Program.connStr;
-            this.gD_CHUYENTIENTableAdapter.Fill(this.dSTransferMoney.GD_CHUYENTIEN);
-            this.taiKhoanTableAdapter.Connection.ConnectionString = Program.connStr;
-            this.taiKhoanTableAdapter.Fill(this.dSTransferMoney.TaiKhoan);
+            this.thongTinGDTableAdapter.Connection.ConnectionString = Program.connStr;
+            this.thongTinGDTableAdapter.Fill(this.dSTransferMoney.ThongTinGD);
+            this.thongTinTaiKhoanTableAdapter.Connection.ConnectionString = Program.connStr;
+            this.thongTinTaiKhoanTableAdapter.Fill(this.dSTransferMoney.ThongTinTaiKhoan);
+
             comboBoxBranch.DataSource = Program.dbs_ListFragments;
             comboBoxBranch.DisplayMember = "TENCN";
             comboBoxBranch.ValueMember = "TENSERVER";
@@ -56,13 +57,11 @@ namespace NganHang.Views
 
         private void btnAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            vitri = gD_CHUYENTIENBindingSource.Position;
+            vitri = thongTinGDBindingSource.Position;
             panelControlInfo.Enabled = true;
-            gD_CHUYENTIENGridControl.Enabled = false;
-            taiKhoanGridControl.Enabled = true;
-            taiKhoanGridControl.Visible = true;
-
-            gD_CHUYENTIENBindingSource.AddNew();
+            ThongTinGDGridControl.Enabled = false;
+            
+            thongTinGDBindingSource.AddNew();
             txtStaffID.Text = Program.userName;
 
             btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnQuit.Enabled = btnSaveToFile.Enabled = btnReload.Enabled = false;
@@ -84,8 +83,8 @@ namespace NganHang.Views
         {
             try
             {
-                this.gD_CHUYENTIENTableAdapter.Fill(this.dSTransferMoney.GD_CHUYENTIEN);
-                this.taiKhoanTableAdapter.Fill(this.dSTransferMoney.TaiKhoan);
+                this.thongTinGDTableAdapter.Fill(this.dSTransferMoney.ThongTinGD);
+                this.thongTinTaiKhoanTableAdapter.Fill(this.dSTransferMoney.ThongTinTaiKhoan);
             }
             catch (Exception ex)
             {
@@ -97,9 +96,9 @@ namespace NganHang.Views
 
         private void btnUndo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            gD_CHUYENTIENBindingSource.CancelEdit();
-            if (btnAdd.Enabled == false) gD_CHUYENTIENBindingSource.Position = vitri;
-            gD_CHUYENTIENGridControl.Enabled = true;
+            thongTinGDBindingSource.CancelEdit();
+            if (btnAdd.Enabled == false) thongTinGDBindingSource.Position = vitri;
+            ThongTinGDGridControl.Enabled = true;
             panelControlInfo.Enabled = false;
             taiKhoanGridControl.Visible = false;
             taiKhoanGridControl.Enabled = false;
@@ -145,10 +144,10 @@ namespace NganHang.Views
                 try
                 {
                     TransferMoney();
-                    gD_CHUYENTIENBindingSource.EndEdit();
-                    gD_CHUYENTIENBindingSource.ResetCurrentItem();
-                    this.gD_CHUYENTIENTableAdapter.Connection.ConnectionString = Program.connStr;
-                    this.gD_CHUYENTIENTableAdapter.Fill(this.dSTransferMoney.GD_CHUYENTIEN);
+                    thongTinGDBindingSource.EndEdit();
+                    thongTinGDBindingSource.ResetCurrentItem();
+                    this.thongTinGDTableAdapter.Connection.ConnectionString = Program.connStr;
+                    this.thongTinGDTableAdapter.Fill(this.dSTransferMoney.ThongTinGD);
                 }
                 catch (Exception ex)
                 {
@@ -161,7 +160,7 @@ namespace NganHang.Views
                 return;
             }
 
-            gD_CHUYENTIENGridControl.Enabled = true;
+            ThongTinGDGridControl.Enabled = true;
             taiKhoanGridControl.Visible = false;
             taiKhoanGridControl.Enabled = false;
             btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = btnReload.Enabled = btnQuit.Enabled = btnSaveToFile.Enabled = true;
@@ -205,7 +204,6 @@ namespace NganHang.Views
             {
                 return false;
             }
-            return true;
         }
 
         private Boolean CheckAccountReceive()
@@ -225,7 +223,6 @@ namespace NganHang.Views
             {
                 return false;
             }
-            return true;
         }
 
         private void btnDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -234,19 +231,14 @@ namespace NganHang.Views
             MessageBox.Show("Không thể xóa giao dịch!");
         }
 
-        private void taiKhoanGridControl_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void txtAccountTransfer_Click_1(object sender, EventArgs e)
         {
-            doi = 1;
+            
         }
 
         private void txtAccountReceive_Click_1(object sender, EventArgs e)
         {
-            doi = 2;
+            
         }
 
         private void btnRestore_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -264,5 +256,77 @@ namespace NganHang.Views
 
         }
 
+        private void btnChooseSend_Click(object sender, EventArgs e)
+        {
+            taiKhoanGridControl.Enabled = true;
+            taiKhoanGridControl.Visible = true;
+            btnChooseSend.Enabled = btnChooseRec.Enabled = btnOKRec.Enabled = false;
+            isChooseSender = true;
+            isChooseReceiver = false;
+            btnOKSend.Enabled = true;
+        }
+
+        private void btnOKSend_Click(object sender, EventArgs e)
+        {
+            taiKhoanGridControl.Enabled = false;
+            taiKhoanGridControl.Visible = false;
+            btnChooseRec.Enabled = true;
+            btnOKSend.Enabled = false;
+            btnChooseSend.Enabled = true;
+            isChooseSender = false;
+            isChooseReceiver = false;
+        }
+
+        private void btnChooseRec_Click(object sender, EventArgs e)
+        {
+            taiKhoanGridControl.Enabled = true;
+            taiKhoanGridControl.Visible = true;
+            btnChooseSend.Enabled = btnOKSend.Enabled = false;
+            btnChooseRec.Enabled = false;
+            isChooseSender = false;
+            isChooseReceiver = true;
+            btnOKRec.Enabled = true;
+        }
+
+        private void btnOKRec_Click(object sender, EventArgs e)
+        {
+            taiKhoanGridControl.Enabled = false;
+            taiKhoanGridControl.Visible = false;
+            btnChooseSend.Enabled =true;
+            btnOKRec.Enabled = false;
+            btnChooseRec.Enabled = true;
+            isChooseSender = false;
+            isChooseReceiver = false;
+        }
+
+        private void gridView2_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            if (isChooseReceiver)
+            {
+                txtAccountReceive.Text = ((DataRowView)thongTinTaiKhoanBindingSource[thongTinTaiKhoanBindingSource.Position])["SOTK"].ToString();
+                lbNameRec.Text = ((DataRowView)thongTinTaiKhoanBindingSource[thongTinTaiKhoanBindingSource.Position])["HOTEN"].ToString().ToUpper();
+            }
+            else if (isChooseSender)
+            {
+                txtAccountTransfer.Text = ((DataRowView)thongTinTaiKhoanBindingSource[thongTinTaiKhoanBindingSource.Position])["SOTK"].ToString();
+                lbNameSender.Text = ((DataRowView)thongTinTaiKhoanBindingSource[thongTinTaiKhoanBindingSource.Position])["HOTEN"].ToString().ToUpper();
+            }
+        }
+
+        private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            try
+            {
+                txtAccountReceive.Text = ((DataRowView)thongTinGDBindingSource[thongTinGDBindingSource.Position])["SOTK_NHAN"].ToString();
+                lbNameRec.Text = ((DataRowView)thongTinGDBindingSource[thongTinGDBindingSource.Position])["HOTEN_NHAN"].ToString();
+                txtAccountTransfer.Text = ((DataRowView)thongTinGDBindingSource[thongTinGDBindingSource.Position])["SOTK_CHUYEN"].ToString();
+                lbNameSender.Text = ((DataRowView)thongTinGDBindingSource[thongTinGDBindingSource.Position])["HOTEN_CHUYEN"].ToString();
+            }
+            catch(Exception ex)
+            {
+
+            }
+
+        }
     }
 }

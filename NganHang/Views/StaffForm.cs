@@ -3,6 +3,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using NganHang.UndoRedo;
+using NganHang.Validation;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -19,8 +20,7 @@ namespace NganHang
         private bool isSwitchBranch = false;
         private bool isAdding = false;
         private bool isEditing = false;
-        private const string branch_BENTHANH = "BENTHANH";
-        private const string branch_TANDINH = "TANDINH";
+
         private Stack<UndoRedoControl> stackUndo;
         private Stack<UndoRedoControl> stackRedo;
         public static SqlConnection conn_Publisher = new SqlConnection();
@@ -84,27 +84,28 @@ namespace NganHang
 
         private void btnSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if(tbFirstName.Text.Trim() == "")
+            if(!MyRegex.ValidateSurname(tbFirstName.Text))
             {
-                MessageBox.Show("Không được để trống họ.");
                 tbFirstName.Focus();
                 return;
             }
 
-            if (tbLastName.Text.Trim() == "")
+            if (!MyRegex.ValidateName(tbLastName.Text))
             {
-                MessageBox.Show("Không được để trống tên.");
                 tbLastName.Focus();
                 return;
             }
 
-            if (tbPhoneNumber.Text.Trim() == "")
+            if (!MyRegex.ValidatePhoneNumber(tbPhoneNumber.Text))
             {
-                MessageBox.Show("Không được để trống SĐT.");
                 tbPhoneNumber.Focus();
                 return;
             }
-
+            if (!MyRegex.ValidateAddress(tbAddress.Text))
+            {
+                tbAddress.Focus();
+                return;
+            }
 
             if (isSwitchBranch)
             {
