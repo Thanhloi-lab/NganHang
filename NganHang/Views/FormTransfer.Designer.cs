@@ -44,8 +44,6 @@ namespace NganHang.Views
             this.btnReload = new DevExpress.XtraBars.BarButtonItem();
             this.btnRestore = new DevExpress.XtraBars.BarButtonItem();
             this.btnSaveToFile = new DevExpress.XtraBars.BarButtonItem();
-            this.btnUndo = new DevExpress.XtraBars.BarButtonItem();
-            this.btnRedo = new DevExpress.XtraBars.BarButtonItem();
             this.btnQuit = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -56,6 +54,9 @@ namespace NganHang.Views
             this.comboBoxBranch = new System.Windows.Forms.ComboBox();
             this.labelBranch = new System.Windows.Forms.Label();
             this.panelControlInfo = new DevExpress.XtraEditors.PanelControl();
+            this.txtStaffID = new DevExpress.XtraEditors.TextEdit();
+            this.thongTinGDBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dSTransferMoney = new NganHang.DSTransferMoney();
             this.lbNameRec = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lbNameSender = new System.Windows.Forms.Label();
@@ -68,9 +69,7 @@ namespace NganHang.Views
             this.txtAccountReceive = new DevExpress.XtraEditors.TextEdit();
             this.txtAccountTransfer = new DevExpress.XtraEditors.TextEdit();
             this.taiKhoanBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dSTransferMoney = new NganHang.DSTransferMoney();
             this.ThongTinGDGridControl = new DevExpress.XtraGrid.GridControl();
-            this.thongTinTaiKhoanBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMAGD = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSOTK_CHUYEN = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -80,6 +79,7 @@ namespace NganHang.Views
             this.colSOTIEN = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNGAYGD = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMANV = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.thongTinTaiKhoanBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableAdapterManager = new NganHang.DSTransferMoneyTableAdapters.TableAdapterManager();
             this.taiKhoanTableAdapter = new NganHang.DSTransferMoneyTableAdapters.TaiKhoanTableAdapter();
             this.taiKhoanGridControl = new DevExpress.XtraGrid.GridControl();
@@ -91,11 +91,9 @@ namespace NganHang.Views
             this.colMACN = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNGAYMOTK = new DevExpress.XtraGrid.Columns.GridColumn();
             this.thongTinTaiKhoanTableAdapter = new NganHang.DSTransferMoneyTableAdapters.ThongTinTaiKhoanTableAdapter();
-            this.thongTinGDBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.thongTinGDTableAdapter = new NganHang.DSTransferMoneyTableAdapters.ThongTinGDTableAdapter();
             this.gD_CHUYENTIENBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gD_CHUYENTIENTableAdapter = new NganHang.DSTransferMoneyTableAdapters.GD_CHUYENTIENTableAdapter();
-            this.txtStaffID = new DevExpress.XtraEditors.TextEdit();
             labelStaffID = new System.Windows.Forms.Label();
             labelMoney = new System.Windows.Forms.Label();
             labelAccountReceive = new System.Windows.Forms.Label();
@@ -105,19 +103,19 @@ namespace NganHang.Views
             this.panelControlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlInfo)).BeginInit();
             this.panelControlInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStaffID.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thongTinGDBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dSTransferMoney)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMoney.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAccountReceive.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAccountTransfer.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.taiKhoanBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dSTransferMoney)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ThongTinGDGridControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.thongTinTaiKhoanBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thongTinTaiKhoanBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.taiKhoanGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.thongTinGDBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD_CHUYENTIENBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtStaffID.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelStaffID
@@ -174,9 +172,7 @@ namespace NganHang.Views
             this.btnSaveToFile,
             this.btnQuit,
             this.btnReload,
-            this.btnEdit,
-            this.btnUndo,
-            this.btnRedo});
+            this.btnEdit});
             this.barManager.MainMenu = this.barMenu;
             this.barManager.MaxItemId = 10;
             this.barManager.StatusBar = this.bar3;
@@ -195,8 +191,6 @@ namespace NganHang.Views
             new DevExpress.XtraBars.LinkPersistInfo(this.btnReload),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnRestore),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnSaveToFile),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnUndo, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnRedo, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnQuit)});
             this.barMenu.OptionsBar.MultiLine = true;
             this.barMenu.OptionsBar.UseWholeRow = true;
@@ -277,30 +271,6 @@ namespace NganHang.Views
             this.btnSaveToFile.Name = "btnSaveToFile";
             this.btnSaveToFile.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btnSaveToFile.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSaveToFile_ItemClick);
-            // 
-            // btnUndo
-            // 
-            this.btnUndo.Caption = "Undo";
-            this.btnUndo.Enabled = false;
-            this.btnUndo.Hint = "Ctrl + Z";
-            this.btnUndo.Id = 8;
-            this.btnUndo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnUndo.ImageOptions.Image")));
-            this.btnUndo.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnUndo.ImageOptions.LargeImage")));
-            this.btnUndo.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z));
-            this.btnUndo.Name = "btnUndo";
-            this.btnUndo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnUndo_ItemClick);
-            // 
-            // btnRedo
-            // 
-            this.btnRedo.Caption = "Redo";
-            this.btnRedo.Enabled = false;
-            this.btnRedo.Hint = "Ctrl + Y";
-            this.btnRedo.Id = 9;
-            this.btnRedo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnRedo.ImageOptions.Image")));
-            this.btnRedo.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnRedo.ImageOptions.LargeImage")));
-            this.btnRedo.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y));
-            this.btnRedo.Name = "btnRedo";
-            this.btnRedo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRedo_ItemClick);
             // 
             // btnQuit
             // 
@@ -416,6 +386,26 @@ namespace NganHang.Views
             this.panelControlInfo.Name = "panelControlInfo";
             this.panelControlInfo.Size = new System.Drawing.Size(1296, 139);
             this.panelControlInfo.TabIndex = 11;
+            // 
+            // txtStaffID
+            // 
+            this.txtStaffID.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.thongTinGDBindingSource, "MANV", true));
+            this.txtStaffID.Location = new System.Drawing.Point(684, 95);
+            this.txtStaffID.MenuManager = this.barManager;
+            this.txtStaffID.Name = "txtStaffID";
+            this.txtStaffID.Properties.ReadOnly = true;
+            this.txtStaffID.Size = new System.Drawing.Size(213, 20);
+            this.txtStaffID.TabIndex = 16;
+            // 
+            // thongTinGDBindingSource
+            // 
+            this.thongTinGDBindingSource.DataMember = "ThongTinGD";
+            this.thongTinGDBindingSource.DataSource = this.dSTransferMoney;
+            // 
+            // dSTransferMoney
+            // 
+            this.dSTransferMoney.DataSetName = "DSTransferMoney";
+            this.dSTransferMoney.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // lbNameRec
             // 
@@ -547,11 +537,6 @@ namespace NganHang.Views
             this.taiKhoanBindingSource.DataMember = "TaiKhoan";
             this.taiKhoanBindingSource.DataSource = this.dSTransferMoney;
             // 
-            // dSTransferMoney
-            // 
-            this.dSTransferMoney.DataSetName = "DSTransferMoney";
-            this.dSTransferMoney.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // ThongTinGDGridControl
             // 
             this.ThongTinGDGridControl.DataSource = this.thongTinGDBindingSource;
@@ -566,11 +551,6 @@ namespace NganHang.Views
             this.ThongTinGDGridControl.TabIndex = 9;
             this.ThongTinGDGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
-            // 
-            // thongTinTaiKhoanBindingSource
-            // 
-            this.thongTinTaiKhoanBindingSource.DataMember = "ThongTinTaiKhoan";
-            this.thongTinTaiKhoanBindingSource.DataSource = this.dSTransferMoney;
             // 
             // gridView1
             // 
@@ -659,6 +639,11 @@ namespace NganHang.Views
             this.colMANV.Visible = true;
             this.colMANV.VisibleIndex = 7;
             this.colMANV.Width = 81;
+            // 
+            // thongTinTaiKhoanBindingSource
+            // 
+            this.thongTinTaiKhoanBindingSource.DataMember = "ThongTinTaiKhoan";
+            this.thongTinTaiKhoanBindingSource.DataSource = this.dSTransferMoney;
             // 
             // tableAdapterManager
             // 
@@ -765,11 +750,6 @@ namespace NganHang.Views
             // 
             this.thongTinTaiKhoanTableAdapter.ClearBeforeFill = true;
             // 
-            // thongTinGDBindingSource
-            // 
-            this.thongTinGDBindingSource.DataMember = "ThongTinGD";
-            this.thongTinGDBindingSource.DataSource = this.dSTransferMoney;
-            // 
             // thongTinGDTableAdapter
             // 
             this.thongTinGDTableAdapter.ClearBeforeFill = true;
@@ -782,16 +762,6 @@ namespace NganHang.Views
             // gD_CHUYENTIENTableAdapter
             // 
             this.gD_CHUYENTIENTableAdapter.ClearBeforeFill = true;
-            // 
-            // txtStaffID
-            // 
-            this.txtStaffID.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.thongTinGDBindingSource, "MANV", true));
-            this.txtStaffID.Location = new System.Drawing.Point(684, 95);
-            this.txtStaffID.MenuManager = this.barManager;
-            this.txtStaffID.Name = "txtStaffID";
-            this.txtStaffID.Properties.ReadOnly = true;
-            this.txtStaffID.Size = new System.Drawing.Size(213, 20);
-            this.txtStaffID.TabIndex = 16;
             // 
             // FormTransfer
             // 
@@ -816,19 +786,19 @@ namespace NganHang.Views
             ((System.ComponentModel.ISupportInitialize)(this.panelControlInfo)).EndInit();
             this.panelControlInfo.ResumeLayout(false);
             this.panelControlInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStaffID.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thongTinGDBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dSTransferMoney)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMoney.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAccountReceive.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAccountTransfer.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.taiKhoanBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dSTransferMoney)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ThongTinGDGridControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.thongTinTaiKhoanBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thongTinTaiKhoanBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.taiKhoanGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.thongTinGDBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD_CHUYENTIENBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtStaffID.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -845,8 +815,6 @@ namespace NganHang.Views
         private DevExpress.XtraBars.BarButtonItem btnReload;
         private DevExpress.XtraBars.BarButtonItem btnRestore;
         private DevExpress.XtraBars.BarButtonItem btnSaveToFile;
-        private DevExpress.XtraBars.BarButtonItem btnUndo;
-        private DevExpress.XtraBars.BarButtonItem btnRedo;
         private DevExpress.XtraBars.BarButtonItem btnQuit;
         private DevExpress.XtraBars.Bar bar3;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;

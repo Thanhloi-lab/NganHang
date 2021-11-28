@@ -438,7 +438,7 @@ namespace NganHang
                 tbStaffId.Text.Trim(),
                 Program.mGroup.Trim());
 
-            if (Program.ExecSqlNonQuery(cmd) !=1) return;
+            if (Program.ExecSqlNonQuery(cmd) !=999) return;
         }
 
         private void EditLogin()
@@ -464,7 +464,7 @@ namespace NganHang
                 tbLoginName.Text.Trim(),
                 tbPassword.Text.Trim());
 
-            if (Program.ExecSqlNonQuery(cmd) == 1)
+            if (Program.ExecSqlNonQuery(cmd) == 999)
             {
                 MessageBox.Show("Đổi mật khẩu thành công, vui lòng đăng nhập lại.", "", MessageBoxButtons.OK);
                 Program.SetDefautValue();
@@ -559,7 +559,7 @@ namespace NganHang
                 tbUserId.Text.Trim(),
                 tbLoginName.Text.Trim());
 
-            if (Program.ExecSqlNonQuery(cmd) == 1)
+            if (Program.ExecSqlNonQuery(cmd) == 999)
             {
                 MessageBox.Show("Xóa thành công", "", MessageBoxButtons.OK);
                 LoadDefaultForm();

@@ -1,12 +1,8 @@
-﻿using DevExpress.XtraEditors;
+﻿using ClosedXML.Excel;
+using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraGrid.Views.Grid;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NganHang.Views
@@ -20,6 +16,7 @@ namespace NganHang.Views
         {
             InitializeComponent();
         }
+        #region Events
 
         private void ThongTinGDBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
@@ -45,12 +42,12 @@ namespace NganHang.Views
 
             if (Program.mGroup == "NGANHANG")
             {
-                btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnSave.Enabled = btnUndo.Enabled = false;
+                btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnSave.Enabled = false;
                 comboBoxBranch.Enabled = true;
             }
             else
             {
-                btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnSave.Enabled = btnUndo.Enabled = true;
+                btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnSave.Enabled = true;
                 comboBoxBranch.Enabled = false;
             }
         }
@@ -65,7 +62,7 @@ namespace NganHang.Views
             txtStaffID.Text = Program.userName;
 
             btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnQuit.Enabled = btnSaveToFile.Enabled = btnReload.Enabled = false;
-            btnSave.Enabled = btnUndo.Enabled = true;
+            btnSave.Enabled = true;
 
         }
 
@@ -92,18 +89,6 @@ namespace NganHang.Views
                 return;
 
             }
-        }
-
-        private void btnUndo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            thongTinGDBindingSource.CancelEdit();
-            if (btnAdd.Enabled == false) thongTinGDBindingSource.Position = vitri;
-            ThongTinGDGridControl.Enabled = true;
-            panelControlInfo.Enabled = false;
-            taiKhoanGridControl.Visible = false;
-            taiKhoanGridControl.Enabled = false;
-            btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = btnReload.Enabled = btnQuit.Enabled = btnSaveToFile.Enabled = true;
-            btnSave.Enabled = btnUndo.Enabled = false;
         }
 
         private void btnSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -164,96 +149,61 @@ namespace NganHang.Views
             taiKhoanGridControl.Visible = false;
             taiKhoanGridControl.Enabled = false;
             btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = btnReload.Enabled = btnQuit.Enabled = btnSaveToFile.Enabled = true;
-            btnSave.Enabled = btnUndo.Enabled = false;
+            btnSave.Enabled = false;
             panelControlInfo.Enabled = false;
-        }
-
-        private void TransferMoney()
-        {
-            if (Program.Connect() == 0)
-            {
-                MessageBox.Show("Có lỗi trong quá trình xử lý.");
-                return;
-            }
-            string cmd = "exec ChuyenTien @soTaikhoanGui='" + txtAccountTransfer.Text.Trim() + "',@soTaikhoanNhan='" + txtAccountReceive.Text.Trim() + "',@soTien='" + txtMoney.Text + "',@maNhanVien='" + Program.userName + "'";
-            try
-            {
-                Program.ExecSqlDataReader(cmd);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi thực hiện giao dịch chuyển tiền. \n" + ex);
-            }
-
-        }
-
-        private Boolean CheckAccountTransfer()
-        {
-            if (Program.Connect() == 0)
-            {
-                MessageBox.Show("Có lỗi trong quá trình xử lý.");
-                return false;
-            }
-            string cmd = "exec KiemTraSoTaiKhoan @Sotk='" + txtAccountTransfer.Text.Trim() + "'";
-            try
-            {
-                Program.ExecSqlDataReader(cmd);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
-        private Boolean CheckAccountReceive()
-        {
-            if (Program.Connect() == 0)
-            {
-                MessageBox.Show("Có lỗi trong quá trình xử lý.");
-                return false;
-            }
-            string cmd = "exec KiemTraSoTaiKhoan @Sotk='" + txtAccountReceive.Text.Trim() + "'";
-            try
-            {
-                Program.ExecSqlDataReader(cmd);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
         }
 
         private void btnDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
             MessageBox.Show("Không thể xóa giao dịch!");
         }
 
         private void txtAccountTransfer_Click_1(object sender, EventArgs e)
         {
-            
+
         }
 
         private void txtAccountReceive_Click_1(object sender, EventArgs e)
         {
-            
+
         }
 
         private void btnRestore_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            thongTinGDBindingSource.CancelEdit();
+            if (btnAdd.Enabled == false) thongTinGDBindingSource.Position = vitri;
+            ThongTinGDGridControl.Enabled = true;
+            panelControlInfo.Enabled = false;
+            taiKhoanGridControl.Visible = false;
+            taiKhoanGridControl.Enabled = false;
+            btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = btnReload.Enabled = btnQuit.Enabled = btnSaveToFile.Enabled = true;
+            btnSave.Enabled = false;
         }
 
         private void btnSaveToFile_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.xlsx" };
 
-        }
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                try
+                {
+                    using (XLWorkbook workbook = new XLWorkbook())
+                    {
+                        DataTable dt = GetDataTable(gridView1);
 
-        private void btnRedo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-
+                        workbook.Worksheets.Add(dt, "Payment");
+                        workbook.SaveAs(sfd.FileName);
+                    }
+                    Cursor.Current = Cursors.Default;
+                    MessageBox.Show("Tải xướng thành công.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Có lỗi trong quá trình tải xuống, vui lòng thử lại sau.");
+                }
+            }
         }
 
         private void btnChooseSend_Click(object sender, EventArgs e)
@@ -292,7 +242,7 @@ namespace NganHang.Views
         {
             taiKhoanGridControl.Enabled = false;
             taiKhoanGridControl.Visible = false;
-            btnChooseSend.Enabled =true;
+            btnChooseSend.Enabled = true;
             btnOKRec.Enabled = false;
             btnChooseRec.Enabled = true;
             isChooseSender = false;
@@ -322,11 +272,89 @@ namespace NganHang.Views
                 txtAccountTransfer.Text = ((DataRowView)thongTinGDBindingSource[thongTinGDBindingSource.Position])["SOTK_CHUYEN"].ToString();
                 lbNameSender.Text = ((DataRowView)thongTinGDBindingSource[thongTinGDBindingSource.Position])["HOTEN_CHUYEN"].ToString();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
 
         }
+
+        #endregion
+
+        #region Methods
+
+        private Boolean CheckAccountTransfer()
+        {
+            if (Program.Connect() == 0)
+            {
+                MessageBox.Show("Có lỗi trong quá trình xử lý.");
+                return false;
+            }
+            string cmd = "exec KiemTraSoTaiKhoan @Sotk='" + txtAccountTransfer.Text.Trim() + "'";
+            try
+            {
+                Program.ExecSqlDataReader(cmd);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        private void TransferMoney()
+        {
+            if (Program.Connect() == 0)
+            {
+                MessageBox.Show("Có lỗi trong quá trình xử lý.");
+                return;
+            }
+            string cmd = "exec ChuyenTien @soTaikhoanGui='" + txtAccountTransfer.Text.Trim() + "',@soTaikhoanNhan='" + txtAccountReceive.Text.Trim() + "',@soTien='" + txtMoney.Text + "',@maNhanVien='" + Program.userName + "'";
+            try
+            {
+                Program.ExecSqlDataReader(cmd);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi thực hiện giao dịch chuyển tiền. \n" + ex);
+            }
+
+        }
+
+        private Boolean CheckAccountReceive()
+        {
+            if (Program.Connect() == 0)
+            {
+                MessageBox.Show("Có lỗi trong quá trình xử lý.");
+                return false;
+            }
+            string cmd = "exec KiemTraSoTaiKhoan @Sotk='" + txtAccountReceive.Text.Trim() + "'";
+            try
+            {
+                Program.ExecSqlDataReader(cmd);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        private DataTable GetDataTable(GridView view)
+        {
+            DataTable dt = new DataTable();
+            foreach (GridColumn c in view.Columns)
+                dt.Columns.Add(c.FieldName, c.ColumnType);
+            for (int r = 0; r < view.RowCount; r++)
+            {
+                object[] rowValues = new object[dt.Columns.Count];
+                for (int c = 0; c < dt.Columns.Count; c++)
+                    rowValues[c] = view.GetRowCellValue(r, dt.Columns[c].ColumnName);
+                dt.Rows.Add(rowValues);
+            }
+            return dt;
+        }
+
+        #endregion
     }
 }

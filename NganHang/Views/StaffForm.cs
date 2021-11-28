@@ -84,6 +84,7 @@ namespace NganHang
 
         private void btnSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            
             if(!MyRegex.ValidateSurname(tbFirstName.Text))
             {
                 tbFirstName.Focus();
@@ -107,12 +108,21 @@ namespace NganHang
                 return;
             }
 
+            if (!MyRegex.ValidateCMND(cMNDTextEdit.Text))
+            {
+                cMNDTextEdit.Focus();
+                return;
+            }
+
             if (isSwitchBranch)
             {
                 if (SwitchStaffBranch())
                 {
                     MessageBox.Show("Chuyển thành công.");
                     isSwitchBranch = false;
+                    isAdding = false;
+                    isEditing = false;
+                    LoadData();
                     ClearStack();
                 }
                 else
@@ -242,6 +252,13 @@ namespace NganHang
             stackUndo.Push(ur);
         }
 
+        private void cMNDTextEdit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextEdit te = sender as TextEdit;
+            UndoRedoControl ur = new UndoRedoControl(te.Name, te.Text);
+            stackUndo.Push(ur);
+        }
+
         private void cbGender_SelectedIndexChanged(object sender, EventArgs e)
         {
             //if (isAdding || isEditing)
@@ -299,6 +316,16 @@ namespace NganHang
             Program.InitUndoRedoForCheckBox(sender, ref stackUndo, btnUndo);
         }
 
+        private void btnSwitchBranch_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (tbUserId.Text.Trim().Equals(Program.userName))
+            {
+                MessageBox.Show("Bạn không thể chuyển chi nhánh của chính bản thân.");
+                return;
+            }
+            EnableSwitchBranch();
+        }
+
         #endregion
 
         #region Methods
@@ -335,14 +362,14 @@ namespace NganHang
         {
             pnBranch.Visible = false;
 
-            btnSwitchBranch.Enabled = btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnRestore.Enabled = true;
+            btnSaveToFile.Enabled = btnSwitchBranch.Enabled = btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnRestore.Enabled = true;
             btnRestore.Enabled= btnSave.Enabled = cmbBranch.Enabled = false;
         }
 
         private void FormForRoleNganHang()
         {
             pnBranch.Visible = false;
-            btnSwitchBranch.Enabled = btnSave.Enabled = btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnRestore.Enabled = false;
+            btnSaveToFile.Enabled = btnSwitchBranch.Enabled = btnSave.Enabled = btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnRestore.Enabled = false;
             cmbBranch.Enabled = true;
             btnRestore.Enabled = btnSave.Enabled =false;
         }
@@ -502,7 +529,7 @@ namespace NganHang
 
             try
             {
-                if(Program.ExecSqlNonQuery(cmd)==1)
+                if(Program.ExecSqlNonQuery(cmd)==999)
                     return true;
             }catch(Exception ex)
             {
@@ -586,14 +613,14 @@ namespace NganHang
                 return false;
             }
             Program.serverName = cbBranchId.SelectedValue.ToString().Trim();
-            string cmdRemote = String.Format("exec dbo.ChuyenNhanVien '{0}', '{1}', '{2}, '{3}', '{4}', '{5}', '{6}'",
+            string cmdRemote = String.Format("exec dbo.ChuyenNhanVien '{0}', N'{1}', N'{2}', N'{3}', N'{4}', '{5}', '{6}'",
+                tbUserId.Text.Trim(),
                 tbFirstName.Text.Trim(),
                 tbLastName.Text.Trim(),
                 tbAddress.Text.Trim(),
                 cbGender.Text.Trim(),
                 tbPhoneNumber.Text.Trim(),
-                branchId.Trim(),
-                false);
+                cMNDTextEdit.Text.Trim());
 
             if (Program.currentServerName == Program.serverName)
             {
@@ -609,12 +636,8 @@ namespace NganHang
 
             try
             {
-                if (Program.ExecSqlNonQuery(cmdRemote) == 1)
+                if (Program.ExecSqlNonQuery(cmdRemote) == 999)
                 {
-                    if (!InActiveUser())
-                    {
-                        return false;
-                    }
                     return true;
                 }
             }
@@ -626,7 +649,6 @@ namespace NganHang
 
             return false;
         }
-        #endregion
 
         private void GetListFragments(String cmd)
         {
@@ -663,9 +685,8 @@ namespace NganHang
             //dgvNhanVien.DataSource = Program.dbs_ListFragments;
         }
 
-        private void btnSwitchBranch_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            EnableSwitchBranch();
-        }
+        #endregion
+
+        
     }
 }

@@ -123,7 +123,7 @@ namespace NganHang.Views
 
                     string cmd = String.Format("exec [dbo].[XoaTaiKhoanTinDung] '{0}'", Sotk);
 
-                    if (Program.ExecSqlNonQuery(cmd) != 1)
+                    if (Program.ExecSqlNonQuery(cmd) != 999)
                     {
                         MessageBox.Show("Lỗi xóa tài khoản, thử lại sau.", "", MessageBoxButtons.OK);
                     }
@@ -145,36 +145,51 @@ namespace NganHang.Views
             if (comboBoxBranch.SelectedValue.ToString() == "System.Data.DataRowView")
                 return;
             Program.serverName = comboBoxBranch.SelectedValue.ToString();
-            if (comboBoxBranch.SelectedIndex != Program.mBranch)
+            if (Program.currentServerName != Program.serverName)
             {
-                Program.mLogin = Program.remoteLogin;
-                Program.password = Program.remotePassword;
+                if (Program.RemoteConnect() == 0)
+                {
+                    MessageBox.Show("Lỗi kết nối về chi nhánh", "", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    LoadData();
+
+                    try
+                    {
+                        macn = ((DataRowView)thongTinTaiKhoanBindingSource[0])["MACN"].ToString();
+                    }
+                    catch (Exception ex)
+                    {
+                        GetBranchId();
+
+                    }
+
+                }
             }
             else
             {
-                Program.mLogin = Program.mLoginDN;
-                Program.password = Program.passwordDN;
-            }
-            if (Program.Connect() == 0)
-            {
-                MessageBox.Show("Lỗi kết nối về chi nhánh mới", "", MessageBoxButtons.OK);
-
-            }
-            else
-            {
-                LoadData();
-
-                try
+                if (Program.Connect() == 0)
                 {
-                    macn = ((DataRowView)thongTinTaiKhoanBindingSource[0])["MACN"].ToString();
+                    MessageBox.Show("Lỗi kết nối về chi nhánh", "", MessageBoxButtons.OK);
                 }
-                catch (Exception ex)
+                else
                 {
-                    GetBranchId();
+                    LoadData();
+
+                    try
+                    {
+                        macn = ((DataRowView)thongTinTaiKhoanBindingSource[0])["MACN"].ToString();
+                    }
+                    catch (Exception ex)
+                    {
+                        GetBranchId();
+
+                    }
 
                 }
-
             }
+            
         }
 
         private void btnSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -277,7 +292,7 @@ namespace NganHang.Views
                     txtCMND.Text.Trim(),
                     txtBranch.Text.Trim());
 
-                if (Program.ExecSqlNonQuery(cmd) != 1)
+                if (Program.ExecSqlNonQuery(cmd) != 999)
                 {
                     MessageBox.Show("Lỗi ghi tài khoản, vui lòng thử lại sau.", "", MessageBoxButtons.OK);
                 }
@@ -371,7 +386,7 @@ namespace NganHang.Views
                     MessageBox.Show("Lỗi kết nối", "", MessageBoxButtons.OK);
                     return false;
                 }
-                if (Program.ExecSqlNonQuery(cmd) != 1)
+                if (Program.ExecSqlNonQuery(cmd) != 999)
                 {
                     MessageBox.Show("Không thể xóa tài khoản đã từng thực hiện giao dịch.", "", MessageBoxButtons.OK);
                     return false;

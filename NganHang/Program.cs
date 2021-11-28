@@ -48,7 +48,7 @@ namespace NganHang
                 Program.conn.Close();
             try
             {
-                Program.connStr = "Data Source=" + Program.serverName + ";Initial Catalog=" +
+                Program.connStr = "Data Source=" + Program.currentServerName + ";Initial Catalog=" +
                     Program.database + ";User ID=" +
                     Program.mLogin + ";password=" + Program.password;
                 Program.conn.ConnectionString = Program.connStr;
@@ -165,7 +165,7 @@ namespace NganHang
             {
                 sqlcmd.ExecuteNonQuery();
                 conn.Close();
-                return 1;
+                return 999;
             }
             catch (SqlException e)
             {

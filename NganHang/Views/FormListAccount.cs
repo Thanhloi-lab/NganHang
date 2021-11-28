@@ -39,20 +39,21 @@ namespace NganHang.Views
             if (comboBoxBranch.SelectedValue.ToString() == "System.Data.DataRowView")
                 return;
             Program.serverName = comboBoxBranch.SelectedValue.ToString();
-            if (comboBoxBranch.SelectedIndex != Program.mBranch)
+            if (Program.currentServerName != Program.serverName)
             {
-                Program.mLogin = Program.remoteLogin;
-                Program.password = Program.remotePassword;
+                if (Program.RemoteConnect() == 0)
+                {
+                    MessageBox.Show("Lỗi kết nối về chi nhánh", "", MessageBoxButtons.OK);
+                }
             }
             else
             {
-                Program.mLogin = Program.mLoginDN;
-                Program.password = Program.passwordDN;
+                if (Program.Connect() == 0)
+                {
+                    MessageBox.Show("Lỗi kết nối về chi nhánh", "", MessageBoxButtons.OK);
+                }
             }
-            if (Program.Connect() == 0)
-            {
-                MessageBox.Show("Lỗi kết nối về chi nhánh mới", "", MessageBoxButtons.OK);
-            }
+            
             GetBranchId();
         }
 

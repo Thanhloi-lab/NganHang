@@ -128,7 +128,7 @@ namespace NganHang
                 if (!MyRegex.ValidateAddress(tbAddress.Text.Trim())) return;
                 if (!MyRegex.ValidatePhoneNumber(tbPhoneNumber.Text.Trim())) return;
 
-                if (EditInfo() == 0)
+                if (EditInfo() !=999)
                 {
                     MessageBox.Show("Có lỗi trong quá trình xử lý, vui lòng thử lại sau", "", MessageBoxButtons.OK);
                 }

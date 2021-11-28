@@ -188,38 +188,39 @@ namespace NganHang.Views
             if (comboBoxBranch.SelectedValue.ToString() == "System.Data.DataRowView")
                 return;
             Program.serverName = comboBoxBranch.SelectedValue.ToString();
-            if (comboBoxBranch.SelectedIndex != Program.mBranch)
+            if (Program.currentServerName != Program.serverName)
             {
-                Program.mLogin = Program.remoteLogin;
-                Program.password = Program.remotePassword;
+                if (Program.RemoteConnect() == 0)
+                {
+                    MessageBox.Show("Lỗi kết nối về chi nhánh", "", MessageBoxButtons.OK);
+
+                }
             }
             else
             {
-                Program.mLogin = Program.mLoginDN;
-                Program.password = Program.passwordDN;
-            }
-            if (Program.Connect() == 0)
-            {
-                MessageBox.Show("Lỗi kết nối về chi nhánh mới", "", MessageBoxButtons.OK);
-
-            }
-            else
-            {
-                this.khachHangTableAdapter.Connection.ConnectionString = Program.connStr;
-                this.khachHangTableAdapter.Fill(this.dSCustomer.KhachHang);
-                this.taiKhoanTableAdapter.Connection.ConnectionString = Program.connStr;
-                this.taiKhoanTableAdapter.Fill(this.dSCustomer.TaiKhoan);
-                ClearStack();
-                try
+                if (Program.Connect() == 0)
                 {
-                    macn = ((DataRowView)khachHangBindingSource[0])["MACN"].ToString();
-                }
-                catch (Exception ex)
-                {
-                    GetBranchId();
-                }
+                    MessageBox.Show("Lỗi kết nối về chi nhánh", "", MessageBoxButtons.OK);
 
+                }
             }
+            
+            
+            this.khachHangTableAdapter.Connection.ConnectionString = Program.connStr;
+            this.khachHangTableAdapter.Fill(this.dSCustomer.KhachHang);
+            this.taiKhoanTableAdapter.Connection.ConnectionString = Program.connStr;
+            this.taiKhoanTableAdapter.Fill(this.dSCustomer.TaiKhoan);
+            ClearStack();
+            try
+            {
+                macn = ((DataRowView)khachHangBindingSource[0])["MACN"].ToString();
+            }
+            catch (Exception ex)
+            {
+                GetBranchId();
+            }
+
+            
         }
 
         private void btnAdd_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

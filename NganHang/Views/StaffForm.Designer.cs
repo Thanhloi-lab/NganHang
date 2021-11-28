@@ -36,8 +36,9 @@ namespace NganHang
             System.Windows.Forms.Label dIACHILabel;
             System.Windows.Forms.Label pHAILabel;
             System.Windows.Forms.Label sODTLabel;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffForm));
             System.Windows.Forms.Label mACNLabel;
+            System.Windows.Forms.Label cMNDLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffForm));
             this.pnControlBranch = new DevExpress.XtraEditors.PanelControl();
             this.cmbBranch = new System.Windows.Forms.ComboBox();
             this.lbChiNhanh = new System.Windows.Forms.Label();
@@ -50,30 +51,15 @@ namespace NganHang
             this.colMANV = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colHO = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTEN = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.CMND = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDIACHI = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPHAI = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSODT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMACN = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTrangThaiXoa = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pcStaff = new DevExpress.XtraEditors.PanelControl();
-            this.tbPhoneNumber = new DevExpress.XtraEditors.TextEdit();
-            this.cbGender = new System.Windows.Forms.ComboBox();
-            this.tbAddress = new System.Windows.Forms.TextBox();
-            this.tbLastName = new System.Windows.Forms.TextBox();
-            this.tbFirstName = new System.Windows.Forms.TextBox();
-            this.tbUserId = new System.Windows.Forms.TextBox();
-            this.bdsGuiRut = new System.Windows.Forms.BindingSource(this.components);
-            this.gD_GOIRUTTableAdapter = new NganHang.DSTableAdapters.GD_GOIRUTTableAdapter();
-            this.bdsChuyenTien = new System.Windows.Forms.BindingSource(this.components);
-            this.gD_CHUYENTIENTableAdapter = new NganHang.DSTableAdapters.GD_CHUYENTIENTableAdapter();
-            this.btnThem = new DevExpress.XtraBars.BarButtonItem();
-            this.btnXoa = new DevExpress.XtraBars.BarButtonItem();
-            this.btnGhi = new DevExpress.XtraBars.BarButtonItem();
-            this.btnTimKiem = new DevExpress.XtraBars.BarButtonItem();
-            this.btnPhucHoi = new DevExpress.XtraBars.BarButtonItem();
-            this.btnXuatFile = new DevExpress.XtraBars.BarButtonItem();
-            this.btnThoat = new DevExpress.XtraBars.BarButtonItem();
-            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.pnInfo = new System.Windows.Forms.Panel();
+            this.cMNDTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.barManager = new DevExpress.XtraBars.BarManager(this.components);
             this.barMenu = new DevExpress.XtraBars.Bar();
             this.btnAdd = new DevExpress.XtraBars.BarButtonItem();
@@ -92,9 +78,26 @@ namespace NganHang
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl1 = new DevExpress.XtraBars.BarDockControl();
+            this.tbUserId = new System.Windows.Forms.TextBox();
+            this.tbFirstName = new System.Windows.Forms.TextBox();
+            this.tbPhoneNumber = new DevExpress.XtraEditors.TextEdit();
+            this.tbLastName = new System.Windows.Forms.TextBox();
+            this.cbGender = new System.Windows.Forms.ComboBox();
+            this.tbAddress = new System.Windows.Forms.TextBox();
             this.pnBranch = new System.Windows.Forms.Panel();
             this.cbBranchId = new System.Windows.Forms.ComboBox();
-            this.pnInfo = new System.Windows.Forms.Panel();
+            this.bdsGuiRut = new System.Windows.Forms.BindingSource(this.components);
+            this.gD_GOIRUTTableAdapter = new NganHang.DSTableAdapters.GD_GOIRUTTableAdapter();
+            this.bdsChuyenTien = new System.Windows.Forms.BindingSource(this.components);
+            this.gD_CHUYENTIENTableAdapter = new NganHang.DSTableAdapters.GD_CHUYENTIENTableAdapter();
+            this.btnThem = new DevExpress.XtraBars.BarButtonItem();
+            this.btnXoa = new DevExpress.XtraBars.BarButtonItem();
+            this.btnGhi = new DevExpress.XtraBars.BarButtonItem();
+            this.btnTimKiem = new DevExpress.XtraBars.BarButtonItem();
+            this.btnPhucHoi = new DevExpress.XtraBars.BarButtonItem();
+            this.btnXuatFile = new DevExpress.XtraBars.BarButtonItem();
+            this.btnThoat = new DevExpress.XtraBars.BarButtonItem();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             mANVLabel = new System.Windows.Forms.Label();
             hOLabel = new System.Windows.Forms.Label();
             tENLabel = new System.Windows.Forms.Label();
@@ -102,6 +105,7 @@ namespace NganHang
             pHAILabel = new System.Windows.Forms.Label();
             sODTLabel = new System.Windows.Forms.Label();
             mACNLabel = new System.Windows.Forms.Label();
+            cMNDLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pnControlBranch)).BeginInit();
             this.pnControlBranch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DS)).BeginInit();
@@ -110,12 +114,13 @@ namespace NganHang
             ((System.ComponentModel.ISupportInitialize)(this.gvStaff)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcStaff)).BeginInit();
             this.pcStaff.SuspendLayout();
+            this.pnInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cMNDTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbPhoneNumber.Properties)).BeginInit();
+            this.pnBranch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bdsGuiRut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsChuyenTien)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
-            this.pnBranch.SuspendLayout();
-            this.pnInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // mANVLabel
@@ -171,6 +176,24 @@ namespace NganHang
             sODTLabel.Size = new System.Drawing.Size(38, 13);
             sODTLabel.TabIndex = 10;
             sODTLabel.Text = "SODT:";
+            // 
+            // mACNLabel
+            // 
+            mACNLabel.AutoSize = true;
+            mACNLabel.Location = new System.Drawing.Point(6, 31);
+            mACNLabel.Name = "mACNLabel";
+            mACNLabel.Size = new System.Drawing.Size(59, 13);
+            mACNLabel.TabIndex = 18;
+            mACNLabel.Text = "Chi nhánh:";
+            // 
+            // cMNDLabel
+            // 
+            cMNDLabel.AutoSize = true;
+            cMNDLabel.Location = new System.Drawing.Point(49, 155);
+            cMNDLabel.Name = "cMNDLabel";
+            cMNDLabel.Size = new System.Drawing.Size(40, 13);
+            cMNDLabel.TabIndex = 12;
+            cMNDLabel.Text = "CMND:";
             // 
             // pnControlBranch
             // 
@@ -240,6 +263,7 @@ namespace NganHang
             this.colMANV,
             this.colHO,
             this.colTEN,
+            this.CMND,
             this.colDIACHI,
             this.colPHAI,
             this.colSODT,
@@ -270,19 +294,26 @@ namespace NganHang
             this.colTEN.Visible = true;
             this.colTEN.VisibleIndex = 2;
             // 
+            // CMND
+            // 
+            this.CMND.FieldName = "CMND";
+            this.CMND.Name = "CMND";
+            this.CMND.Visible = true;
+            this.CMND.VisibleIndex = 3;
+            // 
             // colDIACHI
             // 
             this.colDIACHI.FieldName = "DIACHI";
             this.colDIACHI.Name = "colDIACHI";
             this.colDIACHI.Visible = true;
-            this.colDIACHI.VisibleIndex = 3;
+            this.colDIACHI.VisibleIndex = 4;
             // 
             // colPHAI
             // 
             this.colPHAI.FieldName = "PHAI";
             this.colPHAI.Name = "colPHAI";
             this.colPHAI.Visible = true;
-            this.colPHAI.VisibleIndex = 4;
+            this.colPHAI.VisibleIndex = 5;
             // 
             // colSODT
             // 
@@ -290,21 +321,21 @@ namespace NganHang
             this.colSODT.FieldName = "SODT";
             this.colSODT.Name = "colSODT";
             this.colSODT.Visible = true;
-            this.colSODT.VisibleIndex = 5;
+            this.colSODT.VisibleIndex = 6;
             // 
             // colMACN
             // 
             this.colMACN.FieldName = "MACN";
             this.colMACN.Name = "colMACN";
             this.colMACN.Visible = true;
-            this.colMACN.VisibleIndex = 6;
+            this.colMACN.VisibleIndex = 7;
             // 
             // colTrangThaiXoa
             // 
-            this.colTrangThaiXoa.FieldName = "TrangThaiXoa";
+            this.colTrangThaiXoa.FieldName = "TRANGTHAI";
             this.colTrangThaiXoa.Name = "colTrangThaiXoa";
             this.colTrangThaiXoa.Visible = true;
-            this.colTrangThaiXoa.VisibleIndex = 7;
+            this.colTrangThaiXoa.VisibleIndex = 8;
             // 
             // pcStaff
             // 
@@ -317,152 +348,36 @@ namespace NganHang
             this.pcStaff.Size = new System.Drawing.Size(1020, 274);
             this.pcStaff.TabIndex = 7;
             // 
-            // tbPhoneNumber
+            // pnInfo
             // 
-            this.tbPhoneNumber.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsNhanVien, "SODT", true));
-            this.tbPhoneNumber.Location = new System.Drawing.Point(455, 68);
-            this.tbPhoneNumber.Name = "tbPhoneNumber";
-            this.tbPhoneNumber.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.tbPhoneNumber.Size = new System.Drawing.Size(174, 20);
-            this.tbPhoneNumber.TabIndex = 11;
-            this.tbPhoneNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPhoneNumber_KeyPress);
+            this.pnInfo.Controls.Add(cMNDLabel);
+            this.pnInfo.Controls.Add(this.cMNDTextEdit);
+            this.pnInfo.Controls.Add(this.tbUserId);
+            this.pnInfo.Controls.Add(mANVLabel);
+            this.pnInfo.Controls.Add(sODTLabel);
+            this.pnInfo.Controls.Add(this.tbFirstName);
+            this.pnInfo.Controls.Add(this.tbPhoneNumber);
+            this.pnInfo.Controls.Add(hOLabel);
+            this.pnInfo.Controls.Add(pHAILabel);
+            this.pnInfo.Controls.Add(this.tbLastName);
+            this.pnInfo.Controls.Add(this.cbGender);
+            this.pnInfo.Controls.Add(tENLabel);
+            this.pnInfo.Controls.Add(dIACHILabel);
+            this.pnInfo.Controls.Add(this.tbAddress);
+            this.pnInfo.Location = new System.Drawing.Point(16, 5);
+            this.pnInfo.Name = "pnInfo";
+            this.pnInfo.Size = new System.Drawing.Size(688, 204);
+            this.pnInfo.TabIndex = 18;
             // 
-            // cbGender
+            // cMNDTextEdit
             // 
-            this.cbGender.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsNhanVien, "PHAI", true));
-            this.cbGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbGender.FormattingEnabled = true;
-            this.cbGender.Location = new System.Drawing.Point(455, 29);
-            this.cbGender.Name = "cbGender";
-            this.cbGender.Size = new System.Drawing.Size(174, 21);
-            this.cbGender.TabIndex = 9;
-            this.cbGender.SelectedIndexChanged += new System.EventHandler(this.cbGender_SelectedIndexChanged);
-            // 
-            // tbAddress
-            // 
-            this.tbAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsNhanVien, "DIACHI", true));
-            this.tbAddress.Location = new System.Drawing.Point(455, 111);
-            this.tbAddress.Name = "tbAddress";
-            this.tbAddress.Size = new System.Drawing.Size(174, 21);
-            this.tbAddress.TabIndex = 7;
-            this.tbAddress.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbAddress_KeyPress);
-            // 
-            // tbLastName
-            // 
-            this.tbLastName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsNhanVien, "TEN", true));
-            this.tbLastName.Location = new System.Drawing.Point(95, 111);
-            this.tbLastName.Name = "tbLastName";
-            this.tbLastName.Size = new System.Drawing.Size(191, 21);
-            this.tbLastName.TabIndex = 5;
-            this.tbLastName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbLastName_KeyPress);
-            // 
-            // tbFirstName
-            // 
-            this.tbFirstName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsNhanVien, "HO", true));
-            this.tbFirstName.Location = new System.Drawing.Point(95, 70);
-            this.tbFirstName.Name = "tbFirstName";
-            this.tbFirstName.Size = new System.Drawing.Size(191, 21);
-            this.tbFirstName.TabIndex = 3;
-            this.tbFirstName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbFirstName_KeyPress);
-            // 
-            // tbUserId
-            // 
-            this.tbUserId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsNhanVien, "MANV", true));
-            this.tbUserId.Location = new System.Drawing.Point(95, 29);
-            this.tbUserId.Name = "tbUserId";
-            this.tbUserId.ReadOnly = true;
-            this.tbUserId.Size = new System.Drawing.Size(191, 21);
-            this.tbUserId.TabIndex = 1;
-            // 
-            // bdsGuiRut
-            // 
-            this.bdsGuiRut.DataMember = "FK_GD_GOIRUT_NhanVien";
-            this.bdsGuiRut.DataSource = this.bdsNhanVien;
-            // 
-            // gD_GOIRUTTableAdapter
-            // 
-            this.gD_GOIRUTTableAdapter.ClearBeforeFill = true;
-            // 
-            // bdsChuyenTien
-            // 
-            this.bdsChuyenTien.DataMember = "FK_GD_CHUYENTIEN_NhanVien";
-            this.bdsChuyenTien.DataSource = this.bdsNhanVien;
-            // 
-            // gD_CHUYENTIENTableAdapter
-            // 
-            this.gD_CHUYENTIENTableAdapter.ClearBeforeFill = true;
-            // 
-            // btnThem
-            // 
-            this.btnThem.Caption = "Thêm";
-            this.btnThem.Id = 0;
-            this.btnThem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThem.ImageOptions.Image")));
-            this.btnThem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnThem.ImageOptions.LargeImage")));
-            this.btnThem.Name = "btnThem";
-            this.btnThem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            // 
-            // btnXoa
-            // 
-            this.btnXoa.Caption = "Xóa";
-            this.btnXoa.Id = 1;
-            this.btnXoa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.Image")));
-            this.btnXoa.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.LargeImage")));
-            this.btnXoa.Name = "btnXoa";
-            this.btnXoa.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            // 
-            // btnGhi
-            // 
-            this.btnGhi.Caption = "Ghi";
-            this.btnGhi.Id = 2;
-            this.btnGhi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGhi.ImageOptions.Image")));
-            this.btnGhi.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnGhi.ImageOptions.LargeImage")));
-            this.btnGhi.Name = "btnGhi";
-            this.btnGhi.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            // 
-            // btnTimKiem
-            // 
-            this.btnTimKiem.Caption = "Tìm Kiếm";
-            this.btnTimKiem.Id = 6;
-            this.btnTimKiem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnTimKiem.ImageOptions.Image")));
-            this.btnTimKiem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnTimKiem.ImageOptions.LargeImage")));
-            this.btnTimKiem.Name = "btnTimKiem";
-            this.btnTimKiem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            // 
-            // btnPhucHoi
-            // 
-            this.btnPhucHoi.Caption = "Phục Hồi";
-            this.btnPhucHoi.Id = 3;
-            this.btnPhucHoi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPhucHoi.ImageOptions.Image")));
-            this.btnPhucHoi.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnPhucHoi.ImageOptions.LargeImage")));
-            this.btnPhucHoi.Name = "btnPhucHoi";
-            this.btnPhucHoi.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            // 
-            // btnXuatFile
-            // 
-            this.btnXuatFile.Caption = "Xuất File";
-            this.btnXuatFile.Id = 4;
-            this.btnXuatFile.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnXuatFile.ImageOptions.Image")));
-            this.btnXuatFile.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnXuatFile.ImageOptions.LargeImage")));
-            this.btnXuatFile.Name = "btnXuatFile";
-            this.btnXuatFile.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            // 
-            // btnThoat
-            // 
-            this.btnThoat.Caption = "Thoát";
-            this.btnThoat.Id = 5;
-            this.btnThoat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThoat.ImageOptions.Image")));
-            this.btnThoat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnThoat.ImageOptions.LargeImage")));
-            this.btnThoat.Name = "btnThoat";
-            this.btnThoat.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            // 
-            // barDockControlRight
-            // 
-            this.barDockControlRight.CausesValidation = false;
-            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1020, 24);
-            this.barDockControlRight.Manager = null;
-            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 604);
+            this.cMNDTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsNhanVien, "CMND", true));
+            this.cMNDTextEdit.Location = new System.Drawing.Point(95, 152);
+            this.cMNDTextEdit.MenuManager = this.barManager;
+            this.cMNDTextEdit.Name = "cMNDTextEdit";
+            this.cMNDTextEdit.Size = new System.Drawing.Size(191, 20);
+            this.cMNDTextEdit.TabIndex = 13;
+            this.cMNDTextEdit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cMNDTextEdit_KeyPress);
             // 
             // barManager
             // 
@@ -682,6 +597,63 @@ namespace NganHang
             this.barDockControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.barDockControl1.Size = new System.Drawing.Size(0, 604);
             // 
+            // tbUserId
+            // 
+            this.tbUserId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsNhanVien, "MANV", true));
+            this.tbUserId.Location = new System.Drawing.Point(95, 29);
+            this.tbUserId.Name = "tbUserId";
+            this.tbUserId.ReadOnly = true;
+            this.tbUserId.Size = new System.Drawing.Size(191, 21);
+            this.tbUserId.TabIndex = 1;
+            // 
+            // tbFirstName
+            // 
+            this.tbFirstName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsNhanVien, "HO", true));
+            this.tbFirstName.Location = new System.Drawing.Point(95, 70);
+            this.tbFirstName.Name = "tbFirstName";
+            this.tbFirstName.Size = new System.Drawing.Size(191, 21);
+            this.tbFirstName.TabIndex = 3;
+            this.tbFirstName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbFirstName_KeyPress);
+            // 
+            // tbPhoneNumber
+            // 
+            this.tbPhoneNumber.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsNhanVien, "SODT", true));
+            this.tbPhoneNumber.Location = new System.Drawing.Point(455, 68);
+            this.tbPhoneNumber.Name = "tbPhoneNumber";
+            this.tbPhoneNumber.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.tbPhoneNumber.Size = new System.Drawing.Size(174, 20);
+            this.tbPhoneNumber.TabIndex = 11;
+            this.tbPhoneNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPhoneNumber_KeyPress);
+            // 
+            // tbLastName
+            // 
+            this.tbLastName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsNhanVien, "TEN", true));
+            this.tbLastName.Location = new System.Drawing.Point(95, 111);
+            this.tbLastName.Name = "tbLastName";
+            this.tbLastName.Size = new System.Drawing.Size(191, 21);
+            this.tbLastName.TabIndex = 5;
+            this.tbLastName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbLastName_KeyPress);
+            // 
+            // cbGender
+            // 
+            this.cbGender.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsNhanVien, "PHAI", true));
+            this.cbGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbGender.FormattingEnabled = true;
+            this.cbGender.Location = new System.Drawing.Point(455, 29);
+            this.cbGender.Name = "cbGender";
+            this.cbGender.Size = new System.Drawing.Size(174, 21);
+            this.cbGender.TabIndex = 9;
+            this.cbGender.SelectedIndexChanged += new System.EventHandler(this.cbGender_SelectedIndexChanged);
+            // 
+            // tbAddress
+            // 
+            this.tbAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsNhanVien, "DIACHI", true));
+            this.tbAddress.Location = new System.Drawing.Point(455, 111);
+            this.tbAddress.Name = "tbAddress";
+            this.tbAddress.Size = new System.Drawing.Size(174, 21);
+            this.tbAddress.TabIndex = 7;
+            this.tbAddress.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbAddress_KeyPress);
+            // 
             // pnBranch
             // 
             this.pnBranch.Controls.Add(this.cbBranchId);
@@ -701,33 +673,95 @@ namespace NganHang
             this.cbBranchId.Size = new System.Drawing.Size(176, 21);
             this.cbBranchId.TabIndex = 19;
             // 
-            // mACNLabel
+            // bdsGuiRut
             // 
-            mACNLabel.AutoSize = true;
-            mACNLabel.Location = new System.Drawing.Point(6, 31);
-            mACNLabel.Name = "mACNLabel";
-            mACNLabel.Size = new System.Drawing.Size(59, 13);
-            mACNLabel.TabIndex = 18;
-            mACNLabel.Text = "Chi nhánh:";
+            this.bdsGuiRut.DataMember = "FK_GD_GOIRUT_NhanVien";
+            this.bdsGuiRut.DataSource = this.bdsNhanVien;
             // 
-            // pnInfo
+            // gD_GOIRUTTableAdapter
             // 
-            this.pnInfo.Controls.Add(this.tbUserId);
-            this.pnInfo.Controls.Add(mANVLabel);
-            this.pnInfo.Controls.Add(sODTLabel);
-            this.pnInfo.Controls.Add(this.tbFirstName);
-            this.pnInfo.Controls.Add(this.tbPhoneNumber);
-            this.pnInfo.Controls.Add(hOLabel);
-            this.pnInfo.Controls.Add(pHAILabel);
-            this.pnInfo.Controls.Add(this.tbLastName);
-            this.pnInfo.Controls.Add(this.cbGender);
-            this.pnInfo.Controls.Add(tENLabel);
-            this.pnInfo.Controls.Add(dIACHILabel);
-            this.pnInfo.Controls.Add(this.tbAddress);
-            this.pnInfo.Location = new System.Drawing.Point(16, 5);
-            this.pnInfo.Name = "pnInfo";
-            this.pnInfo.Size = new System.Drawing.Size(688, 154);
-            this.pnInfo.TabIndex = 18;
+            this.gD_GOIRUTTableAdapter.ClearBeforeFill = true;
+            // 
+            // bdsChuyenTien
+            // 
+            this.bdsChuyenTien.DataMember = "FK_GD_CHUYENTIEN_NhanVien";
+            this.bdsChuyenTien.DataSource = this.bdsNhanVien;
+            // 
+            // gD_CHUYENTIENTableAdapter
+            // 
+            this.gD_CHUYENTIENTableAdapter.ClearBeforeFill = true;
+            // 
+            // btnThem
+            // 
+            this.btnThem.Caption = "Thêm";
+            this.btnThem.Id = 0;
+            this.btnThem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThem.ImageOptions.Image")));
+            this.btnThem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnThem.ImageOptions.LargeImage")));
+            this.btnThem.Name = "btnThem";
+            this.btnThem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // btnXoa
+            // 
+            this.btnXoa.Caption = "Xóa";
+            this.btnXoa.Id = 1;
+            this.btnXoa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.Image")));
+            this.btnXoa.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.LargeImage")));
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // btnGhi
+            // 
+            this.btnGhi.Caption = "Ghi";
+            this.btnGhi.Id = 2;
+            this.btnGhi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGhi.ImageOptions.Image")));
+            this.btnGhi.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnGhi.ImageOptions.LargeImage")));
+            this.btnGhi.Name = "btnGhi";
+            this.btnGhi.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // btnTimKiem
+            // 
+            this.btnTimKiem.Caption = "Tìm Kiếm";
+            this.btnTimKiem.Id = 6;
+            this.btnTimKiem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnTimKiem.ImageOptions.Image")));
+            this.btnTimKiem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnTimKiem.ImageOptions.LargeImage")));
+            this.btnTimKiem.Name = "btnTimKiem";
+            this.btnTimKiem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // btnPhucHoi
+            // 
+            this.btnPhucHoi.Caption = "Phục Hồi";
+            this.btnPhucHoi.Id = 3;
+            this.btnPhucHoi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPhucHoi.ImageOptions.Image")));
+            this.btnPhucHoi.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnPhucHoi.ImageOptions.LargeImage")));
+            this.btnPhucHoi.Name = "btnPhucHoi";
+            this.btnPhucHoi.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // btnXuatFile
+            // 
+            this.btnXuatFile.Caption = "Xuất File";
+            this.btnXuatFile.Id = 4;
+            this.btnXuatFile.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnXuatFile.ImageOptions.Image")));
+            this.btnXuatFile.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnXuatFile.ImageOptions.LargeImage")));
+            this.btnXuatFile.Name = "btnXuatFile";
+            this.btnXuatFile.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // btnThoat
+            // 
+            this.btnThoat.Caption = "Thoát";
+            this.btnThoat.Id = 5;
+            this.btnThoat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThoat.ImageOptions.Image")));
+            this.btnThoat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnThoat.ImageOptions.LargeImage")));
+            this.btnThoat.Name = "btnThoat";
+            this.btnThoat.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(1020, 24);
+            this.barDockControlRight.Manager = null;
+            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 604);
             // 
             // StaffForm
             // 
@@ -755,14 +789,15 @@ namespace NganHang
             ((System.ComponentModel.ISupportInitialize)(this.gvStaff)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcStaff)).EndInit();
             this.pcStaff.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.tbPhoneNumber.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsGuiRut)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsChuyenTien)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
-            this.pnBranch.ResumeLayout(false);
-            this.pnBranch.PerformLayout();
             this.pnInfo.ResumeLayout(false);
             this.pnInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cMNDTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbPhoneNumber.Properties)).EndInit();
+            this.pnBranch.ResumeLayout(false);
+            this.pnBranch.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsGuiRut)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsChuyenTien)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -826,5 +861,7 @@ namespace NganHang
         private System.Windows.Forms.Panel pnBranch;
         private System.Windows.Forms.ComboBox cbBranchId;
         private System.Windows.Forms.Panel pnInfo;
+        private DevExpress.XtraGrid.Columns.GridColumn CMND;
+        private DevExpress.XtraEditors.TextEdit cMNDTextEdit;
     }
 }

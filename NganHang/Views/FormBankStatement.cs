@@ -42,26 +42,25 @@ namespace NganHang.Views
             if (comboBoxBranch.SelectedValue.ToString() == "System.Data.DataRowView")
                 return;
             Program.serverName = comboBoxBranch.SelectedValue.ToString();
-            if (comboBoxBranch.SelectedIndex != Program.mBranch)
+            if (Program.currentServerName == Program.serverName)
             {
-                Program.mLogin = Program.remoteLogin;
-                Program.password = Program.remotePassword;
+                if (Program.Connect() == 0)
+                {
+                    MessageBox.Show("Lỗi kết nối về chi nhánh mới", "", MessageBoxButtons.OK);
+                    return;
+                }
             }
             else
             {
-                Program.mLogin = Program.mLoginDN;
-                Program.password = Program.passwordDN;
+                if (Program.RemoteConnect() == 0)
+                {
+                    MessageBox.Show("Lỗi kết nối về chi nhánh mới", "", MessageBoxButtons.OK);
+                    return;
+                }
             }
-            if (Program.Connect() == 0)
-            {
-                MessageBox.Show("Lỗi kết nối về chi nhánh mới", "", MessageBoxButtons.OK);
-
-            }
-            else
-            {
-                this.saoKeTableAdapter.Connection.ConnectionString = Program.connStr;
-                this.saoKeTableAdapter.Fill(this.dSBankStatement.SaoKe);
-            }
+            
+            this.saoKeTableAdapter.Connection.ConnectionString = Program.connStr;
+            this.saoKeTableAdapter.Fill(this.dSBankStatement.SaoKe);
         }
 
 
