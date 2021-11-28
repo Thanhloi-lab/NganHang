@@ -1,13 +1,11 @@
-﻿using DevExpress.Skins;
-using DevExpress.UserSkins;
-using DevExpress.XtraBars;
+﻿using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
 using NganHang.UndoRedo;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
+using System.IO;
 using System.Windows.Forms;
 
 namespace NganHang
@@ -317,8 +315,10 @@ namespace NganHang
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             mainForm = new MainForm();
-            
-            
+
+            string path = Path.Combine(Environment.CurrentDirectory, "DBName.txt");
+            connStr_Publisher = File.ReadAllLines(path)[0];
+
             Application.Run(mainForm);
         }
     }
