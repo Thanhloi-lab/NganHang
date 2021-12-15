@@ -51,7 +51,6 @@ namespace NganHang
             this.btnSaoKe = new DevExpress.XtraBars.BarButtonItem();
             this.btnLietKeTaiKhoan = new DevExpress.XtraBars.BarButtonItem();
             this.btnLietKeKhachHang = new DevExpress.XtraBars.BarButtonItem();
-            this.btnChuyenNhanVien = new DevExpress.XtraBars.BarButtonItem();
             this.btnThongTinNhanVien = new DevExpress.XtraBars.BarButtonItem();
             this.btnLogin = new DevExpress.XtraBars.BarButtonItem();
             this.btnLogout = new DevExpress.XtraBars.BarButtonItem();
@@ -122,7 +121,6 @@ namespace NganHang
             this.btnSaoKe,
             this.btnLietKeTaiKhoan,
             this.btnLietKeKhachHang,
-            this.btnChuyenNhanVien,
             this.btnThongTinNhanVien,
             this.btnLogin,
             this.btnLogout,
@@ -265,15 +263,6 @@ namespace NganHang
             this.btnLietKeKhachHang.Name = "btnLietKeKhachHang";
             this.btnLietKeKhachHang.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLietKeKhachHang_ItemClick);
             // 
-            // btnChuyenNhanVien
-            // 
-            this.btnChuyenNhanVien.Caption = "Chuyển Nhân Viên";
-            this.btnChuyenNhanVien.Id = 28;
-            this.btnChuyenNhanVien.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnChuyenNhanVien.ImageOptions.Image")));
-            this.btnChuyenNhanVien.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnChuyenNhanVien.ImageOptions.LargeImage")));
-            this.btnChuyenNhanVien.Name = "btnChuyenNhanVien";
-            this.btnChuyenNhanVien.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnChuyenNhanVien_ItemClick);
-            // 
             // btnThongTinNhanVien
             // 
             this.btnThongTinNhanVien.Caption = "Thông Tin Nhân Viên";
@@ -358,7 +347,6 @@ namespace NganHang
             // groupQuanLyNhanVien
             // 
             this.groupQuanLyNhanVien.AllowTextClipping = false;
-            this.groupQuanLyNhanVien.ItemLinks.Add(this.btnChuyenNhanVien);
             this.groupQuanLyNhanVien.ItemLinks.Add(this.btnThongTinNhanVien);
             this.groupQuanLyNhanVien.Name = "groupQuanLyNhanVien";
             this.groupQuanLyNhanVien.Text = "Quản Lý Nhân Viên";
@@ -543,7 +531,6 @@ namespace NganHang
         private DevExpress.XtraBars.BarButtonItem btnSaoKe;
         private DevExpress.XtraBars.BarButtonItem btnLietKeTaiKhoan;
         private DevExpress.XtraBars.BarButtonItem btnLietKeKhachHang;
-        private DevExpress.XtraBars.BarButtonItem btnChuyenNhanVien;
         private DevExpress.XtraBars.BarButtonItem btnThongTinNhanVien;
         private DevExpress.XtraBars.BarButtonItem btnLogin;
         private DevExpress.XtraBars.BarButtonItem btnLogout;

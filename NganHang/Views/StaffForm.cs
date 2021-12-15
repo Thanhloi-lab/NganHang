@@ -130,20 +130,35 @@ namespace NganHang
             }
             else
             {
-                try
+                if (isEditing)
                 {
-                    bdsNhanVien.EndEdit();
-                    bdsNhanVien.ResetCurrentItem();
-                    this.nhanVienTableAdapter.Connection.ConnectionString = Program.connStr;
-                    this.nhanVienTableAdapter.Update(this.DS.NhanVien);
-                    isAdding = false;
-                    isEditing = false;
-                    ClearStack();
+                    if (EditStaff())
+                    {
+                        this.nhanVienTableAdapter.Connection.ConnectionString = Program.connStr;
+                        this.nhanVienTableAdapter.Fill(this.DS.NhanVien);
+                        isEditing = false;
+                        bdsNhanVien.Position = position;
+                        ClearStack();
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
-                catch (Exception ex)
+                else if (isAdding)
                 {
-                    MessageBox.Show("Có lỗi trong quá trình xử lý." + Environment.NewLine + "" + ex.Message);
-                    return;
+                    if (AddStaff())
+                    {
+                        bdsNhanVien.EndEdit();
+                        isAdding = false;
+                        FormReload();
+                        bdsNhanVien.Position = bdsNhanVien.Count - 1;
+                        return;
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
             }
 
@@ -200,23 +215,7 @@ namespace NganHang
             DialogResult dialogResult = MessageBox.Show("Bạn có muốn tải lại trang?", "", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                cmbBranch.DataSource = Program.dbs_ListFragments;
-                cmbBranch.DisplayMember = "TENCN";
-                cmbBranch.ValueMember = "TENSERVER";
-
-                bdsNhanVien.CancelEdit();
-                try
-                {
-                    this.nhanVienTableAdapter.Connection.ConnectionString = Program.connStr;
-                    this.nhanVienTableAdapter.Fill(this.DS.NhanVien);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi tải lại trang " + ex.Message + "." + Environment.NewLine + "Vui lòng thử lại sau", "", MessageBoxButtons.OK);
-                }
-
-                Reload();
-                ClearStack();
+                FormReload();
             }
         }
 
@@ -382,6 +381,8 @@ namespace NganHang
             gcStaff.Enabled = false;
             pcStaff.Enabled = true;
             tbFirstName.Focus();
+            isAdding = true;
+            
 
             btnSwitchBranch.Enabled = btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = false;
             btnSave.Enabled = btnRestore.Enabled = true;
@@ -457,6 +458,7 @@ namespace NganHang
             gcStaff.Enabled = false;
             //cbBranchId.Text = branchId;
             pnInfo.Enabled = true;
+            isEditing = true;
             tbFirstName.Focus();
 
             btnSwitchBranch.Enabled = tbAddress.ReadOnly = tbFirstName.ReadOnly = tbLastName.ReadOnly = false;
@@ -506,6 +508,7 @@ namespace NganHang
             DialogResult result = MessageBox.Show("Thực hiện xóa sẽ xóa tài khoản liên kết với nhân viên này." + Environment.NewLine+ "Bạn có chắc muốn xóa nhân viên này?", "", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
+                
                 DeleteUser();
             }
             return;
@@ -558,13 +561,28 @@ namespace NganHang
         private void DeleteUser()
         {
             string userId = "";
+            position = bdsNhanVien.Position;
             try
             {
-                userId = ((DataRowView)bdsNhanVien[bdsNhanVien.Position])["MANV"].ToString();   
-                bdsNhanVien.RemoveCurrent();
-                this.nhanVienTableAdapter.Connection.ConnectionString = Program.connStr;
-                this.nhanVienTableAdapter.Update(this.DS.NhanVien);
-                ClearStack();
+                userId = ((DataRowView)bdsNhanVien[position])["MANV"].ToString();
+                if (DeleteLogin(userId))
+                {
+                    bdsNhanVien.RemoveCurrent();
+                    this.nhanVienTableAdapter.Connection.ConnectionString = Program.connStr;
+                    this.nhanVienTableAdapter.Update(this.DS.NhanVien);
+                    if (position > 0)
+                        bdsNhanVien.Position = position - 1;
+                    else
+                        bdsNhanVien.Position = 0;
+                    ClearStack();
+                    MessageBox.Show("Xóa nhân viên thành công.");
+                }
+                else
+                {
+                    MessageBox.Show("Có lỗi trong quá trình thực hiện, vui lòng thử lại sau.");
+                }
+
+                
             }
             catch(Exception ex)
             {
@@ -574,6 +592,35 @@ namespace NganHang
             }
 
 
+        }
+
+        private bool DeleteLogin(string MANV)
+        {
+            if (MANV == "" || MANV == null)
+            {
+                MessageBox.Show("Vui lòng chọn nhân viên cần xóa", "", MessageBoxButtons.OK);
+                return false;
+            }
+            string cmdDeleteLogin = String.Format("exec dbo.xoaLogin '{0}'", tbUserId.Text.Trim());
+            if (Program.Connect() == 0)
+            {
+                MessageBox.Show("Có lỗi trong quá trình xử lý.");
+                return false;
+            }
+            try
+            {
+                int result = Program.ExecSqlNonQuery(cmdDeleteLogin);
+                if (result == Program.excuteSuccess || result == Program.loginNotExist)
+                {
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Có lỗi trong quá trình chuyển, vui lòng thử lại sau." + Environment.NewLine + "" + ex.Message, "", MessageBoxButtons.OK);
+                return false;
+            }
+            return false ;
         }
 
         private void QuitForm()
@@ -609,7 +656,7 @@ namespace NganHang
         {
             if (tbUserId.Text.Trim() == "")
             {
-                MessageBox.Show("Vui lòng chọn nhân viên cần xóa", "", MessageBoxButtons.OK);
+                MessageBox.Show("Vui lòng chọn nhân viên cần chuyển", "", MessageBoxButtons.OK);
                 return false;
             }
             Program.serverName = cbBranchId.SelectedValue.ToString().Trim();
@@ -636,10 +683,11 @@ namespace NganHang
 
             try
             {
-                if (Program.ExecSqlNonQuery(cmdRemote) == 999)
+                if (Program.ExecSqlNonQuery(cmdRemote) == Program.excuteSuccess)
                 {
                     return true;
                 }
+
             }
             catch (Exception ex)
             {
@@ -684,9 +732,98 @@ namespace NganHang
 
             //dgvNhanVien.DataSource = Program.dbs_ListFragments;
         }
+        
+        private bool EditStaff()
+        {
+            string cmdEdit = String.Format("exec dbo.suaNhanVien '{0}', N'{1}', N'{2}', N'{3}', N'{4}', '{5}', '{6}'",
+                tbUserId.Text.Trim(),
+                tbFirstName.Text.Trim(),
+                tbLastName.Text.Trim(),
+                tbAddress.Text.Trim(),
+                cbGender.Text.Trim(),
+                tbPhoneNumber.Text.Trim(),
+                cMNDTextEdit.Text.Trim());
+
+            if (Program.Connect() == 0)
+            {
+                MessageBox.Show("Có lỗi trong quá trình xử lý.");
+                return false;
+            }
+
+            try
+            {
+                if (Program.ExecSqlNonQuery(cmdEdit) == Program.excuteSuccess)
+                {
+                    return true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Có lỗi trong quá trình thực hiện, vui lòng thử lại sau." + Environment.NewLine + "" + ex.Message, "", MessageBoxButtons.OK);
+                return false;
+            }
+
+            return false;
+        }
+
+        private bool AddStaff()
+        {
+            
+            string cmdAdd= String.Format("exec dbo.taoNhanVien '{0}', N'{1}', N'{2}', N'{3}', N'{4}', '{5}', '{6}'",
+                tbFirstName.Text.Trim(),
+                tbLastName.Text.Trim(),
+                tbAddress.Text.Trim(),
+                cbGender.Text.Trim(),
+                tbPhoneNumber.Text.Trim(),
+                branchId.Trim(),
+                cMNDTextEdit.Text.Trim());
+
+            if (Program.Connect() == 0)
+            {
+                MessageBox.Show("Có lỗi trong quá trình xử lý.");
+                return false;
+            }
+
+            try
+            {
+                if (Program.ExecSqlNonQuery(cmdAdd) == Program.excuteSuccess)
+                {
+                    return true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Có lỗi trong quá trình thực hiện, vui lòng thử lại sau." + Environment.NewLine + "" + ex.Message, "", MessageBoxButtons.OK);
+                return false;
+            }
+
+            return false;
+        }
+
+        private void FormReload()
+        {
+            cmbBranch.DataSource = Program.dbs_ListFragments;
+            cmbBranch.DisplayMember = "TENCN";
+            cmbBranch.ValueMember = "TENSERVER";
+
+            bdsNhanVien.CancelEdit();
+            try
+            {
+                LoadData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tải lại trang " + ex.Message + "." + Environment.NewLine + "Vui lòng thử lại sau", "", MessageBoxButtons.OK);
+            }
+
+            Reload();
+            ClearStack();
+        }
 
         #endregion
 
-        
+
     }
 }

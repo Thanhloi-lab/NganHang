@@ -37,6 +37,10 @@ namespace NganHang
         public static String mFullname = "";
         public static int mBranch = 0;
 
+        //State loi SQL
+        public static int loginNotExist = 123;
+        public static int excuteSuccess = 999;
+
         public static BindingSource dbs_ListFragments = new BindingSource();
         public static MainForm mainForm;
 
@@ -163,7 +167,7 @@ namespace NganHang
             {
                 sqlcmd.ExecuteNonQuery();
                 conn.Close();
-                return 999;
+                return excuteSuccess;
             }
             catch (SqlException e)
             {
