@@ -48,12 +48,12 @@ namespace NganHang.Views
         private void FormCustomer_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'dSCustomer.TaiKhoan' table. You can move, or remove it, as needed.
-            this.taiKhoanTableAdapter.Fill(this.dSCustomer.TaiKhoan);
             dSCustomer.EnforceConstraints = false;
             this.khachHangTableAdapter.Connection.ConnectionString = Program.connStr;
             this.khachHangTableAdapter.Fill(this.dSCustomer.KhachHang);
             this.taiKhoanTableAdapter.Connection.ConnectionString = Program.connStr;
             this.taiKhoanTableAdapter.Fill(this.dSCustomer.TaiKhoan);
+
             comboBoxBranch.DataSource = Program.dbs_ListFragments;
             comboBoxBranch.DisplayMember = "TENCN";
             comboBoxBranch.ValueMember = "TENSERVER";
@@ -80,61 +80,6 @@ namespace NganHang.Views
             btnUndo.Enabled = btnRedo.Enabled = false;
         }
 
-        private void GetBranchId()
-        {
-            Program.serverName = comboBoxBranch.SelectedValue.ToString().Trim();
-
-
-            string cmdGetBranchId = "select *from LayMaChiNhanh";
-
-            if (Program.mGroup == "CHINHANH")
-            {
-                if (Program.Connect() == 0)
-                {
-                    MessageBox.Show("Có lỗi trong quá trình xử lý.");
-                    return;
-                }
-            }
-            else
-            {
-                if (Program.RemoteConnect() == 0)
-                {
-                    MessageBox.Show("Có lỗi trong quá trình xử lý.");
-                    return;
-                }
-
-            }
-
-
-            Program.myReader = Program.ExecSqlDataReader(cmdGetBranchId);
-
-            if (Program.myReader == null)
-            {
-                MessageBox.Show("Có lỗi trong quá trình xử lý.");
-                return;
-            }
-            Program.myReader.Read();
-            string id = Program.myReader.GetString(0);
-
-            txtBranch.Text = Program.myReader.GetString(0).Trim();
-            macn = txtBranch.Text;
-        }
-
-        private Boolean checkCMND()
-        {
-            string cmd = "exec trungCMND @CMND='" + txtCMND.Text.Trim() + "'";
-            try
-            {
-                Program.Connect();
-                Program.ExecSqlDataReader(cmd);
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-            return true;
-        }
-
         private void buttonEdit_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Bạn có chắc chắn muốn đổi CMND khách hàng này?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
@@ -150,7 +95,7 @@ namespace NganHang.Views
         {
             string regexCMND = "^(?:[0-9]{10})";
             string newCMND = "";
-            if(!Regex.IsMatch(txtCMND.Text.Trim(), regexCMND))
+            if (!Regex.IsMatch(txtCMND.Text.Trim(), regexCMND))
             {
                 MessageBox.Show("CMND phải có 10 số", "", MessageBoxButtons.OK);
                 txtCMND.Text = CMND;
@@ -204,8 +149,8 @@ namespace NganHang.Views
 
                 }
             }
-            
-            
+
+
             this.khachHangTableAdapter.Connection.ConnectionString = Program.connStr;
             this.khachHangTableAdapter.Fill(this.dSCustomer.KhachHang);
             this.taiKhoanTableAdapter.Connection.ConnectionString = Program.connStr;
@@ -220,7 +165,7 @@ namespace NganHang.Views
                 GetBranchId();
             }
 
-            
+
         }
 
         private void btnAdd_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -231,9 +176,10 @@ namespace NganHang.Views
             panelControlInfo.Enabled = isAdding = true;
             khachHangBindingSource.AddNew();
             txtBranch.Text = macn;
+            cbGender.SelectedValue = "Nam";
 
             dateEditDateCreate.DateTime = DateTime.Now;
-            btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled =  btnSaveToFile.Enabled = btnReload.Enabled = false;
+            btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnSaveToFile.Enabled = btnReload.Enabled = false;
             btnSave.Enabled = btnRestore.Enabled = true;
             khachHangGridControl.Enabled = false;
         }
@@ -244,7 +190,7 @@ namespace NganHang.Views
             vitri = khachHangBindingSource.Position;
             InitCache(gridView1.GetRow(vitri) as DataRowView);
             panelControlInfo.Enabled = true;
-            btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = btnReload.Enabled =  btnSaveToFile.Enabled = false;
+            btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = btnReload.Enabled = btnSaveToFile.Enabled = false;
             btnSave.Enabled = btnRestore.Enabled = true;
             khachHangGridControl.Enabled = false;
             txtCMND.Enabled = false;
@@ -254,12 +200,12 @@ namespace NganHang.Views
         private void btnSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
 
-            if(!MyRegex.ValidateCMND(txtCMND.Text)) 
+            if (!MyRegex.ValidateCMND(txtCMND.Text))
             {
                 txtCMND.Focus();
                 return;
             }
-            if(!MyRegex.ValidateSurname(txtSurname.Text))
+            if (!MyRegex.ValidateSurname(txtSurname.Text))
             {
                 txtSurname.Focus();
                 return;
@@ -324,7 +270,7 @@ namespace NganHang.Views
                 khachHangBindingSource.ResetCurrentItem();
                 this.khachHangTableAdapter.Connection.ConnectionString = Program.connStr;
                 this.khachHangTableAdapter.Update(this.dSCustomer.KhachHang);
-                MessageBox.Show("Thao tác thành công" , "", MessageBoxButtons.OK);
+                MessageBox.Show("Thao tác thành công", "", MessageBoxButtons.OK);
             }
             catch (Exception ex)
             {
@@ -332,6 +278,8 @@ namespace NganHang.Views
                 return;
             }
             LoadDefault();
+            buttonEdit.Visible = false;
+            txtCMND.Enabled = true;
         }
 
         private void btnDelete_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -404,10 +352,20 @@ namespace NganHang.Views
         {
             if (isAdding)
             {
-                if(MessageBox.Show("Thoát khỏi thêm mới?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Thoát khỏi thêm mới?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     LoadDefault();
                 }
+            }
+            if (isEditing)
+            {
+                if (MessageBox.Show("Thoát khỏi sửa?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    LoadDefault();
+
+                }
+                txtCMND.Enabled = true;
+                buttonEdit.Visible = false;
             }
             else
             {
@@ -416,54 +374,7 @@ namespace NganHang.Views
                     this.Close();
                 }
             }
-            
-        }
 
-        private void LoadDefault()
-        {
-            ClearStack();
-            this.khachHangTableAdapter.Connection.ConnectionString = Program.connStr;
-            this.khachHangTableAdapter.Fill(this.dSCustomer.KhachHang);
-            if (btnAdd.Enabled == false) khachHangBindingSource.Position = vitri;
-            khachHangGridControl.Enabled = true;
-            panelControlInfo.Enabled = false;
-
-            if (Program.mGroup == "NGANHANG")
-            {
-                btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnSave.Enabled = false;
-                comboBoxBranch.Enabled = true;
-            }
-            else
-            {
-                btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnSave.Enabled = true;
-                comboBoxBranch.Enabled = false;
-            }
-
-            btnUndo.Enabled = btnRedo.Enabled = false;
-            isAdding = isEditing = false;
-        }
-
-        private void InitCache(DataRowView data)
-        {
-            if (data != null)
-            {
-                cacheCMND = data[0].ToString();
-                cacheFirstName = data[1].ToString();
-                cacheLastName = data[2].ToString();
-                cacheAddress = data[3].ToString();
-                cacheGender = data[4].ToString();
-                cachePhonenumber = data[6].ToString();
-            }
-        }
-
-        private void RestoreByCache()
-        {
-            txtCMND.Text = cacheCMND;
-            txtSurname.Text = cacheFirstName;
-            txtName.Text = cacheLastName;
-            txtAddress.Text = cacheAddress;
-            cbGender.Text = cacheGender;
-            txtPhoneNumber.Text = cachePhonenumber;
         }
 
         private void txtCMND_KeyPress(object sender, KeyPressEventArgs e)
@@ -511,6 +422,8 @@ namespace NganHang.Views
             Program.InitUndoRedoForTextEdit(sender, ref stackUndo, btnUndo);
         }
 
+        #region methods
+
         private void ClearStack()
         {
             stackUndo.Clear();
@@ -518,5 +431,112 @@ namespace NganHang.Views
             btnUndo.Enabled = false;
             btnRedo.Enabled = false;
         }
+
+        private void LoadDefault()
+        {
+            ClearStack();
+            this.khachHangTableAdapter.Connection.ConnectionString = Program.connStr;
+            this.khachHangTableAdapter.Fill(this.dSCustomer.KhachHang);
+            this.taiKhoanTableAdapter.Connection.ConnectionString = Program.connStr;
+            this.taiKhoanTableAdapter.Fill(this.dSCustomer.TaiKhoan);
+
+            if (btnAdd.Enabled == false) khachHangBindingSource.Position = vitri;
+            khachHangGridControl.Enabled = true;
+            panelControlInfo.Enabled = false;
+
+            if (Program.mGroup == "NGANHANG")
+            {
+                btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnSave.Enabled = false;
+                comboBoxBranch.Enabled = true;
+            }
+            else
+            {
+                btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnSave.Enabled = true;
+                comboBoxBranch.Enabled = false;
+            }
+
+            isAdding = isEditing =  btnUndo.Enabled = btnRedo.Enabled = false;
+            btnReload.Enabled = true;
+        }
+
+        private void InitCache(DataRowView data)
+        {
+            if (data != null)
+            {
+                cacheCMND = data[0].ToString();
+                cacheFirstName = data[1].ToString();
+                cacheLastName = data[2].ToString();
+                cacheAddress = data[3].ToString();
+                cacheGender = data[4].ToString();
+                cachePhonenumber = data[6].ToString();
+            }
+        }
+
+        private void RestoreByCache()
+        {
+            txtCMND.Text = cacheCMND;
+            txtSurname.Text = cacheFirstName;
+            txtName.Text = cacheLastName;
+            txtAddress.Text = cacheAddress;
+            cbGender.Text = cacheGender;
+            txtPhoneNumber.Text = cachePhonenumber;
+        }
+
+        private void GetBranchId()
+        {
+            Program.serverName = comboBoxBranch.SelectedValue.ToString().Trim();
+
+
+            string cmdGetBranchId = "select *from LayMaChiNhanh";
+
+            if (Program.mGroup == "CHINHANH")
+            {
+                if (Program.Connect() == 0)
+                {
+                    MessageBox.Show("Có lỗi trong quá trình xử lý.");
+                    return;
+                }
+            }
+            else
+            {
+                if (Program.RemoteConnect() == 0)
+                {
+                    MessageBox.Show("Có lỗi trong quá trình xử lý.");
+                    return;
+                }
+
+            }
+
+
+            Program.myReader = Program.ExecSqlDataReader(cmdGetBranchId);
+
+            if (Program.myReader == null)
+            {
+                MessageBox.Show("Có lỗi trong quá trình xử lý.");
+                return;
+            }
+            Program.myReader.Read();
+            string id = Program.myReader.GetString(0);
+
+            txtBranch.Text = Program.myReader.GetString(0).Trim();
+            macn = txtBranch.Text;
+        }
+
+        private Boolean checkCMND()
+        {
+            string cmd = "exec trungCMND @CMND='" + txtCMND.Text.Trim() + "'";
+            try
+            {
+                Program.Connect();
+                Program.ExecSqlDataReader(cmd);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        #endregion
     }
 }

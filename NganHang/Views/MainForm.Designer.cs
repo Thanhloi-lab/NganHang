@@ -366,7 +366,7 @@ namespace NganHang
             this.groupGiaoDich,
             this.groupKhachHang});
             this.barBtnSystem.Name = "barBtnSystem";
-            this.barBtnSystem.Text = "Hệ Thống";
+            this.barBtnSystem.Text = "Khách hàng";
             this.barBtnSystem.Visible = false;
             // 
             // groupGiaoDich

@@ -63,14 +63,12 @@ namespace NganHang.Views
             this.saoKeTableAdapter.Fill(this.dSBankStatement.SaoKe);
         }
 
-
         private void saoKeGridControl_Click_1(object sender, EventArgs e)
         {
             txtName.Text = ((DataRowView)saoKeBindingSource[saoKeBindingSource.Position])["HOTEN"].ToString();
             txtAccountNumber.Text = ((DataRowView)saoKeBindingSource[saoKeBindingSource.Position])["SOTK"].ToString();
             saoKeGridControl.Visible = false;
         }
-
 
         private void txtName_MouseEnter(object sender, EventArgs e)
         {
@@ -89,6 +87,12 @@ namespace NganHang.Views
 
         private void btnPreview_Click_1(object sender, EventArgs e)
         {
+            if(txtName.Text.Equals("") || txtAccountNumber.Text.Equals("") || txtAccountNumber.Text==null || txtName.Text==null)
+            {
+                MessageBox.Show("Chọn tài khoản trước khi thực hiện in sao kê.");
+                return;
+            }
+
             DateTime temps = datePickerFrom.Value;
             DateTime tempe = datePickerTo.Value;
             ReportBankStatement report = new ReportBankStatement(txtAccountNumber.Text, temps, tempe);

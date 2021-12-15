@@ -40,7 +40,6 @@ namespace NganHang.Views
             System.Windows.Forms.Label labelCMND;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCustomer));
             this.panelControlInfo = new DevExpress.XtraEditors.PanelControl();
-            this.cbGender = new System.Windows.Forms.ComboBox();
             this.khachHangBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dSCustomer = new NganHang.DSCustomer();
             this.txtName = new DevExpress.XtraEditors.TextEdit();
@@ -90,6 +89,7 @@ namespace NganHang.Views
             this.tableAdapterManager = new NganHang.DSCustomerTableAdapters.TableAdapterManager();
             this.taiKhoanTableAdapter = new NganHang.DSCustomerTableAdapters.TaiKhoanTableAdapter();
             this.taiKhoanBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cbGender = new System.Windows.Forms.ComboBox();
             labelBrandID = new System.Windows.Forms.Label();
             labelPhoneNumber = new System.Windows.Forms.Label();
             labelDateCreate = new System.Windows.Forms.Label();
@@ -217,17 +217,6 @@ namespace NganHang.Views
             this.panelControlInfo.Name = "panelControlInfo";
             this.panelControlInfo.Size = new System.Drawing.Size(998, 257);
             this.panelControlInfo.TabIndex = 13;
-            // 
-            // cbGender
-            // 
-            this.cbGender.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.khachHangBindingSource, "PHAI", true));
-            this.cbGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbGender.FormattingEnabled = true;
-            this.cbGender.Location = new System.Drawing.Point(128, 76);
-            this.cbGender.Name = "cbGender";
-            this.cbGender.Size = new System.Drawing.Size(147, 21);
-            this.cbGender.TabIndex = 35;
-            this.cbGender.SelectedIndexChanged += new System.EventHandler(this.cbGender_SelectedIndexChanged);
             // 
             // khachHangBindingSource
             // 
@@ -733,6 +722,16 @@ namespace NganHang.Views
             // 
             this.taiKhoanBindingSource.DataMember = "TaiKhoan";
             this.taiKhoanBindingSource.DataSource = this.dSCustomer;
+            // 
+            // cbGender
+            // 
+            this.cbGender.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.khachHangBindingSource, "PHAI", true));
+            this.cbGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbGender.FormattingEnabled = true;
+            this.cbGender.Location = new System.Drawing.Point(128, 77);
+            this.cbGender.Name = "cbGender";
+            this.cbGender.Size = new System.Drawing.Size(147, 21);
+            this.cbGender.TabIndex = 36;
             // 
             // FormCustomer
             // 

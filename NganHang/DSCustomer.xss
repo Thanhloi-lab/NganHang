@@ -7,18 +7,18 @@
 <DiagramLayout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ex:showrelationlabel="False" ViewPortX="-10" ViewPortY="54" xmlns:ex="urn:schemas-microsoft-com:xml-msdatasource-layout-extended" xmlns="urn:schemas-microsoft-com:xml-msdatasource-layout">
   <Shapes>
     <Shape ID="DesignTable:KhachHang" ZOrder="3" X="70" Y="70" Height="229" Width="211" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="178" />
-    <Shape ID="DesignTable:TaiKhoan" ZOrder="1" X="351" Y="70" Height="172" Width="199" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
+    <Shape ID="DesignTable:TaiKhoan" ZOrder="1" X="881" Y="93" Height="172" Width="199" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
   </Shapes>
   <Connectors>
     <Connector ID="DesignRelation:FK_TaiKhoan_KhachHang" ZOrder="2" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>281</X>
-          <Y>146</Y>
+          <Y>140</Y>
         </Point>
         <Point>
-          <X>351</X>
-          <Y>146</Y>
+          <X>881</X>
+          <Y>140</Y>
         </Point>
       </RoutePoints>
     </Connector>

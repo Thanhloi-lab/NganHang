@@ -351,6 +351,7 @@ namespace NganHang.Views
 
         private void LoadCustomerPanel()
         {
+            
             pnFullnameAcc.Visible = false;
             pnFullnameCus.Visible = true;
             taiKhoanGridControl.Enabled = false;
