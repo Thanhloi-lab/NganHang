@@ -359,7 +359,7 @@ namespace NganHang.Views
             isAdding = true;
 
             txtBranch.Text = macn;
-            spinEditAccountBalance.EditValue = 0;
+            
             dateEditAccountOpenDate.EditValue = DateTime.Now;
 
             if (Program.mGroup == "NGANHANG")
@@ -375,6 +375,7 @@ namespace NganHang.Views
             }
 
             LoadData();
+            spinEditAccountBalance.Value = 0;
         }
 
         private Boolean CheckIsTransaction()

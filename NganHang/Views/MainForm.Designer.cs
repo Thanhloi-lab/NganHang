@@ -202,7 +202,7 @@ namespace NganHang
             // 
             // btnGoiTien
             // 
-            this.btnGoiTien.Caption = "Gởi Tiền";
+            this.btnGoiTien.Caption = "Gởi/Rút";
             this.btnGoiTien.Id = 20;
             this.btnGoiTien.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGoiTien.ImageOptions.Image")));
             this.btnGoiTien.Name = "btnGoiTien";
