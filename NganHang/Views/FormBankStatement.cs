@@ -87,11 +87,15 @@ namespace NganHang.Views
 
         private void btnPreview_Click_1(object sender, EventArgs e)
         {
+            
+
             if(txtName.Text.Equals("") || txtAccountNumber.Text.Equals("") || txtAccountNumber.Text==null || txtName.Text==null)
             {
                 MessageBox.Show("Chọn tài khoản trước khi thực hiện in sao kê.");
                 return;
             }
+
+            Cursor.Current = Cursors.WaitCursor;
 
             DateTime temps = datePickerFrom.Value;
             DateTime tempe = datePickerTo.Value;
@@ -105,6 +109,8 @@ namespace NganHang.Views
             report.txtStaff.Text = Program.userName;
             ReportPrintTool print = new ReportPrintTool(report);
             print.ShowPreviewDialog();
+
+            Cursor.Current = Cursors.Default;
         }
 
     }

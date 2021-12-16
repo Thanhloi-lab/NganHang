@@ -47,6 +47,8 @@ namespace NganHang
                 cbGender.SelectedItem = lastestGender = Program.myReader.GetString(4);
                 tbPhoneNumber.Text = lastestPhoneNumber = Program.myReader.GetString(5);
                 tbBranch.Text  = Program.myReader.GetString(6);
+                tbCMND.Text = Program.myReader.GetString(9);
+
             }
             catch (Exception ex)
             {
@@ -59,7 +61,7 @@ namespace NganHang
 
         private void EnableEdit()
         {
-            tbAddress.ReadOnly = tbFirstName.ReadOnly = tbLastName.ReadOnly = tbPhoneNumber.ReadOnly = false;
+            tbCMND.ReadOnly = tbAddress.ReadOnly = tbFirstName.ReadOnly = tbLastName.ReadOnly = tbPhoneNumber.ReadOnly = false;
             cbGender.Enabled = true;
 
             btnEdit.Enabled = false;
@@ -86,13 +88,19 @@ namespace NganHang
         {
             if (Program.Connect() == 0) return 0;
 
-            string cmd = String.Format("EXEC [dbo].[suaNhanVien] '{0}', N'{1}', N'{2}', N'{3}', N'{4}', '{5}', '{6}', {7}",
-                tbUserId.Text.Trim(), tbFirstName.Text.Trim(), tbLastName.Text.Trim(), tbAddress.Text.Trim(), cbGender.Text, tbPhoneNumber.Text.Trim(), tbBranch.Text.Trim(), 0);
+            string cmdEdit = String.Format("exec dbo.suaNhanVien '{0}', N'{1}', N'{2}', N'{3}', N'{4}', '{5}', '{6}'",
+                tbUserId.Text.Trim(),
+                tbFirstName.Text.Trim(),
+                tbLastName.Text.Trim(),
+                tbAddress.Text.Trim(),
+                cbGender.Text.Trim(),
+                tbPhoneNumber.Text.Trim(),
+                tbCMND.Text.Trim());
 
 
             try
             {
-                return Program.ExecSqlNonQuery(cmd);
+                return Program.ExecSqlNonQuery(cmdEdit);
                 
             }catch(Exception ex)
             {
@@ -127,8 +135,9 @@ namespace NganHang
                 if (!MyRegex.ValidateName(tbLastName.Text.Trim())) return;
                 if (!MyRegex.ValidateAddress(tbAddress.Text.Trim())) return;
                 if (!MyRegex.ValidatePhoneNumber(tbPhoneNumber.Text.Trim())) return;
+                if (!MyRegex.ValidateCMND(tbCMND.Text.Trim())) return;
 
-                if (EditInfo() !=999)
+                if (EditInfo() != Program.excuteSuccess)
                 {
                     MessageBox.Show("Có lỗi trong quá trình xử lý, vui lòng thử lại sau", "", MessageBoxButtons.OK);
                 }
@@ -192,6 +201,11 @@ namespace NganHang
         }
 
         private void tbPhoneNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Program.InitUndoRedoForTextBox(sender, ref stackUndo, btnUndo);
+        }
+
+        private void tbCMND_KeyPress(object sender, KeyPressEventArgs e)
         {
             Program.InitUndoRedoForTextBox(sender, ref stackUndo, btnUndo);
         }

@@ -1,4 +1,7 @@
 ﻿
+using ClosedXML.Excel;
+using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraGrid.Views.Grid;
 using NganHang.UndoRedo;
 using NganHang.Validation;
 using System;
@@ -22,6 +25,7 @@ namespace NganHang.Views
         private string cacheAddress = "";
         private string cacheGender = "";
         private string cachePhonenumber = "";
+        private String oldPass = "";
 
         private Stack<UndoRedoControl> stackUndo;
         private Stack<UndoRedoControl> stackRedo;
@@ -30,6 +34,7 @@ namespace NganHang.Views
         {
             InitializeComponent();
 
+            //cbGender.Items.Add("");
             cbGender.Items.Add("Nam");
             cbGender.Items.Add("Nữ");
 
@@ -49,6 +54,7 @@ namespace NganHang.Views
         {
             // TODO: This line of code loads data into the 'dSCustomer.TaiKhoan' table. You can move, or remove it, as needed.
             dSCustomer.EnforceConstraints = false;
+
             this.khachHangTableAdapter.Connection.ConnectionString = Program.connStr;
             this.khachHangTableAdapter.Fill(this.dSCustomer.KhachHang);
             this.taiKhoanTableAdapter.Connection.ConnectionString = Program.connStr;
@@ -84,8 +90,10 @@ namespace NganHang.Views
         {
             if (MessageBox.Show("Bạn có chắc chắn muốn đổi CMND khách hàng này?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
+                oldPass = txtCMND.Text;
                 txtCMND.Enabled = true;
                 buttonUpdate.Visible = true;
+                buttonEdit.Visible = false;
                 CMND = txtCMND.Text;
             }
 
@@ -93,11 +101,11 @@ namespace NganHang.Views
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            string regexCMND = "^(?:[0-9]{10})";
-            string newCMND = "";
+            string regexCMND = "^(?:[0-9]{9})";
+
             if (!Regex.IsMatch(txtCMND.Text.Trim(), regexCMND))
             {
-                MessageBox.Show("CMND phải có 10 số", "", MessageBoxButtons.OK);
+                MessageBox.Show("CMND phải có 9 số", "", MessageBoxButtons.OK);
                 txtCMND.Text = CMND;
                 return;
             }
@@ -112,20 +120,24 @@ namespace NganHang.Views
                 MessageBox.Show("Có lỗi trong quá trình xử lý.");
                 return;
             }
-            newCMND = ((DataRowView)khachHangBindingSource[khachHangBindingSource.Position])["CMND"].ToString().Trim();
-            //string cmd = "exec doiCMND @oldCMND='" + newCMND +"', @newCMND='" + txtCMND.Text + "'";
-            //try
-            //{
-            //    Program.ExecSqlDataReader(cmd);
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Lỗi đổi CMND. \n" + ex);
-            //}
-            //this.khachHangTableAdapter.Fill(this.dSCustomer.KhachHang);
+            string cmd = "exec doiCMND @oldCMND='" + oldPass + "',@newCMND='" + txtCMND.Text + "'";
+            try
+            {
+
+                Program.Connect();
+                Program.ExecSqlDataReader(cmd);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi đổi CMND. \n" + ex);
+            }
+
+            this.khachHangTableAdapter.Fill(this.dSCustomer.KhachHang);
             buttonUpdate.Visible = false;
+            buttonEdit.Visible = true;
             txtCMND.Enabled = false;
-            txtCMND.Text = newCMND;
+
         }
 
         private void comboBoxBranch_SelectedIndexChanged(object sender, EventArgs e)
@@ -170,13 +182,14 @@ namespace NganHang.Views
 
         private void btnAdd_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+
             ClearStack();
             vitri = khachHangBindingSource.Position;
             InitCache(gridView1.GetRow(vitri) as DataRowView);
             panelControlInfo.Enabled = isAdding = true;
             khachHangBindingSource.AddNew();
             txtBranch.Text = macn;
-            cbGender.SelectedValue = "Nam";
+
 
             dateEditDateCreate.DateTime = DateTime.Now;
             btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnSaveToFile.Enabled = btnReload.Enabled = false;
@@ -225,35 +238,14 @@ namespace NganHang.Views
                 txtPhoneNumber.Focus();
                 return;
             }
-            //if (!Regex.Match(txtSurname.Text.Trim(), MyRegex.RegexSurname).Success)
-            //{
-            //    MessageBox.Show("Họ phải từ 1->50 kí tự không bao gồm số và kí tự đặt biệt.", "", MessageBoxButtons.OK);
-            //    txtSurname.Focus();
-            //    return;
-            //}
-            //if (!Regex.Match(txtName.Text.Trim(), MyRegex.RegexName).Success)
-            //{
-            //    MessageBox.Show("Tên phải từ 1->10 kí tự không bao gồm số và kí tự đặt biệt.", "", MessageBoxButtons.OK);
-            //    txtName.Focus();
-            //    return;
-            //}
-            ////if (!Regex.Match(txtAddress.Text, regexAddress).Success)
-            //if(txtAddress.Text.Trim().Length==0 || txtAddress.Text.Trim().Length>100)
-            //{
-            //    MessageBox.Show("Địa chỉ phải từ 1->100 kí tự.", "", MessageBoxButtons.OK);
-            //    txtAddress.Focus();
-            //    return;
-            //}
-            //if (!Regex.Match(txtPhoneNumber.Text.Trim(), MyRegex.RegexSDT).Success)
-            //{
-            //    MessageBox.Show("Số điện thoại phải có 10 số.", "", MessageBoxButtons.OK);
-            //    txtPhoneNumber.Focus();
-            //    return;
-            //}
+
+
             if (txtCMND.Enabled == true)
             {
+
                 if (checkCMND() == false)
                 {
+
                     MessageBox.Show("Trùng CMND!!!", "", MessageBoxButtons.OK);
                     txtCMND.Focus();
                     return;
@@ -266,11 +258,28 @@ namespace NganHang.Views
 
             try
             {
-                khachHangBindingSource.EndEdit();
-                khachHangBindingSource.ResetCurrentItem();
-                this.khachHangTableAdapter.Connection.ConnectionString = Program.connStr;
-                this.khachHangTableAdapter.Update(this.dSCustomer.KhachHang);
-                MessageBox.Show("Thao tác thành công", "", MessageBoxButtons.OK);
+                if (isAdding)
+                {
+                    if (AddCustomer())
+                    {
+
+                        isAdding = false;
+                        khachHangBindingSource.EndEdit();
+                        khachHangBindingSource.ResetCurrentItem();
+                        this.khachHangTableAdapter.Connection.ConnectionString = Program.connStr;
+                        MessageBox.Show("Thao tác thành công", "", MessageBoxButtons.OK);
+
+                    }
+                }
+                if (isEditing)
+                {
+                    khachHangBindingSource.EndEdit();
+                    khachHangBindingSource.ResetCurrentItem();
+                    this.khachHangTableAdapter.Connection.ConnectionString = Program.connStr;
+                    this.khachHangTableAdapter.Update(this.dSCustomer.KhachHang);
+                    MessageBox.Show("Thao tác thành công", "", MessageBoxButtons.OK);
+                    isEditing = false;
+                }
             }
             catch (Exception ex)
             {
@@ -285,9 +294,8 @@ namespace NganHang.Views
         private void btnDelete_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             String CMND = "";
-            if (taiKhoanBindingSource.Count > 0)
+            if (!IsCreateAccount())
             {
-                MessageBox.Show("Không thể xóa khách hàng này vì đã tạo tài khoản!", "", MessageBoxButtons.OK);
                 return;
             }
 
@@ -333,7 +341,28 @@ namespace NganHang.Views
 
         private void btnSaveToFile_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.xlsx" };
 
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                try
+                {
+                    using (XLWorkbook workbook = new XLWorkbook())
+                    {
+                        DataTable dt = GetDataTable(gridView1);
+
+                        workbook.Worksheets.Add(dt, "Khách hàng");
+                        workbook.SaveAs(sfd.FileName);
+                    }
+                    Cursor.Current = Cursors.Default;
+                    MessageBox.Show("Tải xuống thành công.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Có lỗi trong quá trình tải xuống, vui lòng thử lại sau.");
+                }
+            }
         }
 
         private void btnUndo_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -357,7 +386,7 @@ namespace NganHang.Views
                     LoadDefault();
                 }
             }
-            if (isEditing)
+            else if (isEditing)
             {
                 if (MessageBox.Show("Thoát khỏi sửa?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
@@ -386,25 +415,6 @@ namespace NganHang.Views
         {
 
             Program.InitUndoRedoForTextEdit(sender, ref stackUndo, btnUndo);
-        }
-
-        private void cbGender_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //if (isAdding || isEditing)
-            //{
-            //    System.Windows.Forms.ComboBox cb = sender as System.Windows.Forms.ComboBox;
-            //    int index = 0;
-            //    if (cb.SelectedIndex == 0)
-            //    {
-            //        index = 1;
-            //    }
-            //    UndoRedoControl ur = new UndoRedoControl(cb.Name, index);
-            //    stackUndo.Push(ur);
-            //    if (stackUndo.Count > 0)
-            //    {
-            //        btnUndo.Enabled = true;
-            //    }
-            //}
         }
 
         private void txtPhoneNumber_KeyPress(object sender, KeyPressEventArgs e)
@@ -455,7 +465,7 @@ namespace NganHang.Views
                 comboBoxBranch.Enabled = false;
             }
 
-            isAdding = isEditing =  btnUndo.Enabled = btnRedo.Enabled = false;
+            isAdding = isEditing = btnUndo.Enabled = btnRedo.Enabled = false;
             btnReload.Enabled = true;
         }
 
@@ -524,11 +534,15 @@ namespace NganHang.Views
 
         private Boolean checkCMND()
         {
-            string cmd = "exec trungCMND @CMND='" + txtCMND.Text.Trim() + "'";
+            string cmd = "exec trungCMND @CMND='" + txtCMND.Text + "'";
             try
             {
                 Program.Connect();
-                Program.ExecSqlDataReader(cmd);
+                DataTable temp = Program.ExecSqlDataTable(cmd);
+                if (temp.Rows.Count > 0)
+                {
+                    return false;
+                }
             }
             catch (Exception ex)
             {
@@ -536,6 +550,81 @@ namespace NganHang.Views
             }
             return true;
         }
+
+        private Boolean IsCreateAccount()
+        {
+            string cmd = "exec DaTaoTaiKhoan @cmnd='" + ((DataRowView)khachHangBindingSource[khachHangBindingSource.Position])["CMND"].ToString() + "'";
+            try
+            {
+                if (Program.Connect() == 0)
+                {
+                    MessageBox.Show("Lỗi kết nối", "", MessageBoxButtons.OK);
+                    return false;
+                }
+                if (Program.ExecSqlNonQuery(cmd) != 999)
+                {
+                    MessageBox.Show("Không thể xóa khách hàng đã tạo tài khoản.", "", MessageBoxButtons.OK);
+                    return false;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Có lỗi trong quá trình xóa, vui lòng thử lại sau.", "", MessageBoxButtons.OK);
+                return false;
+            }
+        }
+
+        private bool AddCustomer()
+        {
+
+            string cmdAdd = String.Format("exec dbo.SP_TaoKhachHang '{0}', N'{1}', N'{2}', N'{3}', N'{4}', '{5}', '{6}'",
+                txtCMND.Text.Trim(),
+                txtSurname.Text.Trim(),
+                txtName.Text.Trim(),
+                txtAddress.Text.Trim(),
+                cbGender.Text.Trim(),
+                txtPhoneNumber.Text.Trim(),
+                comboBoxBranch.Text.Trim());
+
+            if (Program.Connect() == 0)
+            {
+                MessageBox.Show("Có lỗi trong quá trình xử lý.");
+                return false;
+            }
+
+            try
+            {
+                if (Program.ExecSqlNonQuery(cmdAdd) == Program.excuteSuccess)
+                {
+                    return true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Có lỗi trong quá trình thực hiện, vui lòng thử lại sau." + Environment.NewLine + "" + ex.Message, "", MessageBoxButtons.OK);
+                return false;
+            }
+
+            return false;
+        }
+
+        private DataTable GetDataTable(GridView view)
+        {
+            DataTable dt = new DataTable();
+            foreach (GridColumn c in view.Columns)
+                dt.Columns.Add(c.FieldName, c.ColumnType);
+            for (int r = 0; r < view.RowCount; r++)
+            {
+                object[] rowValues = new object[dt.Columns.Count];
+                for (int c = 0; c < dt.Columns.Count; c++)
+                    rowValues[c] = view.GetRowCellValue(r, dt.Columns[c].ColumnName);
+                dt.Rows.Add(rowValues);
+            }
+            return dt;
+        }
+
 
         #endregion
     }

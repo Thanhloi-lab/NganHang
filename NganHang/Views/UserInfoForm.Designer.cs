@@ -58,6 +58,8 @@ namespace NganHang
             this.tbBranch = new System.Windows.Forms.TextBox();
             this.cbGender = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tbCMND = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
@@ -241,7 +243,7 @@ namespace NganHang
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(437, 230);
+            this.label5.Location = new System.Drawing.Point(437, 233);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 13);
             this.label5.TabIndex = 8;
@@ -294,7 +296,7 @@ namespace NganHang
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(411, 132);
+            this.label7.Location = new System.Drawing.Point(412, 291);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(61, 13);
             this.label7.TabIndex = 12;
@@ -302,7 +304,7 @@ namespace NganHang
             // 
             // tbBranch
             // 
-            this.tbBranch.Location = new System.Drawing.Point(478, 129);
+            this.tbBranch.Location = new System.Drawing.Point(479, 288);
             this.tbBranch.Name = "tbBranch";
             this.tbBranch.ReadOnly = true;
             this.tbBranch.Size = new System.Drawing.Size(165, 20);
@@ -320,6 +322,8 @@ namespace NganHang
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.tbCMND);
+            this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.cbGender);
             this.panel1.Controls.Add(this.tbBranch);
@@ -340,6 +344,24 @@ namespace NganHang
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1176, 564);
             this.panel1.TabIndex = 14;
+            // 
+            // tbCMND
+            // 
+            this.tbCMND.Location = new System.Drawing.Point(479, 125);
+            this.tbCMND.Name = "tbCMND";
+            this.tbCMND.ReadOnly = true;
+            this.tbCMND.Size = new System.Drawing.Size(165, 20);
+            this.tbCMND.TabIndex = 17;
+            this.tbCMND.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCMND_KeyPress);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(438, 128);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(42, 13);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "CMND:";
             // 
             // label8
             // 
@@ -605,5 +627,7 @@ namespace NganHang
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControl1;
+        private System.Windows.Forms.TextBox tbCMND;
+        private System.Windows.Forms.Label label9;
     }
 }

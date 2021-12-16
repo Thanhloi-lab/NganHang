@@ -239,6 +239,7 @@ namespace NganHang
                 LoadDefaultForm();
                 drvCache = null;
             }
+            
         }
 
         private void btnRestore_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -388,6 +389,11 @@ namespace NganHang
             btnSave.Enabled = btnRestore.Enabled = false;
         }
 
+        private void SwitchBranchButton()
+        {
+            btnSave.Enabled = btnRestore.Enabled = btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = false;
+        }
+
         private void LoadDefaultForm()
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -407,8 +413,10 @@ namespace NganHang
                 
             }
             BindingDataForAccount();
-
-            DefaultButton();
+            if (Program.mGroup == "NGANHANG")
+                SwitchBranchButton();
+            else if (Program.mGroup == "CHINHANH")
+                DefaultButton();
 
             isAdding = isEditing = false;
             Cursor.Current = Cursors.Default;
@@ -486,6 +494,7 @@ namespace NganHang
                     MessageBox.Show("Có lỗi trong quá trình xử lý.");
                     return;
                 }
+                SwitchBranchButton();
             }
             else
             {
@@ -494,7 +503,7 @@ namespace NganHang
                     MessageBox.Show("Có lỗi trong quá trình xử lý.");
                     return;
                 }
-
+                DefaultButton();
             }
             string cmd = "EXEC LietKeTaiKhoan";
 
@@ -503,6 +512,7 @@ namespace NganHang
 
             gcAccount.DataSource = dt;
             gvAccount.FocusedRowHandle = 0;
+
 
             Cursor.Current = Cursors.Default;
         }
@@ -587,13 +597,14 @@ namespace NganHang
 
         private void gcAccount_DataSourceChanged(object sender, EventArgs e)
         {
-            this.ActiveControl = this.gcAccount;
-            this.gvAccount.FocusedRowHandle = 0;
+            
 
             if (gcAccount.DataSource != null)
             {
                 try
                 {
+                    this.ActiveControl = this.gcAccount;
+                    this.gvAccount.FocusedRowHandle = 0;
                     DataRowView drv = drvCache = gvAccount.GetRow(0) as DataRowView;
                     if (drv != null)
                     {

@@ -84,7 +84,6 @@ namespace NganHang
             this.colPHAI = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSODT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMACN = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colTrangThaiXoa = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pncStaff = new DevExpress.XtraEditors.PanelControl();
             this.tbStaffBranch = new System.Windows.Forms.TextBox();
             this.tbStaffPhoneNumber = new System.Windows.Forms.TextBox();
@@ -97,6 +96,7 @@ namespace NganHang
             this.label8 = new System.Windows.Forms.Label();
             this.tbStaffLastName = new System.Windows.Forms.TextBox();
             this.tbStaffFirstName = new System.Windows.Forms.TextBox();
+            this.colCMND = new DevExpress.XtraGrid.Columns.GridColumn();
             hOLabel = new System.Windows.Forms.Label();
             tENLabel = new System.Windows.Forms.Label();
             mACNLabel = new System.Windows.Forms.Label();
@@ -593,11 +593,11 @@ namespace NganHang
             this.colMANV,
             this.colHO,
             this.colTEN,
+            this.colCMND,
             this.colDIACHI,
             this.colPHAI,
             this.colSODT,
-            this.colMACN,
-            this.colTrangThaiXoa});
+            this.colMACN});
             this.gvStaff.GridControl = this.gcStaff;
             this.gvStaff.Name = "gvStaff";
             this.gvStaff.OptionsBehavior.Editable = false;
@@ -629,7 +629,7 @@ namespace NganHang
             this.colDIACHI.FieldName = "DIACHI";
             this.colDIACHI.Name = "colDIACHI";
             this.colDIACHI.Visible = true;
-            this.colDIACHI.VisibleIndex = 3;
+            this.colDIACHI.VisibleIndex = 5;
             // 
             // colPHAI
             // 
@@ -643,21 +643,14 @@ namespace NganHang
             this.colSODT.FieldName = "SODT";
             this.colSODT.Name = "colSODT";
             this.colSODT.Visible = true;
-            this.colSODT.VisibleIndex = 5;
+            this.colSODT.VisibleIndex = 6;
             // 
             // colMACN
             // 
             this.colMACN.FieldName = "MACN";
             this.colMACN.Name = "colMACN";
             this.colMACN.Visible = true;
-            this.colMACN.VisibleIndex = 6;
-            // 
-            // colTrangThaiXoa
-            // 
-            this.colTrangThaiXoa.FieldName = "TrangThaiXoa";
-            this.colTrangThaiXoa.Name = "colTrangThaiXoa";
-            this.colTrangThaiXoa.Visible = true;
-            this.colTrangThaiXoa.VisibleIndex = 7;
+            this.colMACN.VisibleIndex = 7;
             // 
             // pncStaff
             // 
@@ -777,6 +770,14 @@ namespace NganHang
             this.tbStaffFirstName.Size = new System.Drawing.Size(160, 21);
             this.tbStaffFirstName.TabIndex = 3;
             // 
+            // colCMND
+            // 
+            this.colCMND.Caption = "CMND";
+            this.colCMND.FieldName = "CMND";
+            this.colCMND.Name = "colCMND";
+            this.colCMND.Visible = true;
+            this.colCMND.VisibleIndex = 3;
+            // 
             // AccountForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -855,7 +856,6 @@ namespace NganHang
         private DevExpress.XtraGrid.Columns.GridColumn colPHAI;
         private DevExpress.XtraGrid.Columns.GridColumn colSODT;
         private DevExpress.XtraGrid.Columns.GridColumn colMACN;
-        private DevExpress.XtraGrid.Columns.GridColumn colTrangThaiXoa;
         private DevExpress.XtraEditors.PanelControl pncStaff;
         private System.Windows.Forms.TextBox tbStaffId;
         private System.Windows.Forms.TextBox tbStaffAddress;
@@ -872,5 +872,6 @@ namespace NganHang
         private System.Windows.Forms.TextBox tbStaffBranch;
         private DevExpress.XtraBars.BarButtonItem btnUndo;
         private DevExpress.XtraBars.BarButtonItem btnRedo;
+        private DevExpress.XtraGrid.Columns.GridColumn colCMND;
     }
 }
